@@ -1,0 +1,10 @@
+*.png
+*.log
+_p*.html
+_d*.html
+_dbg*.html
+_light.html
+__pycache__/
+.DS_Store
+analysis.txt
+analyze.py

@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>F1 Driver Ratings 1990–2026</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* layout: timing-screen database — sticky strip, card leaderboard, detail drawer */
+:root{
+  --plane:#f7f7f5; --surface:#ffffff; --surface-2:#f1f1ee;
+  --ink:#0c0d10; --ink-2:#4a4c52; --muted:#7e818a;
+  --line:#e2e2dd; --line-strong:#c9c9c2;
+  --accent:#1a6ed8; --accent-ink:#ffffff;
+  --good:#0c7a3c; --bad:#c0332f;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --grid:#e6e6e1; --baseline:#c3c3bc;
+  --shadow:0 1px 2px rgba(12,13,16,.06),0 6px 20px -12px rgba(12,13,16,.22);
+  --r:10px;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --disp:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --plane:#0b0b0c; --surface:#141517; --surface-2:#1c1d20;
+  --ink:#f2f2ef; --ink-2:#c2c4c9; --muted:#8b8e96;
+  --line:#26272b; --line-strong:#3a3c41;
+  --accent:#4a93e8; --accent-ink:#08131f;
+  --good:#4cc26d; --bad:#e26a66;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --grid:#232428; --baseline:#3a3c41;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 8px 24px -14px rgba(0,0,0,.8);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --plane:#0b0b0c; --surface:#141517; --surface-2:#1c1d20;
+  --ink:#f2f2ef; --ink-2:#c2c4c9; --muted:#8b8e96;
+  --line:#26272b; --line-strong:#3a3c41;
+  --accent:#4a93e8; --accent-ink:#08131f;
+  --good:#4cc26d; --bad:#e26a66;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --grid:#232428; --baseline:#3a3c41;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 8px 24px -14px rgba(0,0,0,.8);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--plane); color:var(--ink); font-family:var(--body);
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{font-family:var(--disp);text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.01em}
+a{color:var(--accent)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---- sticky top strip ---- */
+header.bar{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:20;
+  background:color-mix(in srgb,var(--plane) 88%,transparent);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+  margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));
+  padding:10px max(16px,env(safe-area-inset-left,0px)) 0 max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--plane)}
+.bar-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.bar-top h1{font-size:clamp(19px,2.6vw,25px)}
+.bar-top .sub{color:var(--muted);font-size:12.5px;font-family:var(--mono)}
+.tabs{display:flex;gap:2px;margin-top:8px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  appearance:none;border:0;background:transparent;color:var(--ink-2);cursor:pointer;
+  font:600 13.5px/1 var(--body);padding:9px 13px 11px;border-bottom:2px solid transparent;white-space:nowrap
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+main{padding-block:22px 64px}
+.panel[hidden]{display:none}
+
+/* ---- controls ---- */
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.field{position:relative;display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:5px 9px}
+.field label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.field select,.field input{border:0;background:transparent;color:var(--ink);font:500 13.5px var(--body);appearance:none}
+.field select{padding-right:16px;cursor:pointer}
+.field select option{background:var(--surface);color:var(--ink)}
+.field input[type=search]{width:150px}
+.field input::placeholder{color:var(--muted)}
+.field:has(select)::after{content:"";position:absolute;right:9px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.count{margin-left:auto;color:var(--muted);font:12.5px var(--mono)}
+
+/* ---- leaderboard cards ---- */
+.board{display:flex;flex-direction:column;gap:6px}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  border-left:3px solid var(--era,var(--line-strong));
+  overflow:hidden;transition:border-color .15s
+}
+.card:hover{border-color:var(--line-strong)}
+.card.open{border-color:var(--accent)}
+.row{
+  display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:12px;align-items:center;
+  padding:11px 14px;cursor:pointer;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit
+}
+.rk{font:700 15px var(--mono);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.who{min-width:0;display:flex;flex-direction:column;gap:1px}
+.nm{display:block;font-family:var(--disp);font-weight:600;font-size:16px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nm .flag{margin-right:6px;font-family:var(--mono);font-size:11px;font-weight:700}
+.meta{display:block;color:var(--muted);font:11.5px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.right{display:flex;align-items:center;gap:10px;flex:none}
+.bars{width:104px;flex:none}
+.mini{font:500 10px var(--mono);color:var(--muted);display:flex;justify-content:space-between;margin-bottom:2px;letter-spacing:.02em}
+.track{height:4px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.fill{height:100%;border-radius:3px;background:var(--accent)}
+.ovr{font:700 21px var(--mono);font-variant-numeric:tabular-nums;min-width:50px;text-align:right;line-height:1}
+.ovr small{display:block;font:600 9px var(--mono);color:var(--muted);letter-spacing:.1em;margin-top:2px}
+.prov{display:inline-block;font:700 8.5px var(--mono);letter-spacing:.06em;color:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:0 4px;margin-left:6px;vertical-align:1px}
+
+/* ---- detail ---- */
+.detail{border-top:1px solid var(--line);padding:16px 14px;background:var(--surface-2);display:grid;gap:16px}
+@media(min-width:820px){.detail{grid-template-columns:1.15fr 1fr}}
+.sub-h{font:600 11px var(--body);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;align-items:baseline}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.sg div{background:var(--surface);padding:8px 10px}
+.sg dt{font:600 10px var(--body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.sg dd{margin:2px 0 0;font:600 16px var(--mono);font-variant-numeric:tabular-nums}
+.sg dd span{font-size:11.5px;color:var(--muted);font-weight:500}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tag{font:500 11.5px var(--body);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--ink-2)}
+.tag.hot{border-color:var(--accent);color:var(--accent)}
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 8px 4px}
+.chartbox svg{display:block;width:100%;height:auto}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font:11.5px var(--body);color:var(--ink-2);padding:4px 6px 6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.tmlist{display:flex;flex-direction:column;gap:6px}
+.tmrow{background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:9px 11px;display:grid;gap:3px}
+.tmhead{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.tn{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gap{font:600 11px var(--mono);white-space:nowrap}
+.gap.up{color:var(--good)}
+.gap.dn{color:var(--bad)}
+.tmyr{font:11px var(--mono);color:var(--muted)}
+.tmbar{height:6px;border-radius:3px;background:var(--surface-2);overflow:hidden;margin:2px 0}
+.tmbar .w{display:block;height:100%;background:var(--good)}
+.tmrec{display:flex;align-items:baseline;gap:10px}
+.score{font:700 14px var(--mono);font-variant-numeric:tabular-nums}
+.score.win{color:var(--good)}
+.score.lose{color:var(--bad)}
+.score.ev{color:var(--ink-2)}
+.pcts{font:10.5px var(--mono);color:var(--muted)}
+.wpct{margin-left:auto;font:600 12px var(--mono);color:var(--ink-2)}
+.dv{display:flex;height:16px;border-radius:3px;overflow:hidden;background:var(--surface-2)}
+.dv i{display:block;height:100%}
+.dv .w{background:var(--good)}
+.dv .l{background:var(--surface-2);border-left:1px solid var(--line-strong)}
+.dvwrap{display:flex;align-items:center;gap:8px;margin-top:3px}
+.dvwrap span{font:10.5px var(--mono);color:var(--muted);white-space:nowrap}
+.empty{color:var(--muted);font-size:13px;padding:8px 2px}
+.note{background:color-mix(in srgb,var(--accent) 8%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));border-radius:7px;padding:8px 11px;font-size:12.5px;color:var(--ink-2);margin-top:10px}
+
+/* ---- cars table ---- */
+.cars{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:660px;font-size:13.5px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font:600 11px var(--body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--surface-2);position:sticky;top:0}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--surface-2)}
+.pill{display:inline-block;font:700 10px var(--body);letter-spacing:.04em;padding:2px 6px;border-radius:4px;background:var(--surface-2);color:var(--ink-2)}
+.pill.ch{background:var(--accent);color:var(--accent-ink)}
+.earbud{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:7px;vertical-align:0}
+
+/* ---- method ---- */
+.prose{max-width:68ch}
+.prose h2{font-size:19px;margin:26px 0 8px}
+.prose h2:first-child{margin-top:0}
+.prose p{margin:0 0 12px;color:var(--ink-2)}
+.prose ul{margin:0 0 12px;padding-left:18px;color:var(--ink-2)}
+.prose li{margin-bottom:5px}
+.prose code{font:500 12.5px var(--mono);background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink)}
+.callout{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0}
+.callout p:last-child{margin-bottom:0}
+.wt{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.wt div{background:var(--surface);padding:10px 12px}
+.wt dt{font:600 10.5px var(--body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.wt dd{margin:3px 0 0;font:600 15px var(--mono)}
+footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid var(--line);margin-top:34px}
+@media(max-width:560px){
+  .row{grid-template-columns:26px minmax(0,1fr) auto;gap:8px;padding:10px 11px}
+  .nm{font-size:15px}
+  .bars{display:none}
+  .ovr{font-size:19px;min-width:44px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="bar">
+  <div class="bar-top">
+    <h1>F1 Driver Ratings</h1>
+    <span class="sub">1990 – 2026 · <span id="hdr-n">216</span> drivers · pairwise model</span>
+  </div>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-drivers" aria-selected="true" aria-controls="p-drivers">Drivers</button>
+    <button class="tab" role="tab" id="tab-cars" aria-selected="false" aria-controls="p-cars">Cars</button>
+    <button class="tab" role="tab" id="tab-method" aria-selected="false" aria-controls="p-method">Method</button>
+  </div>
+</header>
+
+<main>
+  <section class="panel" id="p-drivers" role="tabpanel" aria-labelledby="tab-drivers">
+    <div class="controls">
+      <div class="field"><label for="sort">Rank by</label>
+        <select id="sort">
+          <option value="ovr">Career rating</option>
+          <option value="peak_ovr">Peak rating</option>
+          <option value="elo">Rating (Elo)</option>
+          <option value="peak_elo">Peak Elo</option>
+          <option value="wins">Wins</option>
+          <option value="titles">Titles</option>
+          <option value="starts">Starts</option>
+        </select>
+      </div>
+      <div class="field"><label for="era">Debut</label>
+        <select id="era">
+          <option value="">all</option>
+          <option value="1990">1990s</option>
+          <option value="2000">2000s</option>
+          <option value="2010">2010s</option>
+          <option value="2020">2020s</option>
+        </select>
+      </div>
+      <div class="field"><label for="natf">Nation</label><select id="natf"></select></div>
+      <div class="field"><input id="q" type="search" placeholder="Search driver…" aria-label="Search driver"></div>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="board" id="board"></div>
+    <div class="empty" id="nores" hidden>No driver matches those filters.</div>
+  </section>
+
+  <section class="panel" id="p-cars" role="tabpanel" aria-labelledby="tab-cars" hidden>
+    <p class="prose" style="max-width:62ch;color:var(--ink-2);margin:0 0 16px">
+      Car strength is fit jointly with driver skill, so it is what a car did in races rather than what its reputation says.
+      A team's two drivers share one car effect, which is exactly what lets the model separate the two.
+      Every team that raced in 1990–2026 is here — <strong>424 car-seasons</strong>, all listed, including the
+      backmarkers the championship table leaves out (marked <span class="pill" style="opacity:.7">NC</span>, no
+      classified standing). Search or filter by season and type.
+    </p>
+    <div class="controls">
+      <div class="field"><input id="cq" type="search" placeholder="Search team…" aria-label="Search team"></div>
+      <div class="field"><label for="cera">Season</label><select id="cera"><option value="">all</option></select></div>
+      <div class="field"><label for="cty">Type</label>
+        <select id="cty">
+          <option value="">all</option>
+          <option value="champ">champions</option>
+          <option value="nc">unclassified (NC)</option>
+        </select>
+      </div>
+      <span class="count" id="ccount"></span>
+    </div>
+    <div class="cars scroll"><table id="carstbl">
+      <thead><tr>
+        <th class="num">#</th><th>Season</th><th>Constructor</th><th class="num">Car Elo</th>
+        <th class="num">Rating</th><th class="num">WCC</th><th class="num">Points</th><th>Champion</th>
+      </tr></thead><tbody></tbody>
+    </table></div>
+  </section>
+
+  <section class="panel" id="p-method" role="tabpanel" aria-labelledby="tab-method" hidden>
+    <div class="prose">
+      <h2>What the rating is</h2>
+      <p>Every classified finish in the 1990–2026 races is turned into pairwise duels: each driver is compared with
+      every other classified finisher of the same race, and the winner of each duel is whoever finished ahead. The model then
+      fits two numbers per driver per duel — a driver skill and a car strength — so that predicted win rates match what
+      actually happened. This is the Bradley–Terry model, the same statistical family as Elo.</p>
+      <div class="callout"><p><strong>The one idea that makes this work.</strong> The two drivers of one team share the same car,
+      so inside a team the car term subtracts out and what is left is pure driver-versus-driver. Those teammate duels anchor
+      every rating; results against the rest of the field fix how strong each car was. A driver is never rewarded for a fast
+      car beyond the points that car's teammate also scored.</p></div>
+      <h2>What each column means</h2>
+      <ul>
+        <li><strong>Rating (Elo)</strong> — career skill on one scale. 400 points of Elo ≈ a 10:1 win probability in a duel.
+        Each is shown with its 95% interval; short careers have wide ones.</li>
+        <li><strong>Peak</strong> — the best rolling three-season skill, so a driver is judged on their best years, not their length.</li>
+        <li><strong>Car</strong> — the average strength of the machinery they drove. <strong>Excess</strong> is rating minus car:
+        how much of the result was them.</li>
+        <li><strong>vs field</strong> — a z-score: how far above the average driver of their own seasons they sat. This is the
+        era-fair column, since every era's field is judged against itself.</li>
+        <li><strong>Consistency</strong> — how reliably a driver both finishes and reaches the front: a blend of finish rate
+        and top-10 rate. It rewards a driver who is always there, not one who merely completes laps in last place.</li>
+        <li><strong>Points</strong> — championship points, but normalized per season (a driver's haul divided by the
+        champion's that year) so that the 9-6-4 scale of 1994 and the 25-18-15 scale of today mean the same thing.
+        Raw totals are never compared across eras.</li>
+        <li><strong>Confidence</strong> — how much evidence stands behind the number, from the count of duels. A
+        long career raises confidence in the rating; it never raises the rating itself.</li>
+      </ul>
+      <h2>What does not decide the ranking</h2>
+      <p>Career length is not a rating input. Starts, seasons and career totals appear in each card so you can read the
+      record, but the OVR weights skill, peak, consistency, era-relative superiority, era-normalized points and teammate
+      record — none of them volume. A driver with 40 brilliant races can outrank one with 300 ordinary ones. Where an
+      exception looks odd — a short career rated very high, or a long one rated low — the peak and vs-field columns
+      explain it, and the record columns show the raw totals.</p>
+      <h2>Every team counts</h2>
+      <p>The car list holds all 424 constructor-seasons that raced between 1990 and 2026, not only the ones a
+      championship table lists. Entrants with no classified standing — Simtek 1994, Forti 1995–96, Minardi 1996–98 and
+      the rest — still carry a car rating and still appear, marked <span class="pill" style="opacity:.7">NC</span>.
+      A season with no points is scored as zero, because that is what it was.</p>
+      <h2>Who is rated</h2>
+      <p>Every driver who took a race start between 1990 and 2026 is here — <strong>216 drivers</strong>, from
+      seven-time champions to one-off stand-ins. Drivers with a thin record (under 10 starts) carry a
+      <span class="prov">PROV</span> badge: the model still rates them, but their interval is wide and the number
+      should be read as provisional. Nobody who raced is hidden.</p>
+      <h2>Rookies and thin samples</h2>
+      <p>A rating built from a handful of races is a guess with wide error bars, and the model says so rather than hiding it.
+      Any driver with a small sample carries a <span class="prov">PROV</span> badge: their OVR is provisional and their
+      interval is wide. Two flags drive it — <strong>early career</strong> (debuted in the last two seasons) and
+      <strong>small sample</strong> (under 20 starts). The badge is a caution, never a penalty: a rookie is not ranked down
+      for being new, only marked as unfinished.</p>
+      <h2>Driving style, from behaviour</h2>
+      <p>Style tags are read off measurable behaviour, not reputation: a driver who beats teammates on Saturday more than
+      Sunday is tagged a one-lap specialist; the reverse is a race-day racer; average grid-to-flag change marks an
+      overtaker; mechanical versus driver-caused retirements separate a reliable finisher from a crash-prone one.</p>
+      <h2>Limits, stated plainly</h2>
+      <ul>
+        <li>Point systems changed across the era (and points are therefore only used as a sanity check, not as a rating input).</li>
+        <li>Reliability was far worse in the 1990s, so career win and finish counts favour modern drivers; the Elo,
+        vs-field and consistency columns are the fair comparison, career totals are not.</li>
+        <li>Pre-1990 careers appear only through 1990 onward for the rating, and through full career totals for the record.</li>
+        <li>Qualifying times exist only from 2006 (before that, a single best lap; from 2006, Q1/Q2/Q3), so Saturday pace
+        is measured by grid position across the whole window.</li>
+        <li>The model reads results, not context: a driver in a bad car beaten by a teammate in the same bad car is judged
+        fairly, but a driver asked to run a different strategy or develop a car is not credited for it.</li>
+        <li>No telemetry is used, because none exists for this span. Lap-by-lap speed, throttle, brake and sector data
+        are not published as structured, complete records across 1990–2026; the finest public granularity is the
+        fastest-lap time, which the model treats as a race outcome. Everything here is built from finishing positions,
+        grid positions and retirement causes.</li>
+      </ul>
+      <div class="wt">
+        <div><dt>Races modelled</dt><dd id="m-races">—</dd></div>
+        <div><dt>Driver duels</dt><dd id="m-pairs">—</dd></div>
+        <div><dt>Drivers rated</dt><dd id="m-drivers">—</dd></div>
+        <div><dt>Car-seasons</dt><dd id="m-cars">—</dd></div>
+        <div><dt>Fit error</dt><dd id="m-ll">0.393</dd></div>
+      </div>
+      <p style="margin-top:14px"><strong>Source:</strong> f1db (community F1 database), release v2026.20.0 · results through the 2026 season.</p>
+    </div>
+  </section>
+
+  <footer>
+    Ratings are a model output, not a verdict. Built from race results only — no expert votes, no reputation.
+  </footer>
+</main>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+"use strict";
+var D = window.F1DATA;
+if(!D){document.getElementById('board').textContent='Data failed to load.';return;}
+
+/* ---------- helpers ---------- */
+var ERA=[{y:1990,l:'1990s',c:'--s1'},{y:2000,l:'2000s',c:'--s2'},{y:2010,l:'2010s',c:'--s3'},{y:2020,l:'2020s',c:'--s4'}];
+function eraOf(y){return y<2000?0:y<2010?1:y<2020?2:3}
+function eraLabel(y){return ERA[eraOf(y)].l}
+function nf(v,d){return (v==null||isNaN(v))?'—':Number(v).toFixed(d==null?0:d)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function last(n){var p=String(n||'').split(' ');return p.length>1?p[p.length-1]:n}
+/* display name from the id, which is already the common short form:
+   alain-prost -> "Alain Prost", alexander-albon -> "Alexander Albon" */
+var SMALL={de:1,van:1,von:1,der:1,la:1,le:1,di:1,da:1,ii:1,iii:1};
+function disp(id){
+  if(!id) return '';
+  return String(id).split('-').map(function(w,i){
+    if(i>0&&SMALL[w.toLowerCase()]) return w.toLowerCase();
+    return w.charAt(0).toUpperCase()+w.slice(1);
+  }).join(' ');
+}
+var NAT={brazil:'BRA',germany:'GER','united-kingdom':'GBR',france:'FRA',spain:'ESP',italy:'ITA',
+finland:'FIN',australia:'AUS',austria:'AUT',netherlands:'NED',belgium:'BEL',monaco:'MON',
+'new-zealand':'NZL',canada:'CAN',japan:'JPN',mexico:'MEX',sweden:'SWE',switzerland:'SUI',
+argentina:'ARG',colombia:'COL',portugal:'POR',denmark:'DEN',poland:'POL',russia:'RUS',
+thailand:'THA',china:'CHN',india:'IND',indonesia:'INA','south-africa':'RSA',venezuela:'VEN',
+ireland:'IRL','united-states':'USA',uruguay:'URU',chile:'CHI',malaysia:'MAS',usa:'USA'};
+function flag(id){return id?(NAT[id]||id.slice(0,3).toUpperCase()):''}
+function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+/* read palette from CSS so charts follow the theme */
+function palette(){return{s1:cssv('--s1'),s2:cssv('--s2'),s3:cssv('--s3'),s4:cssv('--s4'),
+  grid:cssv('--grid'),base:cssv('--baseline'),ink:cssv('--ink'),muted:cssv('--muted'),
+  surface:cssv('--surface'),accent:cssv('--accent'),good:cssv('--good'),bad:cssv('--bad')}}
+
+/* ---------- stats for method tab ---------- */
+document.getElementById('m-races').textContent = (D.n_races||688).toLocaleString('en-US');
+document.getElementById('m-pairs').textContent = D.n_pairs.toLocaleString('en-US');
+document.getElementById('m-drivers').textContent = D.n_drivers;
+document.getElementById('m-cars').textContent = D.n_cars;
+document.getElementById('hdr-n').textContent = D.n_drivers;
+
+/* ---------- tabs ---------- */
+var tabs=[].slice.call(document.querySelectorAll('.tab'));
+tabs.forEach(function(t){
+  t.addEventListener('click',function(){
+    tabs.forEach(function(o){
+      var on=o===t; o.setAttribute('aria-selected',on?'true':'false');
+      document.getElementById(o.getAttribute('aria-controls')).hidden=!on;
+    });
+    try{history.replaceState(null,'','#'+t.id.replace('tab-',''))}catch(e){}
+  });
+});
+var want=(location.hash||'').replace('#','');
+if(want&&document.getElementById('tab-'+want)) document.getElementById('tab-'+want).click();
+
+/* ---------- filters ---------- */
+var $board=document.getElementById('board'), $count=document.getElementById('count'),
+    $nores=document.getElementById('nores'),
+    $sort=document.getElementById('sort'), $era=document.getElementById('era'),
+    $nat=document.getElementById('natf'), $q=document.getElementById('q');
+
+var nats={}; D.drivers.forEach(function(d){ if(d.nat) nats[d.nat]=(nats[d.nat]||0)+1; });
+var natOpts='<option value="">all</option>';
+Object.keys(nats).sort(function(a,b){return nats[b]-nats[a]}).forEach(function(k){
+  natOpts+='<option value="'+k+'">'+k.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase()})+' ('+nats[k]+')</option>';
+});
+$nat.innerHTML=natOpts;
+
+var state={open:null};
+try{var s=localStorage.getItem('f1r:ui');if(s){var p=JSON.parse(s);$sort.value=p.sort||'ovr';$era.value=p.era||'';$nat.value=p.nat||'';}}catch(e){}
+function save(){try{localStorage.setItem('f1r:ui',JSON.stringify({sort:$sort.value,era:$era.value,nat:$nat.value}))}catch(e){}}
+
+function filtered(){
+  var e=$era.value, n=$nat.value, q=$q.value.trim().toLowerCase();
+  var ei=e?ERA.map(function(x){return x.y}).indexOf(+e):-1;
+  return D.drivers.filter(function(d){
+    if(ei>=0 && eraOf(d.first_season)!==ei) return false;
+    if(n && d.nat!==n) return false;
+    if(q){var hay=(d.name+' '+(d.id||'')).toLowerCase(); if(hay.indexOf(q)<0) return false;}
+    return true;
+  }).sort(function(a,b){
+    var k=$sort.value;
+    if(k==='starts') return b.starts-a.starts;
+    if(k==='wins') return b.wins-a.wins||b.ovr-a.ovr;
+    if(k==='titles') return b.titles-a.titles||b.ovr-a.ovr;
+    return (b[k]||0)-(a[k]||0);
+  });
+}
+
+/* ---------- mini bar ---------- */
+function bar(label,val,max,hue){
+  var w=max?Math.max(0,Math.min(100,val/max*100)):0;
+  return '<div class="mini"><span>'+label+'</span><span>'+nf(val)+'</span></div><div class="track"><div class="fill" style="width:'+w.toFixed(1)+'%;'+(hue?'background:'+hue:'')+'"></div></div>';
+}
+
+/* ---------- SVG charts ---------- */
+function sparkline(seasons,pal,color){
+  var W=520,H=150,PL=34,PR=12,PT=12,PB=22;
+  if(!seasons.length) return '<p class="empty">No season data.</p>';
+  var ys=seasons.map(function(s){return s.year}), vs=seasons.map(function(s){return s.skill});
+  var y0=Math.min.apply(null,vs), y1=Math.max.apply(null,vs);
+  if(y1-y0<0.15){var m=(y0+y1)/2;y0=m-0.075;y1=m+0.075;}
+  var x0=Math.min.apply(null,ys), x1=Math.max.apply(null,ys);
+  if(x1===x0){x1=x0+1}
+  function X(y){return PL+(y-x0)/(x1-x0)*(W-PL-PR)}
+  function Y(v){return PT+(1-(v-y0)/(y1-y0))*(H-PT-PB)}
+  var pts=seasons.map(function(s){return [X(s.year),Y(s.skill),s]});
+  var line=pts.map(function(p,i){return (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)}).join(' ');
+  var area=line+' L'+pts[pts.length-1][0].toFixed(1)+' '+(H-PB)+' L'+pts[0][0].toFixed(1)+' '+(H-PB)+' Z';
+  var g='';
+  [y0,(y0+y1)/2,y1].forEach(function(v){
+    g+='<line x1="'+PL+'" y1="'+Y(v)+'" x2="'+(W-PR)+'" y2="'+Y(v)+'" stroke="'+pal.grid+'" stroke-width="1"/>';
+    g+='<text x="'+(PL-6)+'" y="'+(Y(v)+3.5)+'" text-anchor="end" font-size="10" font-family="var(--mono)" fill="'+pal.muted+'">'+v.toFixed(1)+'</text>';
+  });
+  var xt='';
+  var step=Math.max(1,Math.ceil(seasons.length/6));
+  seasons.forEach(function(s,i){
+    if(i%step===0||i===seasons.length-1)
+      xt+='<text x="'+X(s.year)+'" y="'+(H-6)+'" text-anchor="middle" font-size="10" font-family="var(--mono)" fill="'+pal.muted+'">'+s.year+'</text>';
+  });
+  var dots=pts.map(function(p){
+    var s=p[2], ch=s.champion;
+    return '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+(ch?4:2.6)+'" fill="'+(ch?pal.accent:color)+'" stroke="'+pal.surface+'" stroke-width="1.5"><title>'+s.year+': '+(s.skill>0?'+':'')+s.skill.toFixed(2)+' skill'+(s.pos?', P'+s.pos+' in championship':'')+(ch?', champion':'')+'</title></circle>';
+  }).join('');
+  return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Season skill trajectory">'+g+
+    '<path d="'+area+'" fill="'+color+'" opacity="0.10"/>'+
+    '<path d="'+line+'" fill="none" stroke="'+color+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'+dots+xt+'</svg>';
+}
+
+function teammateChart(tms,pal){
+  var rows=tms.filter(function(t){return t.combined_rate!=null}).slice(0,7);
+  if(!rows.length) return '<p class="empty">No teammate head-to-head.</p>';
+  var W=520, rowH=36, H=rows.length*rowH+6, PL=4, PR=56, bw=W-PL-PR, mid=PL+bw/2;
+  var out='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Head-to-head vs teammates">';
+  rows.forEach(function(t,i){
+    var q=Number(ish(t.quali_rate)), r=Number(ish(t.race_rate));
+    var y=i*rowH, nameY=y+10, b1=y+15, b2=y+26, bh=8;
+    var span=t.years[0]+(t.years.length>1?'–'+t.years[t.years.length-1]:'');
+    out+='<text x="'+PL+'" y="'+nameY+'" font-size="11.5" font-family="var(--body)" font-weight="600" fill="'+pal.ink+'">'+esc(disp(t.id))+
+         ' <tspan font-weight="400" fill="'+pal.muted+'" font-size="10" font-family="var(--mono)">'+span+'</tspan></text>';
+    /* Saturday bar */
+    out+='<rect x="'+PL+'" y="'+b1+'" width="'+bw+'" height="'+bh+'" rx="2" fill="'+pal.grid+'" opacity="0.6"/>'+
+         '<rect x="'+PL+'" y="'+b1+'" width="'+(q*bw).toFixed(1)+'" height="'+bh+'" rx="2" fill="'+pal.s1+'"><title>'+esc(disp(t.id))+' — qualifying won '+t.quali_won+'/'+t.quali_n+'</title></rect>';
+    /* Sunday bar */
+    out+='<rect x="'+PL+'" y="'+b2+'" width="'+bw+'" height="'+bh+'" rx="2" fill="'+pal.grid+'" opacity="0.6"/>'+
+         '<rect x="'+PL+'" y="'+b2+'" width="'+(r*bw).toFixed(1)+'" height="'+bh+'" rx="2" fill="'+pal.s2+'"><title>'+esc(disp(t.id))+' — races won '+t.race_won+'/'+t.race_n+'</title></rect>';
+    /* even-split tick, drawn over both bars */
+    out+='<line x1="'+mid+'" y1="'+b1+'" x2="'+mid+'" y2="'+(b2+bh)+'" stroke="'+pal.base+'" stroke-width="1" opacity="0.9"/>';
+    /* one value label per bar, in the right gutter, in ink */
+    out+='<text x="'+(W-2)+'" y="'+(b1+7.5)+'" text-anchor="end" font-size="9.5" font-family="var(--mono)" fill="'+pal.muted+'">'+nf(q*100)+'%</text>';
+    out+='<text x="'+(W-2)+'" y="'+(b2+7.5)+'" text-anchor="end" font-size="9.5" font-family="var(--mono)" fill="'+pal.muted+'">'+nf(r*100)+'%</text>';
+  });
+  return out+'</svg>';
+}
+function ish(v){return v==null?0.5:v}
+
+/* ---------- card ---------- */
+function cardHtml(d,i){
+  var pal=palette(), ec=ERA[eraOf(d.first_season)].c, col=cssv(ec);
+  var open=state.open===d.id;
+  var h='<article class="card'+(open?' open':'')+'" style="--era:'+col+'" data-id="'+esc(d.id)+'">'+
+   '<button class="row" aria-expanded="'+open+'" data-id="'+esc(d.id)+'">'+
+     '<span class="rk">'+(i+1)+'</span>'+
+     '<span class="who"><span class="nm"><span class="flag" style="color:'+col+'">'+flag(d.nat)+'</span>'+esc(disp(d.id))+
+        (d.provisional?'<span class="prov" title="Small sample / early career — rating is provisional">PROV</span>':'')+'</span>'+
+       '<span class="meta">'+nf(d.career_first)+'–'+nf(d.career_last)+' · '+d.starts+' starts · '+d.wins+'W '+d.podiums+'P · '+eraLabel(d.first_season)+'</span></span>'+
+     '<span class="right"><span class="bars">'+bar('career',d.ovr,100)+bar('peak',d.peak_ovr,100,col)+'</span>'+
+       '<span class="ovr">'+nf(d.ovr,1)+'<small>OVR</small></span></span>'+
+   '</button>';
+  if(open){
+    h+='<div class="detail">'+detailHtml(d,pal,col)+'</div>';
+  }
+  return h+'</article>';
+}
+
+function detailHtml(d,pal,col){
+  var s1=d.seasons||[];
+  var stat=function(l,v,sub){return '<div><dt>'+l+'</dt><dd>'+v+(sub?' <span>'+sub+'</span>':'')+'</dd></div>'};
+  var core='<div class="sg">'+
+    stat('Rating',nf(d.elo),'±'+nf(d.elo_se))+
+    stat('Peak',nf(d.peak_elo))+
+    stat('Car',nf(d.avg_car_elo))+
+    stat('Excess',(d.driver_excess>0?'+':'')+nf(d.driver_excess))+
+    stat('vs field',(d.era_z>0?'+':'')+nf(d.era_z,2)+'σ')+
+    stat('Teammate',nf(d.teammate_rate*100)+'%')+
+  '</div>';
+  /* consistency: the reliability+front-running blend, shown as a bar */
+  var consBg='<div class="sub-h" style="margin-top:14px"><span>Consistency and form</span><span class="mono" style="font-weight:500">'+nf(d.consistency,1)+'/100</span></div>'+
+    '<div class="track" style="height:7px"><div class="fill" style="width:'+nf(d.consistency,1)+'%"></div></div>'+
+    '<div class="mini" style="margin-top:5px"><span>finish rate '+nf(d.finish_rate*100)+'%</span><span>top-10 rate '+nf((d.top10_rate||0)*100)+'%</span><span>confidence '+nf(d.confidence)+'</span></div>'+
+    '<div class="sg" style="margin-top:10px">'+
+      stat('Starts',d.starts)+
+      stat('Wins',d.wins)+
+      stat('Podiums',d.podiums)+
+      stat('Poles',d.poles)+
+      stat('Pts share',nf((d.era_points||0)*100)+'%')+
+      stat('DNF',d.dnf,'<span>'+d.dnf_mech+' mech</span>')+
+    '</div>';
+  var tags=(d.tags&&d.tags.length)?'<div class="tags">'+d.tags.map(function(t){return '<span class="tag hot">'+esc(t)+'</span>'}).join('')+'</div>':'';
+  var note='';
+  if(d.provisional) note='<div class="note">'+(d.is_rookie?'Early career —':'Small sample —')+
+    ' only '+d.starts+' starts, so this rating is provisional and carries wide error bars. Not a penalty, a caution.</div>';
+  var rec='<div class="sg">'+
+    stat('Entries',d.career_entries)+
+    stat('Starts',d.career_starts)+
+    stat('Wins',d.career_wins)+
+    stat('Podiums',d.career_podiums)+
+    stat('Poles',d.career_poles)+
+    stat('Fastest laps',d.career_fastest_laps)+
+    stat('Laps',d.career_laps!=null?(Math.round(d.career_laps/100)/10)+'k':null)+
+    stat('Best grid',d.career_best_grid)+
+    stat('Slams',d.grand_slams)+
+    stat('Driver of day',d.driver_of_the_day)+
+    stat('Seasons',d.career_seasons)+
+    stat('Span',nf(d.career_first)+'–'+nf(d.career_last))+
+  '</div>';
+  var born='';
+  if(d.place_of_birth||d.dob){
+    born='<div class="mini" style="margin-top:8px;color:var(--muted)">'+
+      (d.place_of_birth?esc(d.place_of_birth):'')+(d.dob?' · born '+esc(d.dob):'')+
+      (d.permanent_number?' · car #'+d.permanent_number:'')+'</div>';
+  }
+  var tms=(d.teammates&&d.teammates.length)?'<div class="tmlist">'+d.teammates.slice(0,8).map(function(t){
+      var w=(t.quali_won+t.race_won), l=((t.quali_n-t.quali_won)+(t.race_n-t.race_won)), tot=w+l;
+      var pct=tot?Math.round(w/tot*100):0, lead=w>l, even=w===l;
+      var cls=even?'ev':(lead?'win':'lose');
+      var gap=t.elo_gap, gapTxt=gap==null?'':'<span class="gap '+(gap>0?'up':'dn')+'">'+(gap>0?'+':'')+nf(gap)+' Elo</span>';
+      return '<div class="tmrow">'+
+        '<div class="tmhead"><span class="tn">'+esc(disp(t.id))+'</span>'+gapTxt+'</div>'+
+        '<div class="tmyr">'+t.years[0]+(t.years.length>1?'–'+t.years[t.years.length-1]:'')+' · '+t.quali_n+' races together</div>'+
+        '<div class="tmbar"><span class="w" style="width:'+pct+'%"></span></div>'+
+        '<div class="tmrec"><span class="score '+cls+'">'+w+'–'+l+'</span>'+
+          '<span class="pcts">Sat '+nf((t.quali_rate||0)*100)+'% · Sun '+nf((t.race_rate||0)*100)+'%</span>'+
+          '<span class="wpct">'+pct+'%</span></div>'+
+      '</div>';
+    }).join('')+'</div>':'<p class="empty">No teammate head-to-head.</p>';
+  return '<div>'+
+      '<div class="sub-h"><span>Season skill trajectory</span><span class="mono" style="font-weight:500">'+(d.first_season||'')+'–'+(d.last_season||'')+'</span></div>'+
+      '<div class="chartbox">'+sparkline(s1,pal,col)+
+        '<div class="legend"><span><i style="background:'+col+'"></i>season skill</span><span><i style="background:'+pal.accent+'"></i>champion season</span><span>higher = further ahead of the field</span></div>'+
+      '</div>'+
+      '<div class="sub-h" style="margin-top:16px"><span>Rating and machinery</span></div>'+
+      core+consBg+tags+note+
+    '</div>'+
+    '<div>'+
+      '<div class="sub-h"><span>Head-to-head vs teammates</span></div>'+
+      '<div class="chartbox">'+teammateChart(d.teammates||[],pal)+
+        '<div class="legend"><span><i style="background:'+pal.s1+'"></i>qualifying (Saturday)</span><span><i style="background:'+pal.s2+'"></i>race (Sunday)</span><span>bar = share of duels won, 50% = even</span></div>'+
+      '</div>'+
+      '<div class="sub-h" style="margin-top:16px"><span>Teammates faced</span></div>'+tms+
+      '<div style="margin-top:14px"><div class="sub-h"><span>Full career record (incl. pre-1990)</span></div>'+rec+born+'</div>'+
+    '</div>';
+}
+
+/* ---------- render ---------- */
+function render(){
+  var pal=palette();
+  var list=filtered();
+  $count.textContent=list.length+' of '+D.drivers.length+' drivers';
+  $nores.hidden=list.length>0;
+  var html='', n=Math.min(list.length,D.drivers.length);
+  for(var i=0;i<n;i++) html+=cardHtml(list[i],i);
+  $board.innerHTML=html;
+}
+
+$board.addEventListener('click',function(e){
+  var b=e.target.closest('button.row'); if(!b) return;
+  var id=b.getAttribute('data-id');
+  state.open = state.open===id?null:id;
+  render();
+  if(state.open){var el=$board.querySelector('.card.open'); if(el) el.scrollIntoView({block:'nearest'});}
+});
+['change','input'].forEach(function(ev){
+  $sort.addEventListener(ev,function(){save();render()});
+  $era.addEventListener(ev,function(){save();render()});
+  $nat.addEventListener(ev,function(){save();render()});
+});
+$q.addEventListener('input',render);
+
+/* ---------- cars ---------- */
+function renderCars(){
+  var pal=palette(), tb=document.querySelector('#carstbl tbody');
+  var q=(document.getElementById('cq').value||'').trim().toLowerCase();
+  var yr=document.getElementById('cera').value, ty=document.getElementById('cty').value;
+  var list=D.cars.filter(function(c){
+    if(q && !(c.name+' '+c.constructor+' '+c.year).toLowerCase().includes(q)) return false;
+    if(yr && String(c.year)!==yr) return false;
+    if(ty==='champ' && !c.champion) return false;
+    if(ty==='nc' && c.classified) return false;
+    return true;
+  });
+  document.getElementById('ccount').textContent=list.length+' of '+D.cars.length+' car-seasons';
+  tb.innerHTML=list.map(function(c){
+    var col=cssv(ERA[eraOf(c.year)].c);
+    var st=c.standing==null?'<span class="pill" style="opacity:.7">NC</span>':c.standing;
+    return '<tr><td class="num">'+c.rank+'</td><td class="num">'+c.year+'</td>'+
+      '<td><span class="earbud" style="background:'+col+'"></span>'+esc(c.name)+'</td>'+
+      '<td class="num">'+nf(c.elo)+'</td><td class="num">'+nf(c.rating,1)+'</td>'+
+      '<td class="num">'+st+'</td><td class="num">'+nf(c.points,1)+'</td>'+
+      '<td>'+(c.champion?'<span class="pill ch">WCC</span>':'<span class="pill">—</span>')+'</td></tr>';
+  }).join('');
+}
+
+/* car filter controls */
+(function(){
+  var yrs={}; D.cars.forEach(function(c){ yrs[c.year]=(yrs[c.year]||0)+1; });
+  var sel=document.getElementById('cera');
+  Object.keys(yrs).sort().reverse().forEach(function(y){
+    sel.insertAdjacentHTML('beforeend','<option value="'+y+'">'+y+' ('+yrs[y]+')</option>');
+  });
+  ['cq','cera','cty'].forEach(function(id){
+    var el=document.getElementById(id);
+    el.addEventListener('input',renderCars); el.addEventListener('change',renderCars);
+  });
+})();
+
+/* ---------- init / theme re-render ---------- */
+function redraw(){render();renderCars();}
+render();renderCars();
+try{window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',redraw)}catch(e){}
+new MutationObserver(redraw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+</body>
+</html>

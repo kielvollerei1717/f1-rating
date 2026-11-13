@@ -1,0 +1,2 @@
+numpy>=1.24
+# nothing else. model.py is stdlib + numpy only.
