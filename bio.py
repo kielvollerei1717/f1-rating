@@ -119,4 +119,6 @@ for i, did in enumerate(queue):
 
 json.dump(cache, open(CACHE, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 ok = sum(1 for v in cache.values() if v.get('found'))
-print(f'\nwrote {CACHE}: {ok}/{len(queue)} queued drivers with bio data')
+miss = len(queue) - ok
+print(f'\nwrote {CACHE}: {ok}/{len(queue)} queued drivers with bio data'
+      + (f' ({miss} still missing, retry next run)' if miss else ''))
