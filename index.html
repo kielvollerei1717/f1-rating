@@ -178,6 +178,46 @@ tbody tr:hover td{background:var(--surface-2)}
 
 /* ---- method ---- */
 .prose{max-width:68ch}
+.sharebtn{margin-left:auto;font:600 11px var(--body);color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:4px 9px;cursor:pointer}
+.sharebtn:hover{color:var(--accent);border-color:var(--accent)}
+.kbd{display:flex;gap:14px;margin-top:8px;padding:0;flex-wrap:wrap}
+.kbdrow{font:500 10.5px var(--mono);color:var(--muted);display:flex;gap:5px;align-items:center}
+kbd{font:600 10px var(--mono);background:var(--surface);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:var(--ink-2)}
+@media(max-width:560px){.kbd{display:none}}
+/* ---- VS tab ---- */
+.vs-wrap{display:grid;gap:18px}
+.vs-pick{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.vs-pick .field{flex:1;min-width:160px}
+.vs-sep{font:700 14px var(--disp);color:var(--muted);padding-bottom:8px}
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.vs-grid{grid-template-columns:1fr}}
+.vs-col{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:12px}
+.vs-col.win{border-color:var(--good)}
+.vs-col.lose{border-color:var(--bad)}
+.vs-hd{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.vs-hd .who{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:-.01em}
+.vs-hd .span{font:11px var(--mono);color:var(--muted)}
+.vs-big{font:700 34px var(--mono);font-variant-numeric:tabular-nums;line-height:1}
+.vs-big small{font:600 11px var(--mono);color:var(--muted);letter-spacing:.06em}
+.vs-dim{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
+.vs-dim div{display:flex;justify-content:space-between;gap:8px;font:13px var(--body);padding:4px 0;border-bottom:1px solid var(--line)}
+.vs-dim dt{color:var(--muted);font-weight:500}
+.vs-dim dd{margin:0;font:600 13.5px var(--mono);font-variant-numeric:tabular-nums}
+.vs-chips{display:flex;flex-wrap:wrap;gap:5px}
+.vs-note{color:var(--muted);font-size:12.5px;max-width:60ch}
+.vsbtn{margin-left:8px;font:700 10px var(--mono);letter-spacing:.06em;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:3px 8px;cursor:pointer;opacity:0;transition:opacity .15s,color .15s,border-color .15s}
+.card:hover .vsbtn,.card.open .vsbtn{opacity:1}
+.vsbtn:hover{color:var(--accent);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.vs-dim{margin:0}
+.vs-dimrow{display:grid;grid-template-columns:1.2fr auto auto;gap:10px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+.vs-dimrow:last-child{border-bottom:0}
+.vs-dimrow dt{color:var(--muted);font-weight:500}
+.vs-dimrow dd{font:600 13.5px var(--mono);font-variant-numeric:tabular-nums;text-align:right;min-width:56px}
+.vs-dimrow dd.hl{color:var(--good)}
+.vs-dimrow.wa dd:nth-of-type(1),.vs-dimrow.wb dd:nth-of-type(2){color:var(--good)}
+.vs-vsrow{grid-column:1/-1;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.vs-vsrow .vs-dimrow{border-color:var(--line)}
+.vs-vsrow .vs-dimrow:first-child{border-top:0}
 .prose h2{font-size:19px;margin:26px 0 8px}
 .prose h2:first-child{margin-top:0}
 .prose p{margin:0 0 12px;color:var(--ink-2)}
@@ -208,11 +248,18 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
   <div class="bar-top">
     <h1>F1 Driver Ratings</h1>
     <span class="sub">1990 – 2026 · <span id="hdr-n">216</span> drivers · pairwise model</span>
+    <button class="sharebtn" id="share" title="Copy shareable link to this view">⧉ Share</button>
   </div>
   <div class="tabs" role="tablist">
     <button class="tab" role="tab" id="tab-drivers" aria-selected="true" aria-controls="p-drivers">Drivers</button>
     <button class="tab" role="tab" id="tab-cars" aria-selected="false" aria-controls="p-cars">Cars</button>
+    <button class="tab" role="tab" id="tab-vs" aria-selected="false" aria-controls="p-vs">VS</button>
     <button class="tab" role="tab" id="tab-method" aria-selected="false" aria-controls="p-method">Method</button>
+  </div>
+  <div class="kbd">
+    <span class="kbdrow"><kbd>1</kbd>–<kbd>4</kbd> tabs</span>
+    <span class="kbdrow"><kbd>/</kbd> search</span>
+    <span class="kbdrow"><kbd>Esc</kbd> close</span>
   </div>
 </header>
 
@@ -273,6 +320,23 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
         <th class="num">Rating</th><th class="num">WCC</th><th class="num">Points</th><th>Champion</th>
       </tr></thead><tbody></tbody>
     </table></div>
+  </section>
+
+  <section class="panel" id="p-vs" role="tabpanel" aria-labelledby="tab-vs" hidden>
+    <div class="vs-wrap">
+      <div class="vs-pick">
+        <div class="field"><label for="vsa">Driver A</label>
+          <select id="vsa"></select>
+        </div>
+        <span class="vs-sep">vs</span>
+        <div class="field"><label for="vsb">Driver B</label>
+          <select id="vsb"></select>
+        </div>
+      </div>
+      <div class="vs-grid" id="vsg"></div>
+      <div class="vs-note">Head-to-head is only over races they actually shared a car (teammates). The Elo and
+      era-z columns are the era-fair comparison; raw totals favour the longer career, not the better driver.</div>
+    </div>
   </section>
 
   <section class="panel" id="p-method" role="tabpanel" aria-labelledby="tab-method" hidden>
@@ -376,7 +440,7 @@ function nf(v,d){return (v==null||isNaN(v))?'—':Number(v).toFixed(d==null?0:d)
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function last(n){var p=String(n||'').split(' ');return p.length>1?p[p.length-1]:n}
 /* display name from the id, which is already the common short form:
-   alain-prost -> "Alain Prost", alexander-albon -> "Alexander Albon" */
+   alain-prost = "Alain Prost", alexander-albon = "Alexander Albon" */
 var SMALL={de:1,van:1,von:1,der:1,la:1,le:1,di:1,da:1,ii:1,iii:1};
 function disp(id){
   if(!id) return '';
@@ -531,7 +595,8 @@ function cardHtml(d,i){
         (d.provisional?'<span class="prov" title="Small sample / early career — rating is provisional">PROV</span>':'')+'</span>'+
        '<span class="meta">'+nf(d.career_first)+'–'+nf(d.career_last)+' · '+d.starts+' starts · '+d.wins+'W '+d.podiums+'P · '+eraLabel(d.first_season)+'</span></span>'+
      '<span class="right"><span class="bars">'+bar('career',d.ovr,100)+bar('peak',d.peak_ovr,100,col)+'</span>'+
-       '<span class="ovr">'+nf(d.ovr,1)+'<small>OVR</small></span></span>'+
+       '<span class="ovr">'+nf(d.ovr,1)+'<small>OVR</small></span>'+
+       '<button class="vsbtn" data-vs="'+esc(d.id)+'" title="Compare with another driver" aria-label="Compare with another driver">VS</button></span>'+
    '</button>';
   if(open){
     h+='<div class="detail">'+detailHtml(d,pal,col)+'</div>';
@@ -679,6 +744,132 @@ function renderCars(){
     el.addEventListener('input',renderCars); el.addEventListener('change',renderCars);
   });
 })();
+
+/* ---------- VS tab ---------- */
+(function(){
+  var $a=document.getElementById('vsa'), $b=document.getElementById('vsb'),
+      $g=document.getElementById('vsg');
+  var opts='<option value="">—</option>';
+  D.drivers.slice().sort(function(x,y){return disp(x.id).localeCompare(disp(y.id))}).forEach(function(d){
+    opts+='<option value="'+d.id+'">'+esc(disp(d.id))+' · '+nf(d.ovr,1)+'</option>';
+  });
+  $a.innerHTML=opts; $b.innerHTML=opts;
+  $a.value='max-verstappen'; $b.value='lewis-hamilton';
+
+  function byId(id){return D.drivers.filter(function(d){return d.id===id})[0]}
+  function dim(a,b,label){
+    var winner=a>b?0:1;
+    return '<div class="vs-dimrow" data-w="'+winner+'"><dt>'+label+'</dt>'+
+      '<dd class="v"><span>'+nf(a)+'</span></dd><dd class="w"><span>'+nf(b)+'</span></dd></div>';
+  }
+  function render(){
+    var A=byId($a.value), B=byId($b.value);
+    if(!A||!B||A.id===B.id){$g.innerHTML='<p class="empty">Pick two different drivers.</p>';return}
+    /* key -> {label, get, fmt} */
+    var KEY={
+      Rating:['Rating (Elo)',function(x){return x.elo},function(v){return nf(v)}],
+      Peak:['Peak Elo',function(x){return x.peak_elo},function(v){return nf(v)}],
+      Car:['Car Elo',function(x){return x.avg_car_elo},function(v){return nf(v)}],
+      Excess:['Excess',function(x){return x.driver_excess},function(v){return (v>0?'+':'')+nf(v)}],
+      Z:['vs field',function(x){return x.era_z},function(v){return (v>0?'+':'')+nf(v,2)+'σ'}],
+      Cons:['Consistency',function(x){return x.consistency},function(v){return nf(v,1)+'/100'}],
+      Pts:['Pts share',function(x){return (x.era_points||0)*100},function(v){return nf(v)+'%'}],
+      Conf:['Confidence',function(x){return x.confidence},function(v){return nf(v)}],
+      Wins:['Wins',function(x){return x.wins},function(v){return v}],
+      Pod:['Podiums',function(x){return x.podiums},function(v){return v}],
+      Pole:['Poles',function(x){return x.poles},function(v){return v}],
+      Titl:['Titles',function(x){return x.career_titles||0},function(v){return v}],
+      AvgF:['Avg finish',function(x){return x.avg_finish},function(v){return v==null?'—':nf(v,1)}],
+      FR:['Finish rate',function(x){return (x.finish_rate||0)*100},function(v){return nf(v)+'%'}],
+      DNF:['DNF',function(x){return x.dnf},function(v){return v}],
+      St:['Starts',function(x){return x.starts},function(v){return v}]
+    };
+    function row(k){
+      var s=KEY[k]; if(!s) return '';
+      var av=s[1](A), bv=s[1](B);
+      var win=av>bv?'a':(bv>av?'b':'t');
+      return '<div class="vs-dimrow '+(win==='a'?'wa':win==='b'?'wb':'')+'">'+
+        '<dt>'+s[0]+'</dt>'+
+        '<dd class="'+(win==='a'?'hl':'')+'">'+s[2](av)+'</dd>'+
+        '<dd class="'+(win==='b'?'hl':'')+'">'+s[2](bv)+'</dd></div>';
+    }
+    var RATES=['Rating','Peak','Car','Excess','Z','Cons','Pts','Conf'];
+    var RECORD=['Wins','Pod','Pole','Titl','AvgF','FR','DNF','St'];
+    var tma=(A.teammates||[]).filter(function(t){return t.id===B.id})[0];
+    var tmb=(B.teammates||[]).filter(function(t){return t.id===A.id})[0];
+    function col(d,keys){
+      return '<div class="vs-col '+(d.ovr>=(d===A?B:A).ovr?'win':'lose')+'"'+(d===A?' id="vsc-a"':' id="vsc-b"')+'>'+
+        '<div class="vs-hd"><span class="who">'+esc(disp(d.id))+'</span><span class="span">'+nf(d.career_first)+'–'+nf(d.career_last)+'</span></div>'+
+        '<div class="vs-big">'+nf(d.ovr,1)+' <small>OVR #'+d.rank+'</small></div>'+
+        '<dl class="vs-dim">'+keys.map(row).join('')+'</dl>'+
+        '<div class="vs-chips">'+(d.tags||[]).map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join('')+'</div>'+
+      '</div>';
+    }
+    var h2h='<div class="vs-vsrow"><div class="vs-hd" style="width:100%"><span class="who">Head-to-head</span></div><dl class="vs-dim">';
+    if(tma||tmb){
+      h2h+='<div class="vs-dimrow"><dt>Teammate duels (Sat)</dt>'+
+        '<dd class="'+((tma&&tma.quali_rate>0.5)?'hl':'')+'">'+(tma?tma.quali_won+'–'+(tma.quali_n-tma.quali_won):'—')+'</dd>'+
+        '<dd class="'+((tmb&&tmb.quali_rate>0.5)?'hl':'')+'">'+(tmb?tmb.quali_won+'–'+(tmb.quali_n-tmb.quali_won):'—')+'</dd></div>';
+      h2h+='<div class="vs-dimrow"><dt>Teammate duels (Sun)</dt>'+
+        '<dd class="'+((tma&&tma.race_rate>0.5)?'hl':'')+'">'+(tma?tma.race_won+'–'+(tma.race_n-tma.race_won):'—')+'</dd>'+
+        '<dd class="'+((tmb&&tmb.race_rate>0.5)?'hl':'')+'">'+(tmb?tmb.race_won+'–'+(tmb.race_n-tmb.race_won):'—')+'</dd></div>';
+    } else {
+      h2h+='<div class="vs-dimrow"><dt>Teammates</dt><dd>—</dd><dd>—</dd></div>';
+    }
+    h2h+='</dl><div class="mini" style="margin-top:8px;color:var(--muted)">Shared car years: '+(tma||tmb?(tma?tma.years[0]+'–'+tma.years[tma.years.length-1]:'—'):'none')+'</div></div>';
+    $g.innerHTML=col(A,RATES)+col(B,RATES)+h2h+
+      '<div class="vs-col" style="grid-column:1/-1">'+
+        '<div class="vs-hd"><span class="who">Full record</span></div>'+
+        '<dl class="vs-dim">'+RECORD.map(row).join('')+'</dl>'+
+      '</div>';
+  }
+  $a.addEventListener('change',render); $b.addEventListener('change',render);
+  window._vsRender=render; window._vsSet=function(a,b){if(a)$a.value=a;if(b)$b.value=b;render();};
+  render();
+})();
+
+/* ---------- VS buttons on cards ---------- */
+$board.addEventListener('click',function(e){
+  var b=e.target.closest('.vsbtn'); if(!b) return;
+  e.stopPropagation();
+  var other=document.getElementById('vsb').value;
+  document.getElementById('vsb').value=b.getAttribute('data-vs');
+  var tab=document.getElementById('tab-vs'); if(tab) tab.click();
+  window._vsRender && window._vsRender();
+});
+
+/* ---------- keyboard shortcuts + deep link ---------- */
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT'||e.target.tagName==='TEXTAREA') return;
+  if(e.key==='/'){e.preventDefault();$q.focus();}
+  else if(e.key==='1'){var t=document.getElementById('tab-drivers');if(t)t.click()}
+  else if(e.key==='2'){var t=document.getElementById('tab-cars');if(t)t.click()}
+  else if(e.key==='3'){var t=document.getElementById('tab-vs');if(t)t.click()}
+  else if(e.key==='4'){var t=document.getElementById('tab-method');if(t)t.click()}
+  else if(e.key==='Escape'){state.open=null;render()}
+});
+/* deep link ?v=<driver-id> opens that card */
+(function(){
+  var p=new URLSearchParams(location.search).get('v');
+  if(p && D.drivers.some(function(d){return d.id===p})){
+    state.open=p;
+    if(location.hash!=='#drivers'){location.hash='drivers';}
+    var el=$board.querySelector('.card[data-id="'+p+'"]');
+    if(el){el.scrollIntoView({block:'center'});}
+  }
+})();
+
+/* ---------- Share button ---------- */
+document.getElementById('share').addEventListener('click',function(){
+  var url=location.origin+location.pathname;
+  var h=location.hash.replace('#','');
+  if(h) url+='#'+h;
+  if(state.open) url+=(url.indexOf('?')<0?'?':'&')+'v='+state.open;
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){this.textContent='Copied';var b=this;setTimeout(function(){b.textContent='⧉ Share'},1200)},
+      function(){prompt('Copy this link:',url)});
+  } else { prompt('Copy this link:',url); }
+});
 
 /* ---------- init / theme re-render ---------- */
 function redraw(){render();renderCars();}

@@ -16,7 +16,8 @@ Data-driven driver & constructor ratings for F1 1990–2026. Built from race res
 | Weekly auto re-fit (f1db release) | ✅ scheduled |
 | Telemetry integration | ❌ not available for this span (no structured public data before 2018) |
 | Sprint-race / fastest-lap leaderboards | ⏳ not yet |
-| 2-driver side-by-side compare | ⏳ not yet |
+| 2-driver side-by-side compare | ✅ done (VS tab) |
+| Keyboard shortcuts + deep links | ✅ done (`/` search, `1–4` tabs, `Esc` close, `?v=<driver>`) |
 | Public JSON API endpoint | ⏳ not yet |
 
 ## Data
@@ -60,9 +61,14 @@ Deliberately absent: career length, start count, season count. Volume is not a r
 
 ## What's on the page
 
-- **Drivers** tab — 216 cards, sortable (career/peak/Elo/wins/titles/starts), filter by decade, nation, search. Click a card: season skill trajectory, rating & machinery, consistency bar, style tags, full H2H vs every teammate (quali + race split), full career record incl. pre-1990.
+- **Drivers** tab — 216 cards, sortable (career/peak/Elo/wins/titles/starts), filter by decade, nation, search. Click a card: season skill trajectory, rating & machinery, consistency bar, style tags, full H2H vs every teammate (quali + race split), full career record incl. pre-1990. **VS button** on each card jumps to the compare tab with that driver pre-loaded.
 - **Cars** tab — all 424 constructor-seasons, searchable/filterable, unclassified ones (Simtek 1994, Forti 1995–96, Minardi 1996–98, …) marked **NC**.
+- **VS** tab — pick any two drivers (or use a card's VS button). Side-by-side rating, peak, car, excess, consistency, points, confidence, full record, style tags, and head-to-head if they were teammates. Winner of each metric highlighted.
 - **Method** tab — what each column means, what does *not* decide the ranking, who is rated, limits, source.
+
+## Navigation
+
+Keyboard: `1`–`4` switch tabs, `/` focus search, `Esc` close detail. Share button copies a deep link (`#tab?v=<driver>`). Deep-linking a driver card works via `?v=...`.
 
 ## Key results (as of last run)
 
@@ -102,7 +108,6 @@ start index.html       # or python -m http.server
 
 - **No telemetry** for 1990–2018 (data does not exist publicly in structured form). FastF1 / OpenF1 can add 2018+ lap telemetry as a separate layer.
 - **Sprint races** are in the DB but not yet a leaderboard.
-- **2-driver compare** view would be useful; not built.
 - **JSON API** could be exposed via GitHub Pages + a static JSON endpoint (already there as `ratings.json`) or a serverless function.
 - **f1db release lag** — ratings track f1db, not live F1. Between releases the site is static.
 
