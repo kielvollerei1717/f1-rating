@@ -15,7 +15,7 @@ Data-driven driver & constructor ratings for F1 1990–2026. Built from race res
 | GitHub Pages + auto-update | ✅ live |
 | Weekly auto re-fit (f1db release) | ✅ scheduled |
 | Telemetry integration | ❌ not available for this span (no structured public data before 2018) |
-| Driver bio (karting / WEC / GT / MotoGP / Dakar) | ✅ done (Wikipedia cache) |
+| Driver bio (karting / WEC / GT / MotoGP / Dakar) | ✅ done (Wikipedia cache, 20 seeded, rest via CI) |
 | Auto-update ~2 days after race day | ✅ scheduled (Mon 09:00 UTC) |
 | Sprint-race / fastest-lap leaderboards | ⏳ not yet |
 | Public JSON API endpoint | ⏳ not yet |
