@@ -232,5 +232,475 @@
   "off_f1_sections": [],
   "title": "Bruno Giacomelli",
   "found": true
+ },
+ "bruno-senna": {
+  "nationality": "{{flagicon|BRA}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "0",
+  "points": "33",
+  "teams": "[[HRT Formula 1 Team|HRT]], [[Renault in Formula One|Renault]], [[Williams Racing|Williams]]",
+  "relatives": "[[Ayrton Senna]] (uncle)",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete European Le Mans Series results",
+   "Le Mans Series (2009)"
+  ],
+  "title": "Bruno Senna Lalli",
+  "found": true
+ },
+ "carlos-sainz-jr": {
+  "nationality": "{{flagicon|ESP}} [[Formula One drivers from Spain|Spanish]]",
+  "podiums": "{{F1stat|SAI|podiums}}",
+  "points": "{{F1stat|SAI|careerpoints}}",
+  "relatives": "[[Antonio Sainz]] (uncle)",
+  "off_f1_sections": [
+   "Junior racing career",
+   "Karting"
+  ],
+  "title": "Carlos Sainz Vázquez de Castro",
+  "found": true
+ },
+ "charles-leclerc": {
+  "nationality": "{{flagicon|MCO}} [[Formula One drivers from Monaco|Monégasque]]",
+  "podiums": "{{F1stat|LEC|podiums}}",
+  "points": "{{f1stat|LEC|careerpoints}}",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [],
+  "title": "Charles Marc Hervé Perceval Leclerc",
+  "found": true
+ },
+ "charles-pic": {
+  "nationality": "{{flagicon|FRA|1974}} [[Formula One drivers from France|French]]",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Marussia F1|Marussia]], [[Caterham F1|Caterham]]",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [
+   "Karting and Formula Renault",
+   "Post-motorsport"
+  ],
+  "title": "Charles Pic",
+  "found": true
+ },
+ "christian-fittipaldi": {
+  "nationality": "{{flagicon|BRA}} Brazilian",
+  "podiums": "0",
+  "points": "12",
+  "teams": "[[Minardi]], [[Footwork Arrows|Footwork]]",
+  "relatives": "[[Wilson Fittipaldi]] (father)<br>[[Emerson Fittipaldi]] (uncle)<br>[[Pietro Fittipaldi]] (first cousin once-removed)<br>[[Enzo Fittipaldi]] (first cousin once-removed)<br>[[Emerson Fittipaldi Jr.]] (cousin)<br>[[Max Papis]] (cousin-in-law)",
+  "off_f1_sections": [
+   "Complete American Le Mans Series results",
+   "Motorsports career results"
+  ],
+  "title": "Christian Fittipaldi",
+  "found": true
+ },
+ "christian-klien": {
+  "nationality": "{{flagicon|AUT}} [[Formula One drivers from Austria|Austrian]]",
+  "podiums": "0",
+  "points": "14",
+  "teams": "[[Jaguar in Formula One|Jaguar]], [[Red Bull Racing|Red Bull]], [[Hispania Racing|HRT]]",
+  "off_f1_sections": [
+   "American Le Mans Series results",
+   "Complete European Le Mans Series results",
+   "Complete Super GT results",
+   "Le Mans 24 Hours results",
+   "Racing career"
+  ],
+  "title": "Christian Klien",
+  "found": true
+ },
+ "christijan-albers": {
+  "nationality": "{{flagicon|NLD}} Dutch",
+  "podiums": "0",
+  "points": "4",
+  "teams": "[[Minardi]], [[Midland F1 Racing|Midland]], [[Spyker F1|Spyker]]",
+  "off_f1_sections": [
+   "Complete American Le Mans Series results",
+   "Complete Le Mans Series results"
+  ],
+  "title": "Christijan Albers",
+  "found": true
+ },
+ "cristiano-da-matta": {
+  "nationality": "{{flagicon|BRA}} Brazilian",
+  "podiums": "0",
+  "points": "13",
+  "teams": "[[Toyota F1|Toyota]]",
+  "off_f1_sections": [
+   "American Le Mans Series",
+   "Complete American Le Mans Series results",
+   "Post-racing career",
+   "Racing career"
+  ],
+  "title": "Cristiano da Matta",
+  "found": true
+ },
+ "damon-hill": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "42",
+  "points": "360",
+  "teams": "[[Brabham]], [[Williams Grand Prix Engineering|Williams]], [[Arrows Grand Prix International|Arrows]], [[Jordan Grand Prix|Jordan]]",
+  "off_f1_sections": [
+   "BTCC and Le Mans",
+   "Motorcycling",
+   "Other racing"
+  ],
+  "title": "Damon Graham Devereux Hill",
+  "found": true
+ },
+ "daniel-ricciardo": {
+  "nationality": "{{flagicon|AUS}} [[Formula One drivers from Australia|Australian]]",
+  "podiums": "{{F1stat|RIC|podiums}}",
+  "points": "{{F1stat|RIC|careerpoints}}",
+  "teams": "[[HRT Formula 1 Team|HRT]], [[Toro Rosso]], [[Red Bull Racing|Red Bull]], [[Renault in Formula One|Renault]], [[McLaren]], [[Scuderia AlphaTauri|AlphaTauri]], [[Racing Bulls|RB]]",
+  "off_f1_sections": [
+   "Complete Formula Renault 2.0 WEC results",
+   "Junior racing career",
+   "Karting",
+   "Karting record"
+  ],
+  "title": "Daniel Ricciardo",
+  "found": true
+ },
+ "daniil-kvyat": {
+  "nationality": "{{flagicon|RUS}} [[Formula One drivers from Russia|Russian]]",
+  "podiums": "0",
+  "points": "202",
+  "teams": "[[Toro Rosso]], [[Red Bull Racing|Red Bull]], [[Scuderia AlphaTauri|AlphaTauri]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete Super GT results",
+   "Junior racing career",
+   "Karting",
+   "Karting career summary",
+   "Karting record",
+   "Other racing",
+   "Racing career summary",
+   "Sportscar racing career"
+  ],
+  "title": "Daniil Vyacheslavovich Kvyat",
+  "found": true
+ },
+ "david-coulthard": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]<!--DO NOT CHANGE TO SCOTTISH, SEE WP:F1NATIONALITY-->",
+  "podiums": "62",
+  "points": "535",
+  "teams": "[[Williams Racing|Williams]], [[McLaren]], [[Red Bull Racing|Red Bull]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "David Coulthard",
+  "found": true
+ },
+ "derek-warwick": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "4",
+  "points": "71",
+  "teams": "[[Toleman]], [[Renault in Formula One|Renault]], [[Brabham]], [[Arrows Grand Prix International|Arrows]], [[Team Lotus|Lotus]], [[Footwork Arrows|Footwork]]",
+  "relatives": "[[Paul Warwick (racing driver)|Paul Warwick]] (brother)",
+  "off_f1_sections": [],
+  "title": "Derek Warwick",
+  "found": true
+ },
+ "eddie-irvine": {
+  "nationality": "<!-- Please see 'Nationality' section below and obtain consensus on the discussion page before changing this. This is Irvine's Formula One infobox and therefore contains the NATIONALITY UNDER WHICH HE RACED in Formula One, which was BRITISH -->{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "26",
+  "points": "191",
+  "teams": "[[Jordan Grand Prix|Jordan]], [[Scuderia Ferrari|Ferrari]], [[Jaguar in Formula One|Jaguar]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Edmund Irvine Jr.",
+  "found": true
+ },
+ "emanuele-pirro": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "0",
+  "points": "3",
+  "teams": "[[Benetton Formula|Benetton]], [[Scuderia Italia]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete American Le Mans Series results"
+  ],
+  "title": "Emanuele Pirro",
+  "found": true
+ },
+ "enrique-bernoldi": {
+  "nationality": "{{flagicon|BRA}} Brazilian",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Arrows Grand Prix International|Arrows]]",
+  "relatives": "| birth_name        = Enrique Antônio Langue e Silvério de Bernoldi",
+  "off_f1_sections": [
+   "Complete GT1 World Championship results",
+   "Racing career"
+  ],
+  "title": "Enrique Bernoldi",
+  "found": true
+ },
+ "eric-bernard": {
+  "nationality": "{{flagicon|FRA|1974}} [[Formula One drivers from France|French]]",
+  "podiums": "1",
+  "points": "10",
+  "teams": "[[Larrousse]], [[Équipe Ligier|Ligier]], [[Team Lotus|Lotus]]",
+  "relatives": "[[Charles Pic]] (godson)",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete American Le Mans Series results",
+   "Complete FIA GT Championship results"
+  ],
+  "title": "Éric Bernard",
+  "found": true
+ },
+ "erik-comas": {
+  "nationality": "{{flagicon|FRA|1974}} [[Formula One drivers from France|French]]",
+  "podiums": "0",
+  "points": "7",
+  "teams": "[[Équipe Ligier|Ligier]], [[Larrousse]]",
+  "off_f1_sections": [
+   "Complete JGTC/Super GT results",
+   "Complete Le Mans Endurance Series results"
+  ],
+  "title": "Erik Comas",
+  "found": true
+ },
+ "esteban-gutierrez": {
+  "nationality": "{{flagicon|MEX}} [[Formula One drivers from Mexico|Mexican]]",
+  "podiums": "0",
+  "points": "6",
+  "teams": "[[Sauber]], [[Haas F1 Team|Haas]]",
+  "relatives": "[[José Gutiérrez (racing driver)|José Gutiérrez]] (brother)",
+  "off_f1_sections": [
+   "Karting"
+  ],
+  "title": "Esteban Gutierrez",
+  "found": true
+ },
+ "esteban-ocon": {
+  "nationality": "{{flagicon|FRA}} [[Formula One drivers from France|French]]",
+  "podiums": "{{F1stat|OCO|podiums}}",
+  "points": "{{F1stat|OCO|careerpoints}}",
+  "off_f1_sections": [],
+  "title": "Esteban José Jean-Pierre Ocon-Khelfane",
+  "found": true
+ },
+ "fabrizio-barbazza": {
+  "nationality": "{{flagicon|ITA}} Italian",
+  "podiums": "0",
+  "points": "2",
+  "teams": "[[Automobiles Gonfaronnaises Sportives|AGS]], [[Minardi]]",
+  "off_f1_sections": [],
+  "title": "Fabrizio Barbazza",
+  "found": true
+ },
+ "felipe-massa": {
+  "nationality": "{{flagicon|BRA}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "41",
+  "points": "1167",
+  "teams": "[[Sauber]], [[Scuderia Ferrari|Ferrari]], [[Williams Racing|Williams]]",
+  "off_f1_sections": [],
+  "title": "Felipe Massa",
+  "found": true
+ },
+ "felipe-nasr": {
+  "nationality": "{{flagicon|BRA}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "40",
+  "points": "29",
+  "teams": "[[Sauber]]",
+  "relatives": "[[Amir Nasr Racing|Amir Nasr]] (uncle)",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete European Le Mans Series results",
+   "Karting"
+  ],
+  "title": "Felipe Nasr",
+  "found": true
+ },
+ "fernando-alonso": {
+  "nationality": "{{flagicon|ESP}} [[Formula One drivers from Spain|Spanish]]",
+  "podiums": "{{F1stat|ALO|podiums}}",
+  "points": "{{F1stat|ALO|careerpoints}}",
+  "teams": "[[Toyota Motorsport GmbH|Toyota]]",
+  "off_f1_sections": [
+   "Dakar Rally results",
+   "Early life and karting career",
+   "Endurance racing",
+   "Karting record",
+   "Motor racing career"
+  ],
+  "title": "Fernando Alonso Díaz",
+  "found": true
+ },
+ "franck-montagny": {
+  "nationality": "{{flagicon|FRA}} French",
+  "podiums": "1",
+  "points": "0",
+  "teams": "[[Super Aguri F1|Super Aguri]]",
+  "off_f1_sections": [
+   "Complete American Le Mans Series results"
+  ],
+  "title": "Franck Montagny",
+  "found": true
+ },
+ "franco-colapinto": {
+  "nationality": "{{flagicon|ARG}} [[Formula One drivers from Argentina|Argentine]]",
+  "podiums": "{{f1stat|COL|podiums}}",
+  "points": "{{f1stat|COL|careerpoints}}",
+  "teams": "[[G-Drive Racing|G-Drive]]",
+  "off_f1_sections": [],
+  "title": "Franco Colapinto",
+  "found": true
+ },
+ "gabriel-bortoleto": {
+  "nationality": "{{flagicon|BRA}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "{{F1stat|BOR|podiums}}",
+  "points": "{{F1stat|BOR|careerpoints}}",
+  "off_f1_sections": [],
+  "title": "Gabriel Lourenzo Bortoleto Oliveira",
+  "found": true
+ },
+ "gabriele-tarquini": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "91",
+  "points": "1",
+  "teams": "[[N.Technology|Alfa Romeo]], [[SEAT Sport|SEAT]], [[Sunred Engineering|Sunred]], [[Lukoil Racing|Lukoil]], [[JAS Motorsport|Honda]], [[Lada Sport|Lada]], [[BRC Racing Team|BRC]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Gabriele Tarquini",
+  "found": true
+ },
+ "gaston-mazzacane": {
+  "nationality": "{{flagicon|ARG}} Argentine",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Minardi]], [[Prost Grand Prix|Prost]]",
+  "off_f1_sections": [
+   "Motorsport career results",
+   "Racing career"
+  ],
+  "title": "Gaston Mazzacane",
+  "found": true
+ },
+ "george-russell": {
+  "off_f1_sections": [],
+  "title": "George William Russell",
+  "found": true
+ },
+ "gerhard-berger": {
+  "nationality": "{{flagicon|AUT}} [[Formula One drivers from Austria|Austrian]]",
+  "podiums": "48",
+  "points": "385",
+  "teams": "[[ATS (wheels)|ATS]], [[Arrows Grand Prix International|Arrows]], [[Benetton Formula|Benetton]], [[Scuderia Ferrari|Ferrari]], [[McLaren]]",
+  "relatives": "[[Lucas Auer]] (nephew)",
+  "off_f1_sections": [],
+  "title": "Gerhard Berger",
+  "found": true
+ },
+ "giancarlo-fisichella": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "19",
+  "points": "275",
+  "teams": "[[Minardi]], [[Jordan Grand Prix|Jordan]], [[Benetton Formula|Benetton]], [[Sauber]], [[Renault in Formula One|Renault]], [[Force India]], [[Scuderia Ferrari|Ferrari]]",
+  "off_f1_sections": [
+   "Complete GT World Challenge Asia results",
+   "Complete Italian GT Championship results"
+  ],
+  "title": "Giancarlo Fisichella",
+  "found": true
+ },
+ "gianmaria-bruni": {
+  "nationality": "{{flagicon|ITA|2003}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Minardi]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Daytona results",
+   "Complete 24 Hours of Le Mans results",
+   "Complete European Le Mans Series results"
+  ],
+  "title": "Gianmaria Bruni",
+  "found": true
+ },
+ "gianni-morbidelli": {
+  "nationality": "{{flagicon|ITA}} Italian",
+  "podiums": "1",
+  "points": "8.5",
+  "teams": "[[Scuderia Italia]], [[Minardi]], [[Scuderia Ferrari|Ferrari]], [[Footwork Arrows|Footwork]], [[Sauber]]",
+  "relatives": "| current_series    = [[World Touring Car Championship]]",
+  "off_f1_sections": [
+   "Racing career"
+  ],
+  "title": "Gianni Morbidelli",
+  "found": true
+ },
+ "giedo-van-der-garde": {
+  "title": "Giedo Gijsbertus Gerrit van der Garde",
+  "found": false
+ },
+ "giorgio-pantano": {
+  "nationality": "{{flagicon|ITA|2003}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Jordan Grand Prix|Jordan]]",
+  "off_f1_sections": [
+   "Complete International GT Open results"
+  ],
+  "title": "Giorgio Pantano",
+  "found": true
+ },
+ "guanyu-zhou": {
+  "nationality": "{{flagicon|CHN}} Chinese",
+  "podiums": "{{F1stat|ZHO|podiums}}",
+  "points": "{{F1stat|ZHO|careerpoints}}",
+  "teams": "[[Alfa Romeo in Formula One|Alfa Romeo]], [[Sauber]]",
+  "off_f1_sections": [
+   "Karting record"
+  ],
+  "title": "Guanyu Zhou",
+  "found": true
+ },
+ "heikki-kovalainen": {
+  "nationality": "{{flagicon|FIN}} [[Formula One drivers from Finland|Finnish]]",
+  "podiums": "4",
+  "points": "105",
+  "teams": "[[Renault F1|Renault]], [[McLaren]], [[Team Lotus (2010-11)|Team Lotus]], [[Caterham F1|Caterham]], [[Lotus F1|Lotus]]",
+  "off_f1_sections": [
+   "Complete Super GT results",
+   "Karting (1991–2000)"
+  ],
+  "title": "Heikki Kovalainen",
+  "found": true
+ },
+ "heinz-harald-frentzen": {
+  "nationality": "{{flagicon|DEU}} [[Formula One drivers from Germany|German]]",
+  "podiums": "18",
+  "points": "174",
+  "teams": "[[Sauber]], [[Williams Racing|Williams]], [[Jordan Grand Prix|Jordan]], [[Prost Grand Prix|Prost]], [[Arrows Grand Prix International|Arrows]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Heinz-Harald Frentzen",
+  "found": true
+ },
+ "isack-hadjar": {
+  "nationality": "<!--Per WP:F1 convention, only includes the nationality driver races under-->{{flagicon|FRA}} [[Formula One drivers from France|French]]<!--Per WP:F1 convention, only includes the nationality driver races under-->",
+  "podiums": "{{F1stat|HAD|podiums}}",
+  "points": "{{F1stat|HAD|careerpoints}}",
+  "off_f1_sections": [],
+  "title": "Isack Alexandre Hadjar",
+  "found": true
+ },
+ "ivan-capelli": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "3",
+  "points": "31",
+  "teams": "[[Tyrrell Racing|Tyrrell]], [[Automobiles Gonfaronnaises Sportives|AGS]], [[March Engineering|March]], [[Leyton House Racing|Leyton House]], [[Scuderia Ferrari|Ferrari]], [[Jordan Grand Prix|Jordan]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete FIA GT Championship results"
+  ],
+  "title": "Ivan Capelli",
+  "found": true
  }
 }
