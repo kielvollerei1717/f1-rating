@@ -1,1 +1,14 @@
-{}
+{
+ "max-verstappen": {
+  "title": "Max Verstappen",
+  "found": true,
+  "karting_note": "won the 2013 Italian Trophy and the 2012 CIK-FIA European Championship",
+  "off_f1_sections": [
+   "24 Hours of Le Mans",
+   "GT racing",
+   "Karting career"
+  ],
+  "other_championships": "2025 GT World Challenge Europe",
+  "born": "30 September 1997, Hasselt"
+ }
+}

@@ -32,7 +32,9 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: pip install -r requirements.txt
-      - run: python update.py      # f1db -> ratings.json
+      - run: python update.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      # f1db -> ratings.json
       - run: python bio.py        # wikipedia -> bios.json
       - run: python prep.py       # ratings + bios -> data.js
       - id: commit
