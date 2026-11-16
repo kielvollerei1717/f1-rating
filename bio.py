@@ -28,9 +28,14 @@ others = [d['id'] for d in DRIVERS['drivers'] if d['id'] not in PRIORITY]
 queue = PRIORITY + others
 if LIMIT:
     queue = queue[:LIMIT]
-sys.stdout.write(f'== bio scraper: {len(queue)} drivers queued '
-                 f'(top60={len(top60)}, active={len(active)}), '
-                 f'{sum(1 for v in cache.values() if v.get("found"))} cached ==\n')
+print(f'== bio scraper: {len(queue)} drivers queued '
+      f'(top60={len(top60)}, active={len(active)}), '
+      f'{sum(1 for v in cache.values() if v.get("found"))} cached ==', flush=True)
+
+# wall-clock cap so the CI job never hangs: if we hit the cap, save what we
+# have and let the next scheduled run pick up the rest (cache is idempotent).
+CAP_SECONDS = int(os.environ.get('BIO_CAP_SECONDS', '300'))
+t0 = time.time()
 
 def wiki_text(title):
     """Use the REST API (looser rate limits than action=parse).
@@ -46,8 +51,10 @@ def wiki_text(title):
             return j.get('parse', {}).get('wikitext', '')
         except urllib.error.HTTPError as e:
             if e.code == 429:
-                # exponential backoff: 5,10,20,40,80s — total worst case ~2m per call
                 wait = 5 * (2 ** attempt)
+                if time.time() - t0 > CAP_SECONDS:
+                    print(f'    429 but cap reached; skipping {title}')
+                    return ''
                 print(f'    429, retry in {wait}s')
                 time.sleep(wait)
                 continue
@@ -92,6 +99,10 @@ def title_from_id(did, full_name=None):
     return ' '.join(p.capitalize() if len(p) > 2 else p for p in parts)
 
 for i, did in enumerate(queue):
+    if time.time() - t0 > CAP_SECONDS:
+        print(f'\n  cap ({CAP_SECONDS}s) reached at driver {i+1}/{len(queue)}; '
+              f'saving progress, remaining drivers retry next run', flush=True)
+        break
     if did in cache and not FORCE:
         print(f'  {i+1:3d}/{len(queue)} {did:24s} (cached)', flush=True)
         continue
@@ -116,9 +127,12 @@ for i, did in enumerate(queue):
         print(f'  {i+1:3d}/{len(queue)} {did:24s} OK ({title}) '
               f'off_f1={len(b.get("off_f1_sections", []))}', flush=True)
     time.sleep(2.0)  # be polite; action API tolerates ~1 req/s sustained
+    # save periodically so a mid-run crash / cap still persists progress
+    if (i + 1) % 10 == 0:
+        json.dump(cache, open(CACHE, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
 json.dump(cache, open(CACHE, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 ok = sum(1 for v in cache.values() if v.get('found'))
-miss = len(queue) - ok
-print(f'\nwrote {CACHE}: {ok}/{len(queue)} queued drivers with bio data'
-      + (f' ({miss} still missing, retry next run)' if miss else ''))
+print(f'\nwrote {CACHE}: {ok} drivers with bio data '
+      f'({len([k for k,v in cache.items() if not v.get("found")])} still missing, '
+      f'retry next run)')

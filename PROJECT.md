@@ -102,7 +102,8 @@ start index.html       # or python -m http.server
 
 - **Schedule:** Mondays 09:00 UTC — ~2 days after the Sunday race weekend, giving FIA time to post penalties and the official classification to f1db.
 - **Manual:** GitHub → *Actions* → *Run workflow*.
-- **What it does:** `update.py` (f1db → model → data.js) + `bio.py` (Wikipedia → bios.json) → commit diff → Pages auto-deploy.
+- **What it does:** `update.py` (f1db → ratings.json, with GITHUB_TOKEN auth) → `bio.py` (Wikipedia → bios.json, 216 drivers) → `prep.py` (ratings + bios → data.js) → commit diff → Pages auto-deploy.
+- **Note:** bio.py runs in CI because the local IP gets Wikipedia-throttled. The Actions runner has a separate IP.
 
 ## Known issues / next steps
 

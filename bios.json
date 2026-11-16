@@ -1,1 +1,236 @@
-{}
+{
+ "adrian-sutil": {
+  "nationality": "{{flagicon|DEU}} [[Formula One drivers from Germany|German]]",
+  "podiums": "0",
+  "points": "124",
+  "teams": "[[Spyker F1|Spyker]], [[Force India]], [[Sauber]]",
+  "off_f1_sections": [],
+  "title": "Adrian Sutil",
+  "found": true
+ },
+ "aguri-suzuki": {
+  "nationality": "{{flagicon|JPN}} [[Formula One drivers from Japan|Japanese]]",
+  "podiums": "1",
+  "points": "8",
+  "teams": "[[Larrousse]], [[Zakspeed]], [[Footwork Arrows|Footwork]], [[Jordan Grand Prix|Jordan]], [[Équipe Ligier|Ligier]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete JGTC results",
+   "Racing career"
+  ],
+  "title": "Aguri Suzuki",
+  "found": true
+ },
+ "alain-prost": {
+  "nationality": "{{flagicon|FRA|1974}} [[Formula One drivers from France|French]]",
+  "podiums": "106",
+  "points": "768.5 (798.5){{efn|name=\"droppedpoints\"}}",
+  "teams": "[[McLaren]], [[Renault in Formula One|Renault]], [[Scuderia Ferrari|Ferrari]], [[Williams Racing|Williams]]",
+  "off_f1_sections": [],
+  "title": "Alain Marie Pascal Prost",
+  "found": true
+ },
+ "alessandro-nannini": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "9",
+  "points": "65",
+  "teams": "[[Minardi]], [[Benetton Formula|Benetton]]",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [
+   "Complete FIA GT Championship results"
+  ],
+  "title": "Alessandro Nannini",
+  "found": true
+ },
+ "alex-caffi": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "0",
+  "points": "6",
+  "teams": "[[Osella]], [[Scuderia Italia]], [[Arrows Grand Prix International|Arrows]], [[Footwork Arrows|Footwork]], [[Andrea Moda Formula|Andrea Moda]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Alex Caffi",
+  "found": true
+ },
+ "alex-yoong": {
+  "nationality": "{{flagicon|MYS}} Malaysian",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Minardi]]",
+  "off_f1_sections": [
+   "Intercontinental Le Mans Cup",
+   "Le Mans Series"
+  ],
+  "title": "Alex Yoong",
+  "found": true
+ },
+ "alex-zanardi": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "0",
+  "points": "1",
+  "teams": "[[Jordan Grand Prix|Jordan]], [[Minardi]], [[Team Lotus|Lotus]], [[Williams Racing|Williams]]",
+  "off_f1_sections": [
+   "Motor racing",
+   "Racing career summary"
+  ],
+  "title": "Alessandro Leone Zanardi",
+  "found": true
+ },
+ "alexander-albon": {
+  "nationality": "{{flagicon|THA}} [[Formula One drivers from Thailand|Thai]]",
+  "podiums": "{{F1stat|ALB|podiums}}",
+  "points": "{{F1stat|ALB|careerpoints}}",
+  "relatives": "[[Mark Albon]] (uncle)",
+  "off_f1_sections": [
+   "Karting record"
+  ],
+  "title": "Alexander Albon",
+  "found": true
+ },
+ "alexander-rossi": {
+  "nationality": "{{flagicon|USA}} [[Formula One drivers from the United States|American]]",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Marussia F1|Marussia]]",
+  "relatives": "| module          = {{Infobox Champ Car driver",
+  "off_f1_sections": [],
+  "title": "Alexander Rossi",
+  "found": true
+ },
+ "alexander-wurz": {
+  "nationality": "{{flagicon|AUT}} [[Formula One drivers from Austria|Austrian]]",
+  "podiums": "3",
+  "points": "45",
+  "teams": "[[Benetton Formula|Benetton]], [[McLaren]], [[Williams Racing|Williams]]",
+  "off_f1_sections": [
+   "American Le Mans Series results",
+   "Intercontinental Le Mans Cup results",
+   "Le Mans 24 Hours results",
+   "Le Mans Series results"
+  ],
+  "title": "Alexander Georg Wurz",
+  "found": true
+ },
+ "allan-mcnish": {
+  "nationality": "{{flagicon|GBR}} British",
+  "podiums": "0",
+  "points": "0",
+  "teams": "Roock Racing, [[Porsche]] AG, [[Toyota]] Motorsports, [[Audi]] Sport [[Joest Racing|Joest]], [[Audi]] Sport UK, Champion Racing",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete American Le Mans Series results",
+   "Complete Le Mans Series results",
+   "Endurance racing"
+  ],
+  "title": "Allan McNish",
+  "found": true
+ },
+ "andrea-de-cesaris": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "5",
+  "points": "59",
+  "teams": "[[Alfa Romeo in Formula One|Alfa Romeo]], [[McLaren]], [[Équipe Ligier|Ligier]], [[Minardi]], [[Brabham]], [[Rial Racing|Rial]], [[Scuderia Italia]], [[Jordan Grand Prix|Jordan]], [[Tyrrell Racing|Tyrrell]], [[Sauber]]",
+  "off_f1_sections": [],
+  "title": "Andrea de Cesaris",
+  "found": true
+ },
+ "anthony-davidson": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "31",
+  "points": "0",
+  "teams": "[[Toyota Gazoo Racing Europe|Toyota]], [[DragonSpeed]], [[Jota Sport|Jota]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Anthony Davidson",
+  "found": true
+ },
+ "antonio-giovinazzi": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "11",
+  "points": "21",
+  "teams": "[[Sauber]], [[Alfa Romeo in Formula One|Alfa Romeo]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete Asian Le Mans Series results",
+   "Complete European Le Mans Series results",
+   "FIA World Endurance Championship",
+   "Junior racing career",
+   "Karting",
+   "Karting record",
+   "Le Mans Series"
+  ],
+  "title": "Antonio Giovinazzi",
+  "found": true
+ },
+ "antonio-pizzonia": {
+  "nationality": "{{flagicon|BRA}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "0",
+  "points": "8",
+  "teams": "[[Jaguar in Formula One|Jaguar]], [[WilliamsF1|Williams]]",
+  "off_f1_sections": [
+   "Racing career"
+  ],
+  "title": "Antonio Pizzonia",
+  "found": true
+ },
+ "arvid-lindblad": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "{{F1stat|LIN|podiums}}",
+  "points": "{{F1stat|LIN|careerpoints}}",
+  "off_f1_sections": [],
+  "title": "Arvid Anand Olof Lindblad",
+  "found": true
+ },
+ "ayrton-senna": {
+  "nationality": "{{flagicon|BRA}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "80",
+  "points": "610 (614){{efn|name=\"droppedpoints\"}}",
+  "teams": "[[Toleman]], [[Team Lotus|Lotus]], [[McLaren]], [[Williams Grand Prix Engineering|Williams]]",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [
+   "Junior racing career",
+   "Karting (1973–1980)",
+   "Karting career summary",
+   "Karting record",
+   "Other motorsport ventures",
+   "Racing career summary"
+  ],
+  "title": "Ayrton Senna da Silva",
+  "found": true
+ },
+ "bertrand-gachot": {
+  "nationality": "{{plainlist|",
+  "podiums": "0",
+  "points": "5",
+  "teams": "[[Onyx Grand Prix|Onyx]], [[Rial Racing|Rial]], [[Enzo Coloni Racing Car Systems|Coloni]], [[Jordan Grand Prix|Jordan]], [[Larrousse]], [[Pacific Racing|Pacific]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete JGTC results"
+  ],
+  "title": "Bertrand Gachot",
+  "found": true
+ },
+ "brendon-hartley": {
+  "nationality": "{{flagicon|NZL}} [[Formula One drivers from New Zealand|New Zealander]]",
+  "podiums": "56",
+  "points": "4",
+  "teams": "[[Toro Rosso]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete European Le Mans Series results"
+  ],
+  "title": "Brendon Hartley",
+  "found": true
+ },
+ "bruno-giacomelli": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "1",
+  "points": "14",
+  "teams": "[[Team McLaren|McLaren]], [[Alfa Romeo (Formula One)|Alfa Romeo]], [[Toleman]], [[Life Racing Engines|Life]]",
+  "off_f1_sections": [],
+  "title": "Bruno Giacomelli",
+  "found": true
+ }
+}
