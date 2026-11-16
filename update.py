@@ -16,6 +16,8 @@ with tempfile.TemporaryDirectory() as tmp:
         z.extractall(tmp)
     db = os.path.join(tmp, 'f1db.db')
     subprocess.check_call([sys.executable, 'model.py', db, 'ratings.json'])
+    # note: prep.py is run by the caller (workflow) AFTER bio.py, so the
+    # generated data.js always includes the freshest bios.json
     subprocess.check_call([sys.executable, 'prep.py'])
 
 # Stamp the release tag into the page source footer/method line if present

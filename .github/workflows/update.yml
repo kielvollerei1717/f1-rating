@@ -2,8 +2,10 @@ name: Update F1 ratings & deploy Pages
 
 on:
   schedule:
-    - cron: '0 6 * * 1'   # Mondays 06:00 UTC (after race weekends)
-  workflow_dispatch:       # manual "Run workflow" button
+    # 09:00 UTC Mon = ~2 days after the Sunday race weekend, giving FIA time
+    # to post penalties and the official classification to f1db.
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
   push:
     branches: [main]
     paths: ['index.html', 'data.js']
@@ -30,16 +32,18 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: pip install -r requirements.txt
-      - run: python update.py
+      - run: python update.py      # f1db -> ratings.json
+      - run: python bio.py        # wikipedia -> bios.json
+      - run: python prep.py       # ratings + bios -> data.js
       - id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet data.js ratings.json index.html; then
+          if git diff --quiet data.js ratings.json index.html bios.json; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
-            git add data.js ratings.json index.html
-            git commit -m "chore: update ratings from latest f1db release"
+            git add data.js ratings.json index.html bios.json
+            git commit -m "chore: update ratings + bios from latest f1db release"
             git push
             echo "changed=true" >> $GITHUB_OUTPUT
           fi

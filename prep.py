@@ -1,6 +1,8 @@
 """Trim ratings.json into data.js for the artifact."""
-import json
-d = json.load(open('ratings.json', encoding='utf-8'))
+import json, os
+HERE = os.path.dirname(os.path.abspath(__file__))
+d = json.load(open(os.path.join(HERE, 'ratings.json'), encoding='utf-8'))
+bios = json.load(open(os.path.join(HERE, 'bios.json'), encoding='utf-8')) if os.path.exists(os.path.join(HERE, 'bios.json')) else {}
 
 keep_drv = ('id name nat dob titles best_champ slams dotd elo elo_se elo_lo elo_hi peak_elo '
             'starts wins podiums poles fastest_laps points top10 dnf dnf_mech dnf_drv finish_rate '
@@ -23,6 +25,11 @@ for x in d['drivers']:
     y['teammates'] = [{k: t[k] for k in ('id', 'name', 'years', 'constructors', 'quali_won',
                                          'quali_n', 'race_won', 'race_n', 'quali_rate',
                                          'race_rate', 'combined_rate', 'elo_gap')} for t in x['teammates']]
+    b = bios.get(x['id'])
+    if b and b.get('found'):
+        y['bio'] = {k: b[k] for k in ('karting_note', 'off_f1_sections', 'title',
+                                      'born', 'nationality', 'other_cars', 'other_championships')
+                    if k in b and b.get(k)}
     drivers.append(y)
 
 cars = [{k: c[k] for k in ('year', 'constructor', 'name', 'country', 'standing', 'points',

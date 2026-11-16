@@ -15,9 +15,9 @@ Data-driven driver & constructor ratings for F1 1990–2026. Built from race res
 | GitHub Pages + auto-update | ✅ live |
 | Weekly auto re-fit (f1db release) | ✅ scheduled |
 | Telemetry integration | ❌ not available for this span (no structured public data before 2018) |
+| Driver bio (karting / WEC / GT / MotoGP / Dakar) | ✅ done (Wikipedia cache) |
+| Auto-update ~2 days after race day | ✅ scheduled (Mon 09:00 UTC) |
 | Sprint-race / fastest-lap leaderboards | ⏳ not yet |
-| 2-driver side-by-side compare | ✅ done (VS tab) |
-| Keyboard shortcuts + deep links | ✅ done (`/` search, `1–4` tabs, `Esc` close, `?v=<driver>`) |
 | Public JSON API endpoint | ⏳ not yet |
 
 ## Data
@@ -100,9 +100,9 @@ start index.html       # or python -m http.server
 
 `.github/workflows/update.yml`:
 
-- **Schedule:** Mondays 06:00 UTC.
+- **Schedule:** Mondays 09:00 UTC — ~2 days after the Sunday race weekend, giving FIA time to post penalties and the official classification to f1db.
 - **Manual:** GitHub → *Actions* → *Run workflow*.
-- **What it does:** `update.py` → commit `data.js` / `ratings.json` / `index.html` diff (if any) → Pages auto-deploy.
+- **What it does:** `update.py` (f1db → model → data.js) + `bio.py` (Wikipedia → bios.json) → commit diff → Pages auto-deploy.
 
 ## Known issues / next steps
 
@@ -121,4 +121,6 @@ start index.html       # or python -m http.server
 | `model.py` | fit pipeline |
 | `prep.py` | trim model output → `data.js` |
 | `update.py` | f1db fetch + rebuild |
+| `bio.py` | Wikipedia bio scraper (karting, WEC, GT, MotoGP, Dakar) |
+| `bios.json` | cached driver bios (committed, regenerated weekly) |
 | `.github/workflows/update.yml` | weekly auto-update |

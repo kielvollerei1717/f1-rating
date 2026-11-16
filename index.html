@@ -162,6 +162,14 @@ main{padding-block:22px 64px}
 .dvwrap span{font:10.5px var(--mono);color:var(--muted);white-space:nowrap}
 .empty{color:var(--muted);font-size:13px;padding:8px 2px}
 .note{background:color-mix(in srgb,var(--accent) 8%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));border-radius:7px;padding:8px 11px;font-size:12.5px;color:var(--ink-2);margin-top:10px}
+/* ---- bio / background ---- */
+.bio{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.bio-row{display:grid;grid-template-columns:92px 1fr;gap:10px;align-items:baseline;font-size:12.5px}
+.bio-k{color:var(--muted);font:600 10.5px var(--body);text-transform:uppercase;letter-spacing:.04em}
+.bio-v{color:var(--ink-2);line-height:1.45}
+.bio-v .tag{margin-right:4px}
+.bio-src{font-size:11px;color:var(--muted);margin-top:4px}
+.bio-src a{color:var(--accent);text-decoration:none}
 
 /* ---- cars table ---- */
 .cars{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -236,6 +244,8 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
   .nm{font-size:15px}
   .bars{display:none}
   .ovr{font-size:19px;min-width:44px}
+  .bio-row{grid-template-columns:76px 1fr;gap:8px}
+  .bio-k{font-size:9.5px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 [hidden]{display:none!important}
@@ -680,7 +690,34 @@ function detailHtml(d,pal,col){
       '</div>'+
       '<div class="sub-h" style="margin-top:16px"><span>Teammates faced</span></div>'+tms+
       '<div style="margin-top:14px"><div class="sub-h"><span>Full career record (incl. pre-1990)</span></div>'+rec+born+'</div>'+
+      (d.bio?bioHtml(d.bio):'')+
     '</div>';
+}
+function bioHtml(b){
+  var h='<div class="sub-h" style="margin-top:14px"><span>Background & other racing</span></div>';
+  h+='<div class="bio">';
+  if(b.karting_note) h+='<div class="bio-row"><span class="bio-k">Karting</span><span class="bio-v">'+esc(cleanWt(b.karting_note))+'</span></div>';
+  if(b.off_f1_sections&&b.off_f1_sections.length){
+    h+='<div class="bio-row"><span class="bio-k">Off-F1 series</span><span class="bio-v chips">'+
+      b.off_f1_sections.map(function(s){return '<span class="tag">'+esc(s)+'</span>'}).join('')+'</span></div>';
+  }
+  if(b.other_championships) h+='<div class="bio-row"><span class="bio-k">Other titles</span><span class="bio-v">'+esc(cleanWt(b.other_championships))+'</span></div>';
+  if(b.born) h+='<div class="bio-row"><span class="bio-k">Born</span><span class="bio-v">'+esc(cleanWt(b.born))+'</span></div>';
+  h+='<div class="bio-src">Source: <a href="https://en.wikipedia.org/wiki/'+encodeURIComponent(b.title)+'" target="_blank" rel="noopener">'+esc(b.title)+'</a> (Wikipedia, cached locally)</div>';
+  h+='</div>';
+  return h;
+}
+/* strip wikitext markup down to plain text */
+function cleanWt(s){
+  return String(s||'')
+    .replace(/\[\[(?:[^|\]]*\|)?([^\]]*)\]\]/g,'$1')
+    .replace(/<ref[^>]*\/?>/g,'').replace(/<ref[^>]*>[\s\S]*?<\/ref>/g,'')
+    .replace(/<[^>]+>/g,'')
+    .replace(/\{\{[^}]*\}\}/g,'')
+    .replace(/''+/g,'')
+    .replace(/\\(amp|lt|gt|quot|#\w+)/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
 }
 
 /* ---------- render ---------- */
