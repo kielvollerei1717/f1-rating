@@ -61,7 +61,7 @@ Deliberately absent: career length, start count, season count. Volume is not a r
 
 ## What's on the page
 
-- **Drivers** tab — 216 cards, sortable (career/peak/Elo/wins/titles/starts), filter by decade, nation, search. Click a card: season skill trajectory, rating & machinery, consistency bar, style tags, full H2H vs every teammate (quali + race split), full career record incl. pre-1990. **VS button** on each card jumps to the compare tab with that driver pre-loaded.
+- **Drivers** tab — 216 cards, sortable (career/peak/Elo/wins/titles/starts/points), filter by decade, nation, search. Each row shows career points and the era-fair yearly share. Click a card: season trajectory (toggle **skill / % of champion points**), rating & machinery, consistency, **honours & rates** (titles, best WDC, win/podium/pole rate, overtaking), a **season-by-season points table**, style tags, full H2H vs every teammate (quali + race split), full career record incl. pre-1990. **VS button** on each card jumps to the compare tab with that driver pre-loaded.
 - **Cars** tab — all 424 constructor-seasons, searchable/filterable, unclassified ones (Simtek 1994, Forti 1995–96, Minardi 1996–98, …) marked **NC**.
 - **VS** tab — pick any two drivers (or use a card's VS button). Side-by-side rating, peak, car, excess, consistency, points, confidence, full record, style tags, and head-to-head if they were teammates. Winner of each metric highlighted.
 - **Method** tab — what each column means, what does *not* decide the ranking, who is rated, limits, source.
@@ -120,7 +120,7 @@ start index.html       # or python -m http.server
 | File | Role |
 |---|---|
 | `index.html` | static site (all UI) |
-| `data.js` | trimmed driver + car data (666KB) |
+| `data.js` | trimmed driver + car data (694KB) |
 | `ratings.json` | full model output (1.1MB) |
 | `model.py` | fit pipeline |
 | `prep.py` | trim model output → `data.js` |

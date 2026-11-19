@@ -133,8 +133,16 @@ main{padding-block:22px 64px}
 .detail{border-top:1px solid var(--line);padding:16px 14px;background:var(--surface-2);display:grid;gap:16px}
 @media(min-width:820px){.detail{grid-template-columns:1.15fr 1fr}}
 .sub-h{font:600 11px var(--body);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;align-items:baseline}
-.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.sg div{background:var(--surface);padding:8px 10px}
+.toggle{display:inline-flex;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:8px}
+.toggle button{font:600 11px var(--body);padding:3px 10px;border:0;cursor:pointer;background:var(--surface);color:var(--muted)}
+.toggle button[aria-pressed="true"]{background:var(--surface-2);color:var(--ink)}
+.pts{border:1px solid var(--line);border-radius:8px;max-height:230px;overflow-y:auto}
+.pts table{font-size:12.5px;min-width:0}
+.pts th,.pts td{padding:4px 10px}
+.pts tbody tr:last-child td{border-bottom:0}
+/* grid lines drawn on the cells, not as a background, so a short last row does not bleed grey */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.sg div{padding:8px 10px;margin:0 -1px -1px 0;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
 .sg dt{font:600 10px var(--body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
 .sg dd{margin:2px 0 0;font:600 16px var(--mono);font-variant-numeric:tabular-nums}
 .sg dd span{font-size:11.5px;color:var(--muted);font-weight:500}
@@ -239,14 +247,18 @@ kbd{font:600 10px var(--mono);background:var(--surface);border:1px solid var(--l
 .prose code{font:500 12.5px var(--mono);background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink)}
 .callout{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0}
 .callout p:last-child{margin-bottom:0}
-.wt{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.wt div{background:var(--surface);padding:10px 12px}
+.wt{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));display:grid;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.wt div{padding:10px 12px;margin:0 -1px -1px 0;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
 .wt dt{font:600 10.5px var(--body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
 .wt dd{margin:3px 0 0;font:600 15px var(--mono)}
 footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid var(--line);margin-top:34px}
 @media(max-width:560px){
-  .row{grid-template-columns:26px minmax(0,1fr) auto;gap:8px;padding:10px 11px}
-  .nm{font-size:15px}
+  .row{grid-template-columns:26px minmax(0,1fr) auto;gap:8px;padding:10px 11px;align-items:start}
+  .rk{padding-top:1px}
+  .ovr{padding-top:0}
+  .nm{font-size:15px;white-space:normal}
+  /* the meta line is too long to ellipsis on a phone — let it take a second line instead of hiding the points */
+  .meta{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.4}
   .bars{display:none}
   .ovr{font-size:19px;min-width:44px}
   .bio-row{grid-template-columns:76px 1fr;gap:8px}
@@ -300,6 +312,8 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
           <option value="wins">Wins</option>
           <option value="titles">Titles</option>
           <option value="starts">Starts</option>
+          <option value="era_points">Points share (era-fair)</option>
+          <option value="points">Career points (raw)</option>
         </select>
       </div>
       <div class="field"><label for="era">Debut</label>
@@ -412,7 +426,8 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
         and top-10 rate. It rewards a driver who is always there, not one who merely completes laps in last place.</li>
         <li><strong>Points</strong> — championship points, but normalized per season (a driver's haul divided by the
         champion's that year) so that the 9-6-4 scale of 1994 and the 25-18-15 scale of today mean the same thing.
-        Raw totals are never compared across eras.</li>
+        Raw totals are never compared across eras. Opening a driver gives the season-by-season points table with the
+        same figure, and the trajectory chart can be switched between skill and points share.</li>
         <li><strong>Confidence</strong> — how much evidence stands behind the number, from the count of duels. A
         long career raises confidence in the rating; it never raises the rating itself.</li>
       </ul>
@@ -548,7 +563,7 @@ Object.keys(nats).sort(function(a,b){return nats[b]-nats[a]}).forEach(function(k
 });
 $nat.innerHTML=natOpts;
 
-var state={open:null};
+var state={open:null,chart:'skill'};
 try{var s=localStorage.getItem('f1r:ui');if(s){var p=JSON.parse(s);$sort.value=p.sort||'ovr';$era.value=p.era||'';$nat.value=p.nat||'';}}catch(e){}
 function save(){try{localStorage.setItem('f1r:ui',JSON.stringify({sort:$sort.value,era:$era.value,nat:$nat.value}))}catch(e){}}
 
@@ -576,23 +591,25 @@ function bar(label,val,max,hue,show){
 }
 
 /* ---------- SVG charts ---------- */
-function sparkline(seasons,pal,color){
+function sparkline(seasons,pal,color,key){
   var W=520,H=150,PL=34,PR=12,PT=12,PB=22;
   if(!seasons.length) return '<p class="empty">No season data.</p>';
-  var ys=seasons.map(function(s){return s.year}), vs=seasons.map(function(s){return s.skill});
+  var pct=key==='pct', val=function(s){return pct?(s.points_pct||0)*100:s.skill}, ylab=function(v){return pct?nf(v)+'%':v.toFixed(1)};
+  var ys=seasons.map(function(s){return s.year}), vs=seasons.map(val);
   var y0=Math.min.apply(null,vs), y1=Math.max.apply(null,vs);
-  if(y1-y0<0.15){var m=(y0+y1)/2;y0=m-0.075;y1=m+0.075;}
+  var span=pct?15:0.15;
+  if(y1-y0<span){var m=(y0+y1)/2;y0=m-span/2;y1=m+span/2;}
   var x0=Math.min.apply(null,ys), x1=Math.max.apply(null,ys);
   if(x1===x0){x1=x0+1}
   function X(y){return PL+(y-x0)/(x1-x0)*(W-PL-PR)}
   function Y(v){return PT+(1-(v-y0)/(y1-y0))*(H-PT-PB)}
-  var pts=seasons.map(function(s){return [X(s.year),Y(s.skill),s]});
+  var pts=seasons.map(function(s){return [X(s.year),Y(val(s)),s]});
   var line=pts.map(function(p,i){return (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)}).join(' ');
   var area=line+' L'+pts[pts.length-1][0].toFixed(1)+' '+(H-PB)+' L'+pts[0][0].toFixed(1)+' '+(H-PB)+' Z';
   var g='';
   [y0,(y0+y1)/2,y1].forEach(function(v){
     g+='<line x1="'+PL+'" y1="'+Y(v)+'" x2="'+(W-PR)+'" y2="'+Y(v)+'" stroke="'+pal.grid+'" stroke-width="1"/>';
-    g+='<text x="'+(PL-6)+'" y="'+(Y(v)+3.5)+'" text-anchor="end" font-size="10" font-family="var(--mono)" fill="'+pal.muted+'">'+v.toFixed(1)+'</text>';
+    g+='<text x="'+(PL-6)+'" y="'+(Y(v)+3.5)+'" text-anchor="end" font-size="10" font-family="var(--mono)" fill="'+pal.muted+'">'+ylab(v)+'</text>';
   });
   var xt='';
   var step=Math.max(1,Math.ceil(seasons.length/6));
@@ -602,9 +619,12 @@ function sparkline(seasons,pal,color){
   });
   var dots=pts.map(function(p){
     var s=p[2], ch=s.champion;
-    return '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+(ch?4:2.6)+'" fill="'+(ch?pal.accent:color)+'" stroke="'+pal.surface+'" stroke-width="1.5"><title>'+s.year+': '+(s.skill>0?'+':'')+s.skill.toFixed(2)+' skill'+(s.pos?', P'+s.pos+' in championship':'')+(ch?', champion':'')+'</title></circle>';
+    var what=pct ? nf((s.points_pct||0)*100)+'% of champion points ('+nf(s.points)+' pts)'
+                 : (s.skill>0?'+':'')+s.skill.toFixed(2)+' skill';
+    return '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+(ch?4:2.6)+'" fill="'+(ch?pal.accent:color)+'" stroke="'+pal.surface+'" stroke-width="1.5"><title>'+
+      s.year+': '+what+(s.pos?', P'+s.pos+' in championship':'')+(ch?', champion':'')+'</title></circle>';
   }).join('');
-  return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Season skill trajectory">'+g+
+  return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(pct?'Season championship points share':'Season skill trajectory')+'">'+g+
     '<path d="'+area+'" fill="'+color+'" opacity="0.10"/>'+
     '<path d="'+line+'" fill="none" stroke="'+color+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'+dots+xt+'</svg>';
 }
@@ -645,7 +665,8 @@ function cardHtml(d,i){
      '<span class="rk">'+(i+1)+'</span>'+
      '<span class="who"><span class="nm"><span class="flag" style="color:'+col+'">'+flag(d.nat)+'</span>'+esc(disp(d.id))+
         (d.provisional?'<span class="prov" title="Small sample / early career — rating is provisional">PROV</span>':'')+'</span>'+
-       '<span class="meta">'+nf(d.career_first)+'–'+nf(d.career_last)+' · '+d.starts+' starts · '+d.wins+'W '+d.podiums+'P · '+eraLabel(d.first_season)+'</span></span>'+
+       '<span class="meta">'+nf(d.career_first)+'–'+nf(d.career_last)+' · '+d.starts+' starts · '+d.wins+'W '+d.podiums+'P · '+
+       nf(d.points)+' pts · '+nf((d.era_points||0)*100)+'%/yr of champion · '+eraLabel(d.first_season)+'</span></span>'+
      '<span class="right"><span class="bars">'+bar('career',d.ovr,100)+bar('peak',d.peak_ovr,100,col)+'</span>'+
        '<span class="ovr">'+nf(d.ovr,1)+'<small>OVR</small></span>'+
        '<button class="vsbtn" data-vs="'+esc(d.id)+'" title="Compare with another driver" aria-label="Compare with another driver">VS</button></span>'+
@@ -659,6 +680,8 @@ function cardHtml(d,i){
 function detailHtml(d,pal,col){
   var s1=d.seasons||[];
   var stat=function(l,v,sub){return '<div><dt>'+l+'</dt><dd>'+v+(sub?' <span>'+sub+'</span>':'')+'</dd></div>'};
+  var pctChart=state.chart==='pct'&&s1.length>0;
+  var avgPct=s1.length?s1.reduce(function(a,s){return a+(s.points_pct||0)},0)/s1.length*100:0;
   var core='<div class="sg">'+
     stat('Rating',nf(d.elo),'±'+nf(d.elo_se))+
     stat('Peak',nf(d.peak_elo))+
@@ -676,8 +699,45 @@ function detailHtml(d,pal,col){
       stat('Wins',d.wins)+
       stat('Podiums',d.podiums)+
       stat('Poles',d.poles)+
-      stat('Pts share',nf((d.era_points||0)*100)+'%')+
+      stat('Fastest laps',d.fastest_laps)+
       stat('DNF',d.dnf,'<span>'+d.dnf_mech+' mech</span>')+
+      stat('Top 10',d.top10)+
+      stat('Avg finish',nf(d.avg_finish,2))+
+    '</div>';
+  /* points: raw totals are era-skewed, so show the per-season record as the honest view */
+  var pbest=s1.slice().sort(function(a,b){return (b.points||0)-(a.points||0)})[0];
+  var ptsBlock='<div class="sub-h" style="margin-top:14px"><span>Championship points</span><span class="mono" style="font-weight:500">'+nf(d.points,1)+' career</span></div>'+
+    '<div class="sg">'+
+      stat('Career points',nf(d.points,1),'<span>raw total</span>')+
+      stat('Per start',nf(d.points_per_start,2))+
+      stat('Avg share',nf(avgPct)+'%','<span>of champion</span>')+
+      stat('Best season',nf(pbest&&pbest.points),pbest?'<span>'+pbest.year+'</span>':'')+
+    '</div>'+
+    '<div class="pts scroll" style="margin-top:8px">'+(s1.length?
+      '<table><thead><tr><th>Season</th><th class="num">Pos</th><th class="num">Points</th><th class="num">% of champion</th></tr></thead><tbody>'+
+      s1.slice().sort(function(a,b){return b.year-a.year}).map(function(s){
+        return '<tr><td>'+(s.champion?'<span class="wdc">WDC</span> ':'')+s.year+'</td>'+
+          '<td class="num">'+(s.pos?'P'+s.pos:'—')+'</td>'+
+          '<td class="num">'+nf(s.points,1)+'</td>'+
+          '<td class="num" style="color:var(--muted)">'+nf((s.points_pct||0)*100)+'%</td></tr>';
+      }).join('')+'</tbody></table>'
+      :'<p class="empty" style="padding:10px 12px">No rated season &mdash; too few race finishes in 1990–2026 for a per-season split. The career totals above still include their whole record.</p>')+'</div>'+
+    '<p class="mini" style="margin-top:6px;display:block;line-height:1.5">% of champion = that season\'s points ÷ the champion\'s points the same year. '+
+      'Raw career points are not comparable across eras (the 9-6-4 scale of 1994 and today\'s 25-18-15 are different currencies), which is why the model uses the share, not the total.</p>';
+  var pc=function(v){return v==null?'—':nf(v*100)+'%'};
+  var hon='<div class="sub-h" style="margin-top:14px"><span>Honours and rates</span>'+
+    (d.titles?'<span class="mono" style="font-weight:500">'+(d.career_titles||d.titles)+'× champion</span>':'')+'</div>'+
+    '<div class="sg">'+
+      stat('Titles',d.career_titles||d.titles||0)+
+      stat('Best WDC',d.best_champ?'P'+d.best_champ:'—')+
+      stat('Best race',d.best_finish?'P'+d.best_finish:'—')+
+      stat('Win rate',pc(d.win_rate))+
+      stat('Podium rate',pc(d.podium_rate))+
+      stat('Pole rate',pc(d.pole_rate))+
+      stat('Top-10 rate',pc(d.top10_rate))+
+      stat('Avg gained',(d.avg_gained>0?'+':'')+nf(d.avg_gained,2),'<span>places, grid→flag</span>')+
+      stat('Grid quality',pc(d.quali_beat_field),'<span>of the field</span>')+
+      stat('Overtaking',pc(d.gain_rate),'<span>of races gained</span>')+
     '</div>';
   var tags=(d.tags&&d.tags.length)?'<div class="tags">'+d.tags.map(function(t){return '<span class="tag hot">'+esc(t)+'</span>'}).join('')+'</div>':'';
   var note='';
@@ -718,12 +778,17 @@ function detailHtml(d,pal,col){
       '</div>';
     }).join('')+'</div>':'<p class="empty">No teammate head-to-head.</p>';
   return '<div>'+
-      '<div class="sub-h"><span>Season skill trajectory</span><span class="mono" style="font-weight:500">'+(d.first_season||'')+'–'+(d.last_season||'')+'</span></div>'+
-      '<div class="chartbox">'+sparkline(s1,pal,col)+
-        '<div class="legend"><span><i style="background:'+col+'"></i>season skill</span><span><i style="background:'+pal.accent+'"></i>champion season</span><span>higher = further ahead of the field</span></div>'+
+      '<div class="sub-h"><span>'+(pctChart?'Points share by season':'Season skill trajectory')+'</span><span class="mono" style="font-weight:500">'+(d.first_season||'')+'–'+(d.last_season||'')+'</span></div>'+
+      (s1.length?'<div class="toggle" role="group" aria-label="Chart metric">'+
+        '<button data-chart="skill" aria-pressed="'+(!pctChart)+'">Skill</button>'+
+        '<button data-chart="pct" aria-pressed="'+pctChart+'">% of champion</button>'+
+      '</div>':'')+
+      '<div class="chartbox">'+sparkline(s1,pal,col,state.chart)+
+        '<div class="legend"><span><i style="background:'+col+'"></i>'+(pctChart?'% of champion points':'season skill')+'</span><span><i style="background:'+pal.accent+'"></i>champion season</span><span>'+(pctChart?'100% = matched the champion that year':'higher = further ahead of the field')+'</span></div>'+
       '</div>'+
       '<div class="sub-h" style="margin-top:16px"><span>Rating and machinery</span></div>'+
-      core+consBg+tags+note+
+      core+consBg+tags+note+hon+
+      '<div style="margin-top:14px">'+ptsBlock+'</div>'+
       '<div style="margin-top:14px"><div class="sub-h"><span>Full career record (incl. pre-1990)</span></div>'+rec+born+'</div>'+
       (d.bio?bioHtml(d.bio):'')+
     '</div>'+
@@ -782,6 +847,12 @@ $board.addEventListener('click',function(e){
   state.open = state.open===id?null:id;
   render();
   if(state.open){var el=$board.querySelector('.card.open'); if(el) el.scrollIntoView({block:'nearest'});}
+});
+$board.addEventListener('click',function(e){
+  var t=e.target.closest('.toggle button'); if(!t) return;
+  state.chart=t.getAttribute('data-chart');
+  render();
+  var el=$board.querySelector('.card.open'); if(el) el.scrollIntoView({block:'nearest'});
 });
 ['change','input'].forEach(function(ev){
   $sort.addEventListener(ev,function(){save();render()});
