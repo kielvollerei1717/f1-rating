@@ -68,7 +68,9 @@ Deliberately absent: career length, start count, season count. Volume is not a r
 
 ## Navigation
 
-Keyboard: `1`–`4` switch tabs, `/` focus search, `Esc` close detail. Share button copies a deep link (`#tab?v=<driver>`). Deep-linking a driver card works via `?v=...`.
+Keyboard: `1`–`5` switch tabs, `/` focus search, `Esc` close detail. Theme button cycles system → light → dark (persisted in `localStorage`). Share button copies a deep link carrying the current tab, `?v=<driver>` and/or `?y=<season>`.
+
+**Fully static.** No backend, no build step, no runtime dependency beyond `data.js` and the Google Fonts stylesheet — everything runs in the browser, so GitHub Pages hosting works unchanged.
 
 ## Key results (as of last run)
 
@@ -109,6 +111,7 @@ start index.html       # or python -m http.server
 
 - **No telemetry** for 1990–2018 (data does not exist publicly in structured form). FastF1 / OpenF1 can add 2018+ lap telemetry as a separate layer.
 - **Sprint races** are in the DB but not yet a leaderboard.
+- **Bio coverage** is partial (61/216 after the first CI run) and tops up ~41 drivers per weekly run; drivers without a cached bio simply omit the section.
 - **JSON API** could be exposed via GitHub Pages + a static JSON endpoint (already there as `ratings.json`) or a serverless function.
 - **f1db release lag** — ratings track f1db, not live F1. Between releases the site is static.
 

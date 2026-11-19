@@ -1,5 +1,5 @@
 """Trim ratings.json into data.js for the artifact."""
-import json, os
+import json, os, re
 HERE = os.path.dirname(os.path.abspath(__file__))
 d = json.load(open(os.path.join(HERE, 'ratings.json'), encoding='utf-8'))
 bios = json.load(open(os.path.join(HERE, 'bios.json'), encoding='utf-8')) if os.path.exists(os.path.join(HERE, 'bios.json')) else {}
@@ -20,7 +20,8 @@ drivers = []
 for x in d['drivers']:
     y = {k: x.get(k) for k in keep_drv}
     y['seasons'] = [dict(year=s['year'], skill=round(s['skill'], 3), pos=s.get('pos'),
-                         points=s.get('points'), champion=s.get('champion'),
+                         points=s.get('points'), points_pct=s.get('points_pct'),
+                         champion=s.get('champion'),
                          field_pos=s.get('field_pos'), field_n=s.get('field_n')) for s in x['seasons']]
     y['teammates'] = [{k: t[k] for k in ('id', 'name', 'years', 'constructors', 'quali_won',
                                          'quali_n', 'race_won', 'race_n', 'quali_rate',
@@ -39,6 +40,14 @@ cars = [{k: c[k] for k in ('year', 'constructor', 'name', 'country', 'standing',
 out = dict(years=d['years'], n_pairs=d['n_pairs'], min_starts=d.get('min_starts', 1),
            n_races=d.get('n_races'), n_drivers=len(drivers), n_cars=len(cars), drivers=drivers, cars=cars,
            era_mean=d['era_mean'], era_n=d['era_n'])
+# build stamp for the page footer: the f1db release the numbers came from
+import datetime
+rel = ''
+try:
+    rel = re.search(r'release v[\d.]+', open(os.path.join(HERE, 'index.html'), encoding='utf-8').read()).group(0)
+except Exception:
+    pass
+out['built'] = datetime.date.today().isoformat() + (' · ' + rel if rel else '')
 txt = json.dumps(out, ensure_ascii=False, separators=(',', ':'))
 open('data.js', 'w', encoding='utf-8').write('window.F1DATA=' + txt + ';')
 print('data.js', len(txt) // 1024, 'KB,', len(drivers), 'drivers,', len(cars), 'cars')

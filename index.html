@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>F1 Driver Ratings 1990–2026</title>
+<meta name="description" content="Model-based F1 driver and car ratings for every season 1990–2026, fit from race results only (Bradley–Terry pairwise model).">
+<meta name="theme-color" content="#f7f7f5" id="tc">
+<meta property="og:type" content="website">
+<meta property="og:title" content="F1 Driver Ratings 1990–2026">
+<meta property="og:description" content="216 drivers, 424 car-seasons, 83k pairwise duels. Every classified finish modelled — no expert votes, no reputation.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231a6ed8'/><text x='16' y='23' font-family='system-ui,sans-serif' font-size='17' font-weight='700' text-anchor='middle' fill='%23fff'>F1</text></svg>">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
@@ -63,7 +70,7 @@ header.bar{
   background:color-mix(in srgb,var(--plane) 88%,transparent);
   backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
   margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));
-  padding:10px max(16px,env(safe-area-inset-left,0px)) 0 max(16px,env(safe-area-inset-right,0px));
+  padding:10px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));
 }
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--plane)}
 .bar-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
@@ -120,6 +127,7 @@ main{padding-block:22px 64px}
 .ovr{font:700 21px var(--mono);font-variant-numeric:tabular-nums;min-width:50px;text-align:right;line-height:1}
 .ovr small{display:block;font:600 9px var(--mono);color:var(--muted);letter-spacing:.1em;margin-top:2px}
 .prov{display:inline-block;font:700 8.5px var(--mono);letter-spacing:.06em;color:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:0 4px;margin-left:6px;vertical-align:1px}
+.wdc{display:inline-block;font:700 8.5px var(--mono);letter-spacing:.06em;color:var(--accent-ink);background:var(--accent);border-radius:3px;padding:0 4px;margin-left:6px;vertical-align:1px}
 
 /* ---- detail ---- */
 .detail{border-top:1px solid var(--line);padding:16px 14px;background:var(--surface-2);display:grid;gap:16px}
@@ -167,6 +175,7 @@ main{padding-block:22px 64px}
 .bio-row{display:grid;grid-template-columns:92px 1fr;gap:10px;align-items:baseline;font-size:12.5px}
 .bio-k{color:var(--muted);font:600 10.5px var(--body);text-transform:uppercase;letter-spacing:.04em}
 .bio-v{color:var(--ink-2);line-height:1.45}
+.bio-v.chips{display:flex;flex-wrap:wrap;gap:4px}
 .bio-v .tag{margin-right:4px}
 .bio-src{font-size:11px;color:var(--muted);margin-top:4px}
 .bio-src a{color:var(--accent);text-decoration:none}
@@ -177,6 +186,12 @@ main{padding-block:22px 64px}
 table{border-collapse:collapse;width:100%;min-width:660px;font-size:13.5px}
 th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
 th{font:600 11px var(--body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--surface-2);position:sticky;top:0}
+th[data-k]{cursor:pointer;user-select:none}
+th[data-k]:hover{color:var(--ink)}
+th[data-k]::after{content:"";display:inline-block;width:0;height:0;margin-left:5px;vertical-align:2px;border:4px solid transparent;border-top-color:var(--line-strong);opacity:0;transition:opacity .12s}
+th[data-k]:hover::after{opacity:.7}
+th[data-k][aria-sort="ascending"]::after{border-top-color:transparent;border-bottom-color:var(--accent);opacity:1}
+th[data-k][aria-sort="descending"]::after{border-top-color:var(--accent);opacity:1}
 td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
 tbody tr:last-child td{border-bottom:0}
 tbody tr:hover td{background:var(--surface-2)}
@@ -188,6 +203,9 @@ tbody tr:hover td{background:var(--surface-2)}
 .prose{max-width:68ch}
 .sharebtn{margin-left:auto;font:600 11px var(--body);color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:4px 9px;cursor:pointer}
 .sharebtn:hover{color:var(--accent);border-color:var(--accent)}
+.iconbtn{font:600 13px var(--body);color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:4px 9px;cursor:pointer;line-height:1.35}
+.iconbtn:hover{color:var(--accent);border-color:var(--accent)}
+.hdract{margin-left:auto;display:flex;gap:6px;align-items:center}
 .kbd{display:flex;gap:14px;margin-top:8px;padding:0;flex-wrap:wrap}
 .kbdrow{font:500 10.5px var(--mono);color:var(--muted);display:flex;gap:5px;align-items:center}
 kbd{font:600 10px var(--mono);background:var(--surface);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:var(--ink-2)}
@@ -197,35 +215,22 @@ kbd{font:600 10px var(--mono);background:var(--surface);border:1px solid var(--l
 .vs-pick{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
 .vs-pick .field{flex:1;min-width:160px}
 .vs-sep{font:700 14px var(--disp);color:var(--muted);padding-bottom:8px}
-.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:640px){.vs-grid{grid-template-columns:1fr}}
-.vs-col{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:12px}
-.vs-col.win{border-color:var(--good)}
-.vs-col.lose{border-color:var(--bad)}
-.vs-hd{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
-.vs-hd .who{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:-.01em}
-.vs-hd .span{font:11px var(--mono);color:var(--muted)}
-.vs-big{font:700 34px var(--mono);font-variant-numeric:tabular-nums;line-height:1}
-.vs-big small{font:600 11px var(--mono);color:var(--muted);letter-spacing:.06em}
-.vs-dim{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
-.vs-dim div{display:flex;justify-content:space-between;gap:8px;font:13px var(--body);padding:4px 0;border-bottom:1px solid var(--line)}
-.vs-dim dt{color:var(--muted);font-weight:500}
-.vs-dim dd{margin:0;font:600 13.5px var(--mono);font-variant-numeric:tabular-nums}
-.vs-chips{display:flex;flex-wrap:wrap;gap:5px}
+/* one shared comparison table: label | A | B */
+.cmp{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.cmp .cmphd{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px;padding:9px 14px;background:var(--surface-2);border-bottom:1px solid var(--line);font:600 11px var(--body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.cmp .cmphd b{color:var(--ink);font:600 12.5px var(--disp);text-transform:none;letter-spacing:-.01em;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmp .cmphd b.w{color:var(--good)}
+.cmp .cmprow{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px;padding:6px 14px;border-bottom:1px solid var(--line);font-size:13px}
+.cmp .cmprow:last-child{border-bottom:0}
+.cmp .cmprow dt{color:var(--muted);font-weight:500}
+.cmp .cmprow dd{margin:0;text-align:right;font:600 13.5px var(--mono);font-variant-numeric:tabular-nums}
+.cmp .cmprow dd.hl{color:var(--good)}
+.cmp .subhd{grid-column:1/-1;padding:10px 14px 4px;font:600 10.5px var(--body);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.cmp .cmprow:hover{background:var(--surface-2)}
 .vs-note{color:var(--muted);font-size:12.5px;max-width:60ch}
 .vsbtn{margin-left:8px;font:700 10px var(--mono);letter-spacing:.06em;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:3px 8px;cursor:pointer;opacity:0;transition:opacity .15s,color .15s,border-color .15s}
 .card:hover .vsbtn,.card.open .vsbtn{opacity:1}
 .vsbtn:hover{color:var(--accent);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
-.vs-dim{margin:0}
-.vs-dimrow{display:grid;grid-template-columns:1.2fr auto auto;gap:10px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--line);font-size:12.5px}
-.vs-dimrow:last-child{border-bottom:0}
-.vs-dimrow dt{color:var(--muted);font-weight:500}
-.vs-dimrow dd{font:600 13.5px var(--mono);font-variant-numeric:tabular-nums;text-align:right;min-width:56px}
-.vs-dimrow dd.hl{color:var(--good)}
-.vs-dimrow.wa dd:nth-of-type(1),.vs-dimrow.wb dd:nth-of-type(2){color:var(--good)}
-.vs-vsrow{grid-column:1/-1;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
-.vs-vsrow .vs-dimrow{border-color:var(--line)}
-.vs-vsrow .vs-dimrow:first-child{border-top:0}
 .prose h2{font-size:19px;margin:26px 0 8px}
 .prose h2:first-child{margin-top:0}
 .prose p{margin:0 0 12px;color:var(--ink-2)}
@@ -246,6 +251,12 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
   .ovr{font-size:19px;min-width:44px}
   .bio-row{grid-template-columns:76px 1fr;gap:8px}
   .bio-k{font-size:9.5px}
+  .cmp .cmprow,.cmp .cmphd{grid-template-columns:1.2fr .8fr .8fr;gap:6px;padding-left:11px;padding-right:11px;font-size:12.5px}
+  .cmp .cmprow dd{font-size:12.5px}
+  .hdract{order:3;margin-left:auto}
+  .bar-top h1{order:1;flex-basis:100%}
+  .bar-top .sub{order:2;font-size:11.5px}
+  .sharebtn{margin-left:0}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 [hidden]{display:none!important}
@@ -258,16 +269,20 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
   <div class="bar-top">
     <h1>F1 Driver Ratings</h1>
     <span class="sub">1990 – 2026 · <span id="hdr-n">216</span> drivers · pairwise model</span>
-    <button class="sharebtn" id="share" title="Copy shareable link to this view">⧉ Share</button>
+    <div class="hdract">
+      <button class="iconbtn" id="theme" title="Toggle light / dark" aria-label="Toggle colour theme">◐</button>
+      <button class="sharebtn" id="share" title="Copy shareable link to this view">⧉ Share</button>
+    </div>
   </div>
   <div class="tabs" role="tablist">
     <button class="tab" role="tab" id="tab-drivers" aria-selected="true" aria-controls="p-drivers">Drivers</button>
     <button class="tab" role="tab" id="tab-cars" aria-selected="false" aria-controls="p-cars">Cars</button>
     <button class="tab" role="tab" id="tab-vs" aria-selected="false" aria-controls="p-vs">VS</button>
+    <button class="tab" role="tab" id="tab-season" aria-selected="false" aria-controls="p-season">Seasons</button>
     <button class="tab" role="tab" id="tab-method" aria-selected="false" aria-controls="p-method">Method</button>
   </div>
   <div class="kbd">
-    <span class="kbdrow"><kbd>1</kbd>–<kbd>4</kbd> tabs</span>
+    <span class="kbdrow"><kbd>1</kbd>–<kbd>5</kbd> tabs</span>
     <span class="kbdrow"><kbd>/</kbd> search</span>
     <span class="kbdrow"><kbd>Esc</kbd> close</span>
   </div>
@@ -326,8 +341,9 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
     </div>
     <div class="cars scroll"><table id="carstbl">
       <thead><tr>
-        <th class="num">#</th><th>Season</th><th>Constructor</th><th class="num">Car Elo</th>
-        <th class="num">Rating</th><th class="num">WCC</th><th class="num">Points</th><th>Champion</th>
+        <th class="num" data-k="rank">#</th><th data-k="year">Season</th><th data-k="name">Constructor</th>
+        <th class="num" data-k="elo">Car Elo</th><th class="num" data-k="rating">Rating</th>
+        <th class="num" data-k="standing">WCC</th><th class="num" data-k="points">Points</th><th data-k="champion">Champion</th>
       </tr></thead><tbody></tbody>
     </table></div>
   </section>
@@ -343,10 +359,33 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
           <select id="vsb"></select>
         </div>
       </div>
-      <div class="vs-grid" id="vsg"></div>
+      <div id="vsg" style="display:grid;gap:12px"></div>
       <div class="vs-note">Head-to-head is only over races they actually shared a car (teammates). The Elo and
       era-z columns are the era-fair comparison; raw totals favour the longer career, not the better driver.</div>
     </div>
+  </section>
+
+  <section class="panel" id="p-season" role="tabpanel" aria-labelledby="tab-season" hidden>
+    <div class="controls">
+      <div class="field"><label for="syear">Season</label><select id="syear"></select></div>
+      <div class="field"><label for="ssort">Rank by</label>
+        <select id="ssort">
+          <option value="pos">Championship position</option>
+          <option value="skill">Car-adjusted skill</option>
+          <option value="points">Points</option>
+        </select>
+      </div>
+      <span class="count" id="scount"></span>
+    </div>
+    <div class="board" id="seasonboard"></div>
+    <div class="sub-h" style="margin-top:24px">Machinery that season</div>
+    <div class="cars scroll"><table id="seasontbl">
+      <thead><tr><th class="num">#</th><th>Constructor</th><th class="num">Car Elo</th>
+        <th class="num">Rating</th><th class="num">WCC</th><th class="num">Points</th><th class="num">Races</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <p class="vs-note" style="margin-top:12px">Season skill is the driver's rating inside that year only, car
+    effect removed — the same scale used for the trajectory charts, so seasons are comparable across eras.</p>
   </section>
 
   <section class="panel" id="p-method" role="tabpanel" aria-labelledby="tab-method" hidden>
@@ -431,6 +470,7 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
 
   <footer>
     Ratings are a model output, not a verdict. Built from race results only — no expert votes, no reputation.
+    <span id="built" class="mono" style="display:block;margin-top:6px;font-size:11px"></span>
   </footer>
 </main>
 </div>
@@ -478,6 +518,8 @@ document.getElementById('m-pairs').textContent = D.n_pairs.toLocaleString('en-US
 document.getElementById('m-drivers').textContent = D.n_drivers;
 document.getElementById('m-cars').textContent = D.n_cars;
 document.getElementById('hdr-n').textContent = D.n_drivers;
+(function(){var b=document.getElementById('built');
+  if(b&&D.built) b.textContent='Data: '+D.built;})();
 
 /* ---------- tabs ---------- */
 var tabs=[].slice.call(document.querySelectorAll('.tab'));
@@ -528,9 +570,9 @@ function filtered(){
 }
 
 /* ---------- mini bar ---------- */
-function bar(label,val,max,hue){
+function bar(label,val,max,hue,show){
   var w=max?Math.max(0,Math.min(100,val/max*100)):0;
-  return '<div class="mini"><span>'+label+'</span><span>'+nf(val)+'</span></div><div class="track"><div class="fill" style="width:'+w.toFixed(1)+'%;'+(hue?'background:'+hue:'')+'"></div></div>';
+  return '<div class="mini"><span>'+label+'</span><span>'+(show!=null?show:nf(val))+'</span></div><div class="track"><div class="fill" style="width:'+w.toFixed(1)+'%;'+(hue?'background:'+hue:'')+'"></div></div>';
 }
 
 /* ---------- SVG charts ---------- */
@@ -682,6 +724,8 @@ function detailHtml(d,pal,col){
       '</div>'+
       '<div class="sub-h" style="margin-top:16px"><span>Rating and machinery</span></div>'+
       core+consBg+tags+note+
+      '<div style="margin-top:14px"><div class="sub-h"><span>Full career record (incl. pre-1990)</span></div>'+rec+born+'</div>'+
+      (d.bio?bioHtml(d.bio):'')+
     '</div>'+
     '<div>'+
       '<div class="sub-h"><span>Head-to-head vs teammates</span></div>'+
@@ -689,17 +733,18 @@ function detailHtml(d,pal,col){
         '<div class="legend"><span><i style="background:'+pal.s1+'"></i>qualifying (Saturday)</span><span><i style="background:'+pal.s2+'"></i>race (Sunday)</span><span>bar = share of duels won, 50% = even</span></div>'+
       '</div>'+
       '<div class="sub-h" style="margin-top:16px"><span>Teammates faced</span></div>'+tms+
-      '<div style="margin-top:14px"><div class="sub-h"><span>Full career record (incl. pre-1990)</span></div>'+rec+born+'</div>'+
-      (d.bio?bioHtml(d.bio):'')+
     '</div>';
 }
 function bioHtml(b){
   var h='<div class="sub-h" style="margin-top:14px"><span>Background & other racing</span></div>';
   h+='<div class="bio">';
   if(b.karting_note) h+='<div class="bio-row"><span class="bio-k">Karting</span><span class="bio-v">'+esc(cleanWt(b.karting_note))+'</span></div>';
-  if(b.off_f1_sections&&b.off_f1_sections.length){
+  /* headings only; generic ones ("racing career", "early life…") say nothing */
+  var GEN=/(racing career|early life|biography|^career$|karting record|motorsport career|record$)/i;
+  var secs=(b.off_f1_sections||[]).filter(function(s){return !GEN.test(s)});
+  if(secs.length){
     h+='<div class="bio-row"><span class="bio-k">Off-F1 series</span><span class="bio-v chips">'+
-      b.off_f1_sections.map(function(s){return '<span class="tag">'+esc(s)+'</span>'}).join('')+'</span></div>';
+      secs.map(function(s){return '<span class="tag">'+esc(s)+'</span>'}).join('')+'</span></div>';
   }
   if(b.other_championships) h+='<div class="bio-row"><span class="bio-k">Other titles</span><span class="bio-v">'+esc(cleanWt(b.other_championships))+'</span></div>';
   if(b.born) h+='<div class="bio-row"><span class="bio-k">Born</span><span class="bio-v">'+esc(cleanWt(b.born))+'</span></div>';
@@ -746,6 +791,7 @@ $board.addEventListener('click',function(e){
 $q.addEventListener('input',render);
 
 /* ---------- cars ---------- */
+var carSort={k:'rank',dir:1};
 function renderCars(){
   var pal=palette(), tb=document.querySelector('#carstbl tbody');
   var q=(document.getElementById('cq').value||'').trim().toLowerCase();
@@ -757,6 +803,13 @@ function renderCars(){
     if(ty==='nc' && c.classified) return false;
     return true;
   });
+  var k=carSort.k, dir=carSort.dir;
+  list=list.slice().sort(function(a,b){
+    var av=a[k], bv=b[k];
+    if(k==='name'||k==='champion') return String(av).localeCompare(String(bv))*dir;
+    av=av==null?-Infinity:av; bv=bv==null?-Infinity:bv;
+    return (av-bv)*dir || a.rank-b.rank;
+  });
   document.getElementById('ccount').textContent=list.length+' of '+D.cars.length+' car-seasons';
   tb.innerHTML=list.map(function(c){
     var col=cssv(ERA[eraOf(c.year)].c);
@@ -767,7 +820,20 @@ function renderCars(){
       '<td class="num">'+st+'</td><td class="num">'+nf(c.points,1)+'</td>'+
       '<td>'+(c.champion?'<span class="pill ch">WCC</span>':'<span class="pill">—</span>')+'</td></tr>';
   }).join('');
+  document.querySelectorAll('#carstbl th[data-k]').forEach(function(th){
+    var on=th.getAttribute('data-k')===k;
+    if(on) th.setAttribute('aria-sort',dir>0?'ascending':'descending');
+    else th.removeAttribute('aria-sort');
+  });
 }
+document.querySelectorAll('#carstbl th[data-k]').forEach(function(th){
+  th.addEventListener('click',function(){
+    var k=th.getAttribute('data-k');
+    if(carSort.k===k) carSort.dir*=-1;
+    else {carSort.k=k; carSort.dir=(k==='name'||k==='champion'||k==='rank'||k==='year')?1:-1}
+    renderCars();
+  });
+});
 
 /* car filter controls */
 (function(){
@@ -794,71 +860,72 @@ function renderCars(){
   $a.value='max-verstappen'; $b.value='lewis-hamilton';
 
   function byId(id){return D.drivers.filter(function(d){return d.id===id})[0]}
-  function dim(a,b,label){
-    var winner=a>b?0:1;
-    return '<div class="vs-dimrow" data-w="'+winner+'"><dt>'+label+'</dt>'+
-      '<dd class="v"><span>'+nf(a)+'</span></dd><dd class="w"><span>'+nf(b)+'</span></dd></div>';
+  /* key -> [label, getter, formatter, higherIsBetter] */
+  var RATES=[
+    ['Rating (Elo)',function(x){return x.elo},function(v){return nf(v)},1],
+    ['95% interval',function(x){return x.elo_se},function(v){return '±'+nf(v)},0],
+    ['Peak Elo',function(x){return x.peak_elo},function(v){return nf(v)},1],
+    ['Car Elo',function(x){return x.avg_car_elo},function(v){return nf(v)},1],
+    ['Excess',function(x){return x.driver_excess},function(v){return (v>0?'+':'')+nf(v)},1],
+    ['vs field',function(x){return x.era_z},function(v){return (v>0?'+':'')+nf(v,2)+'σ'},1],
+    ['Consistency',function(x){return x.consistency},function(v){return nf(v,1)+'/100'},1],
+    ['Pts share',function(x){return (x.era_points||0)*100},function(v){return nf(v)+'%'},1],
+    ['Confidence',function(x){return x.confidence},function(v){return nf(v)},1]
+  ];
+  var RECORD=[
+    ['Starts',function(x){return x.starts},null,1],
+    ['Wins',function(x){return x.wins},null,1],
+    ['Podiums',function(x){return x.podiums},null,1],
+    ['Poles',function(x){return x.poles},null,1],
+    ['Titles',function(x){return x.career_titles||0},null,1],
+    ['Avg finish',function(x){return x.avg_finish},function(v){return v==null?'—':nf(v,1)},0],
+    ['Finish rate',function(x){return (x.finish_rate||0)*100},function(v){return nf(v)+'%'},1],
+    ['DNF',function(x){return x.dnf},null,0]
+  ];
+  function cmpRows(A,B,defs){
+    return defs.map(function(s){
+      var av=s[1](A), bv=s[1](B), fmt=s[2]||function(v){return nf(v)};
+      var lo=(s[3]===0) ? (av<bv) : (av>bv);
+      var hi=(s[3]===0) ? (bv<av) : (bv>av);
+      return '<div class="cmprow"><dt>'+s[0]+'</dt>'+
+        '<dd'+(av!=null&&bv!=null&&lo?' class="hl"':'')+'>'+fmt(av)+'</dd>'+
+        '<dd'+(av!=null&&bv!=null&&hi?' class="hl"':'')+'>'+fmt(bv)+'</dd></div>';
+    }).join('');
   }
   function render(){
     var A=byId($a.value), B=byId($b.value);
-    if(!A||!B||A.id===B.id){$g.innerHTML='<p class="empty">Pick two different drivers.</p>';return}
-    /* key -> {label, get, fmt} */
-    var KEY={
-      Rating:['Rating (Elo)',function(x){return x.elo},function(v){return nf(v)}],
-      Peak:['Peak Elo',function(x){return x.peak_elo},function(v){return nf(v)}],
-      Car:['Car Elo',function(x){return x.avg_car_elo},function(v){return nf(v)}],
-      Excess:['Excess',function(x){return x.driver_excess},function(v){return (v>0?'+':'')+nf(v)}],
-      Z:['vs field',function(x){return x.era_z},function(v){return (v>0?'+':'')+nf(v,2)+'σ'}],
-      Cons:['Consistency',function(x){return x.consistency},function(v){return nf(v,1)+'/100'}],
-      Pts:['Pts share',function(x){return (x.era_points||0)*100},function(v){return nf(v)+'%'}],
-      Conf:['Confidence',function(x){return x.confidence},function(v){return nf(v)}],
-      Wins:['Wins',function(x){return x.wins},function(v){return v}],
-      Pod:['Podiums',function(x){return x.podiums},function(v){return v}],
-      Pole:['Poles',function(x){return x.poles},function(v){return v}],
-      Titl:['Titles',function(x){return x.career_titles||0},function(v){return v}],
-      AvgF:['Avg finish',function(x){return x.avg_finish},function(v){return v==null?'—':nf(v,1)}],
-      FR:['Finish rate',function(x){return (x.finish_rate||0)*100},function(v){return nf(v)+'%'}],
-      DNF:['DNF',function(x){return x.dnf},function(v){return v}],
-      St:['Starts',function(x){return x.starts},function(v){return v}]
-    };
-    function row(k){
-      var s=KEY[k]; if(!s) return '';
-      var av=s[1](A), bv=s[1](B);
-      var win=av>bv?'a':(bv>av?'b':'t');
-      return '<div class="vs-dimrow '+(win==='a'?'wa':win==='b'?'wb':'')+'">'+
-        '<dt>'+s[0]+'</dt>'+
-        '<dd class="'+(win==='a'?'hl':'')+'">'+s[2](av)+'</dd>'+
-        '<dd class="'+(win==='b'?'hl':'')+'">'+s[2](bv)+'</dd></div>';
-    }
-    var RATES=['Rating','Peak','Car','Excess','Z','Cons','Pts','Conf'];
-    var RECORD=['Wins','Pod','Pole','Titl','AvgF','FR','DNF','St'];
+    if(!A||!B){$g.innerHTML='<p class="empty">Pick two drivers.</p>';return}
+    if(A.id===B.id){$g.innerHTML='<p class="empty">Pick two different drivers.</p>';return}
     var tma=(A.teammates||[]).filter(function(t){return t.id===B.id})[0];
-    var tmb=(B.teammates||[]).filter(function(t){return t.id===A.id})[0];
-    function col(d,keys){
-      return '<div class="vs-col '+(d.ovr>=(d===A?B:A).ovr?'win':'lose')+'"'+(d===A?' id="vsc-a"':' id="vsc-b"')+'>'+
-        '<div class="vs-hd"><span class="who">'+esc(disp(d.id))+'</span><span class="span">'+nf(d.career_first)+'–'+nf(d.career_last)+'</span></div>'+
-        '<div class="vs-big">'+nf(d.ovr,1)+' <small>OVR #'+d.rank+'</small></div>'+
-        '<dl class="vs-dim">'+keys.map(row).join('')+'</dl>'+
-        '<div class="vs-chips">'+(d.tags||[]).map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join('')+'</div>'+
-      '</div>';
-    }
-    var h2h='<div class="vs-vsrow"><div class="vs-hd" style="width:100%"><span class="who">Head-to-head</span></div><dl class="vs-dim">';
-    if(tma||tmb){
-      h2h+='<div class="vs-dimrow"><dt>Teammate duels (Sat)</dt>'+
-        '<dd class="'+((tma&&tma.quali_rate>0.5)?'hl':'')+'">'+(tma?tma.quali_won+'–'+(tma.quali_n-tma.quali_won):'—')+'</dd>'+
-        '<dd class="'+((tmb&&tmb.quali_rate>0.5)?'hl':'')+'">'+(tmb?tmb.quali_won+'–'+(tmb.quali_n-tmb.quali_won):'—')+'</dd></div>';
-      h2h+='<div class="vs-dimrow"><dt>Teammate duels (Sun)</dt>'+
-        '<dd class="'+((tma&&tma.race_rate>0.5)?'hl':'')+'">'+(tma?tma.race_won+'–'+(tma.race_n-tma.race_won):'—')+'</dd>'+
-        '<dd class="'+((tmb&&tmb.race_rate>0.5)?'hl':'')+'">'+(tmb?tmb.race_won+'–'+(tmb.race_n-tmb.race_won):'—')+'</dd></div>';
+    var h2h;
+    if(tma){
+      var qw=tma.quali_won, ql=tma.quali_n-tma.quali_won,
+          rw=tma.race_won, rl=tma.race_n-tma.race_won;
+      h2h='<div class="subhd">Head-to-head — '+tma.years[0]+(tma.years.length>1?'–'+tma.years[tma.years.length-1]:'')+
+          ', shared car ('+Math.max(tma.quali_n,tma.race_n)+' races)</div>'+
+        '<div class="cmprow"><dt>Qualifying duels</dt>'+
+          '<dd'+(qw>ql?' class="hl"':'')+'>'+qw+'–'+ql+'</dd>'+
+          '<dd'+(ql>qw?' class="hl"':'')+'>'+ql+'–'+qw+'</dd></div>'+
+        '<div class="cmprow"><dt>Race duels</dt>'+
+          '<dd'+(rw>rl?' class="hl"':'')+'>'+rw+'–'+rl+'</dd>'+
+          '<dd'+(rl>rw?' class="hl"':'')+'>'+rl+'–'+rw+'</dd></div>';
     } else {
-      h2h+='<div class="vs-dimrow"><dt>Teammates</dt><dd>—</dd><dd>—</dd></div>';
+      h2h='<div class="subhd">Head-to-head</div>'+
+        '<div class="cmprow"><dt>Teammates</dt><dd>—</dd><dd>—</dd></div>'+
+        '<div class="cmprow"><dt>Shared car</dt><dd style="grid-column:2/-1;color:var(--muted);font-weight:500">never teammates — no head-to-head duels</dd></div>';
     }
-    h2h+='</dl><div class="mini" style="margin-top:8px;color:var(--muted)">Shared car years: '+(tma||tmb?(tma?tma.years[0]+'–'+tma.years[tma.years.length-1]:'—'):'none')+'</div></div>';
-    $g.innerHTML=col(A,RATES)+col(B,RATES)+h2h+
-      '<div class="vs-col" style="grid-column:1/-1">'+
-        '<div class="vs-hd"><span class="who">Full record</span></div>'+
-        '<dl class="vs-dim">'+RECORD.map(row).join('')+'</dl>'+
-      '</div>';
+    var aw=A.ovr>=B.ovr;
+    $g.innerHTML='<div class="cmp">'+
+      '<div class="cmphd"><span>Rating</span><b class="'+(aw?'w':'')+'">'+esc(disp(A.id))+' · '+nf(A.ovr,1)+'</b>'+
+        '<b class="'+(aw?'':'w')+'">'+esc(disp(B.id))+' · '+nf(B.ovr,1)+'</b></div>'+
+      '<div class="cmprow" style="background:var(--surface-2)"><dt>Career span</dt>'+
+        '<dd>'+nf(A.career_first)+'–'+nf(A.career_last)+'</dd><dd>'+nf(B.career_first)+'–'+nf(B.career_last)+'</dd></div>'+
+      '<div class="subhd">Model ratings (era-fair)</div>'+cmpRows(A,B,RATES)+
+      h2h+
+      '<div class="subhd">Raw career record (volume-favouring)</div>'+cmpRows(A,B,RECORD)+
+      '</div>'+
+      '<div class="vs-note">Tags — '+esc(disp(A.id))+': '+((A.tags||[]).join(', ')||'none')+
+        ' · '+esc(disp(B.id))+': '+((B.tags||[]).join(', ')||'none')+'</div>';
   }
   $a.addEventListener('change',render); $b.addEventListener('change',render);
   window._vsRender=render; window._vsSet=function(a,b){if(a)$a.value=a;if(b)$b.value=b;render();};
@@ -875,6 +942,74 @@ $board.addEventListener('click',function(e){
   window._vsRender && window._vsRender();
 });
 
+/* ---------- Seasons tab ---------- */
+(function(){
+  var $yr=document.getElementById('syear'), $sort=document.getElementById('ssort'),
+      $board=document.getElementById('seasonboard'), $cnt=document.getElementById('scount'),
+      $tbl=document.querySelector('#seasontbl tbody');
+  /* year -> [{d, s}] built once */
+  var byYear={};
+  D.drivers.forEach(function(d){
+    (d.seasons||[]).forEach(function(s){
+      (byYear[s.year]=byYear[s.year]||[]).push({d:d,s:s});
+    });
+  });
+  var years=Object.keys(byYear).map(Number).sort(function(a,b){return b-a});
+  $yr.innerHTML=years.map(function(y){return '<option value="'+y+'">'+y+' ('+byYear[y].length+')</option>'}).join('');
+  var pref=(new URLSearchParams(location.search)).get('y');
+  $yr.value=(pref&&byYear[pref])?pref:years[0];
+
+  function render(){
+    var y=$yr.value, list=byYear[y]||[], k=$sort.value;
+    list=list.slice().sort(function(a,b){
+      if(k==='pos') return (a.s.pos||99)-(b.s.pos||99)||b.s.skill-a.s.skill;
+      if(k==='points') return (b.s.points||0)-(a.s.points||0);
+      return b.s.skill-a.s.skill;
+    });
+    var vals=list.map(function(x){return x.s.skill});
+    var lo=Math.min.apply(null,vals), hi=Math.max.apply(null,vals);
+    $cnt.textContent=list.length+' drivers rated in '+y;
+    $board.innerHTML=list.map(function(x,i){
+      var d=x.d, s=x.s, col=cssv(ERA[eraOf(y)].c);
+      var sk=hi>lo?(s.skill-lo)/(hi-lo)*100:50;
+      var fld=s.field_n?((s.field_n-s.field_pos+1)/s.field_n*100):0;
+      return '<article class="card" style="--era:'+col+'">'+
+        '<button class="row" data-id="'+esc(d.id)+'" aria-expanded="false">'+
+          '<span class="rk">'+(i+1)+'</span>'+
+          '<span class="who"><span class="nm"><span class="flag" style="color:'+col+'">'+flag(d.nat)+'</span>'+
+            esc(disp(d.id))+(s.champion?' <span class="wdc">WDC</span>':'')+'</span>'+
+            '<span class="meta">'+(s.pos?'P'+s.pos+' · ':'')+nf(s.points)+' pts · '+
+            nf((s.points_pct||0)*100)+'% of champion · OVR #'+nf(d.rank)+'</span></span>'+
+          '<span class="right"><span class="bars">'+
+            bar('skill',sk,100,col,(s.skill>0?'+':'')+nf(s.skill,2))+
+            bar('field',fld,100,null,'#'+nf(s.field_pos)+'/'+nf(s.field_n))+'</span>'+
+            '<span class="ovr">'+(s.skill>0?'+':'')+nf(s.skill,2)+'<small>SKILL</small></span></span>'+
+        '</button></article>';
+    }).join('');
+    var cars=D.cars.filter(function(c){return String(c.year)===String(y)})
+      .sort(function(a,b){return a.rank-b.rank});
+    $tbl.innerHTML=cars.map(function(c){
+      var col=cssv(ERA[eraOf(c.year)].c);
+      return '<tr><td class="num">'+c.rank+'</td>'+
+        '<td><span class="earbud" style="background:'+col+'"></span>'+esc(c.name)+'</td>'+
+        '<td class="num">'+nf(c.elo)+'</td><td class="num">'+nf(c.rating,1)+'</td>'+
+        '<td class="num">'+(c.standing==null?'<span class="pill" style="opacity:.7">NC</span>':c.standing)+'</td>'+
+        '<td class="num">'+nf(c.points,1)+'</td><td class="num">'+c.races+'</td></tr>';
+    }).join('');
+  }
+  $board.addEventListener('click',function(e){
+    var b=e.target.closest('button.row'); if(!b) return;
+    state.open=b.getAttribute('data-id');
+    document.getElementById('tab-drivers').click();
+    render();
+    var el=document.getElementById('board').querySelector('.card[data-id="'+state.open+'"]');
+    if(el) el.scrollIntoView({block:'center'});
+  });
+  $yr.addEventListener('change',function(){try{history.replaceState(null,'','?y='+$yr.value+location.hash)}catch(e){};render()});
+  $sort.addEventListener('change',render);
+  render();
+})();
+
 /* ---------- keyboard shortcuts + deep link ---------- */
 document.addEventListener('keydown',function(e){
   if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT'||e.target.tagName==='TEXTAREA') return;
@@ -882,7 +1017,8 @@ document.addEventListener('keydown',function(e){
   else if(e.key==='1'){var t=document.getElementById('tab-drivers');if(t)t.click()}
   else if(e.key==='2'){var t=document.getElementById('tab-cars');if(t)t.click()}
   else if(e.key==='3'){var t=document.getElementById('tab-vs');if(t)t.click()}
-  else if(e.key==='4'){var t=document.getElementById('tab-method');if(t)t.click()}
+  else if(e.key==='4'){var t=document.getElementById('tab-season');if(t)t.click()}
+  else if(e.key==='5'){var t=document.getElementById('tab-method');if(t)t.click()}
   else if(e.key==='Escape'){state.open=null;render()}
 });
 /* deep link ?v=<driver-id> opens that card */
@@ -890,7 +1026,8 @@ document.addEventListener('keydown',function(e){
   var p=new URLSearchParams(location.search).get('v');
   if(p && D.drivers.some(function(d){return d.id===p})){
     state.open=p;
-    if(location.hash!=='#drivers'){location.hash='drivers';}
+    if(location.hash!=='#drivers'){try{history.replaceState(null,'','#drivers')}catch(e){};var t=document.getElementById('tab-drivers');if(t)t.click();}
+    render();
     var el=$board.querySelector('.card[data-id="'+p+'"]');
     if(el){el.scrollIntoView({block:'center'});}
   }
@@ -898,15 +1035,40 @@ document.addEventListener('keydown',function(e){
 
 /* ---------- Share button ---------- */
 document.getElementById('share').addEventListener('click',function(){
-  var url=location.origin+location.pathname;
-  var h=location.hash.replace('#','');
-  if(h) url+='#'+h;
-  if(state.open) url+=(url.indexOf('?')<0?'?':'&')+'v='+state.open;
+  var b=this, label=b.textContent;
+  var url=location.origin+location.pathname, qs=[];
+  if(state.open) qs.push('v='+encodeURIComponent(state.open));
+  var sy=document.getElementById('syear');
+  if(sy&&location.hash==='#season') qs.push('y='+sy.value);
+  if(qs.length) url+='?'+qs.join('&');
+  if(location.hash) url+=location.hash;
+  function ok(){b.textContent='Copied';setTimeout(function(){b.textContent=label},1200)}
   if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(url).then(function(){this.textContent='Copied';var b=this;setTimeout(function(){b.textContent='⧉ Share'},1200)},
-      function(){prompt('Copy this link:',url)});
+    navigator.clipboard.writeText(url).then(ok,function(){prompt('Copy this link:',url)});
   } else { prompt('Copy this link:',url); }
 });
+
+/* ---------- theme toggle (system → light → dark → system) ---------- */
+(function(){
+  var btn=document.getElementById('theme'), root=document.documentElement;
+  var modes=['system','light','dark'], glyph={system:'◐',light:'☀',dark:'☾'};
+  function apply(m){
+    if(m==='system'){root.removeAttribute('data-theme');root.style.colorScheme=''}
+    else{root.setAttribute('data-theme',m);root.style.colorScheme=m}
+    btn.textContent=glyph[m]; btn.title='Theme: '+m;
+    var mt=document.getElementById('tc');
+    if(mt) mt.setAttribute('content',m==='dark'?'#0b0b0c':m==='light'?'#f7f7f5':(matchMedia('(prefers-color-scheme: dark)').matches?'#0b0b0c':'#f7f7f5'));
+  }
+  var saved='system';
+  try{saved=localStorage.getItem('f1r:theme')||'system'}catch(e){}
+  if(modes.indexOf(saved)<0) saved='system';
+  apply(saved);
+  btn.addEventListener('click',function(){
+    var m=modes[(modes.indexOf(root.getAttribute('data-theme')||'system')+1)%3];
+    try{localStorage.setItem('f1r:theme',m)}catch(e){}
+    apply(m);
+  });
+})();
 
 /* ---------- init / theme re-render ---------- */
 function redraw(){render();renderCars();}
