@@ -702,5 +702,525 @@
   ],
   "title": "Ivan Capelli",
   "found": true
+ },
+ "jack-aitken": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "14",
+  "points": "0",
+  "teams": "[[Williams Grand Prix Engineering|Williams]]",
+  "off_f1_sections": [],
+  "title": "Jack Aitken",
+  "found": true
+ },
+ "jack-doohan": {
+  "nationality": "{{flagicon|AUS}} [[Formula One drivers from Australia|Australian]]",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Alpine F1 Team|Alpine]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Jack Michael Doohan",
+  "found": true
+ },
+ "jacques-villeneuve": {
+  "nationality": "{{flagicon|CAN}} [[Formula One drivers from Canada|Canadian]]",
+  "podiums": "23",
+  "points": "235",
+  "teams": "[[Williams Racing|Williams]], [[British American Racing|BAR]], [[Renault in Formula One|Renault]], [[Sauber]], [[BMW Sauber]]",
+  "relatives": "[[Jacques Villeneuve (racing driver, born 1953)|Jacques-Joseph Villeneuve]] (uncle)",
+  "off_f1_sections": [
+   "Complete 24 Hours of Spa results",
+   "Early racing career",
+   "Le Mans Series"
+  ],
+  "title": "Jacques Joseph Charles Villeneuve",
+  "found": true
+ },
+ "jaime-alguersuari": {
+  "nationality": "{{flagicon|ESP}} [[Formula One drivers from Spain|Spanish]]",
+  "podiums": "0",
+  "points": "31",
+  "teams": "[[Scuderia Toro Rosso|Toro Rosso]]",
+  "off_f1_sections": [],
+  "title": "Jaime Alguersuari",
+  "found": true
+ },
+ "jan-magnussen": {
+  "nationality": "{{flagicon|DNK}} Danish",
+  "podiums": "0",
+  "points": "1",
+  "teams": "[[Team McLaren|McLaren]], [[Stewart Grand Prix|Stewart]]",
+  "off_f1_sections": [
+   "Motorsports career results"
+  ],
+  "title": "Jan Magnussen",
+  "found": true
+ },
+ "jarno-trulli": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "11",
+  "points": "246.5",
+  "teams": "[[Minardi]], [[Prost Grand Prix|Prost]], [[Jordan Grand Prix|Jordan]], [[Renault in Formula One|Renault]], [[Toyota Racing (Formula One team)|Toyota]], [[Team Lotus (2010–11)|Team Lotus]]",
+  "off_f1_sections": [],
+  "title": "Jarno Trulli",
+  "found": true
+ },
+ "jean-alesi": {
+  "nationality": "{{flagicon|FRA|1974}} [[Formula One drivers from France|French]]",
+  "podiums": "32",
+  "points": "241",
+  "teams": "[[Tyrrell Racing|Tyrrell]], [[Scuderia Ferrari|Ferrari]], [[Benetton Formula|Benetton]], [[Sauber]], [[Prost Grand Prix|Prost]], [[Jordan Grand Prix|Jordan]]",
+  "off_f1_sections": [
+   "Le Mans Series (2010)"
+  ],
+  "title": "Jean Alesi",
+  "found": true
+ },
+ "jean-christophe-boullion": {
+  "title": "Jean-Christophe Joël Louis Boullion",
+  "found": false
+ },
+ "jean-eric-vergne": {
+  "nationality": "{{flagicon|FRA|1974}} [[Formula One drivers from France|France]]",
+  "podiums": "38",
+  "points": "51",
+  "teams": "[[Scuderia Toro Rosso|Toro Rosso]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete European Le Mans Series results",
+   "Complete Formula Renault 2.0 WEC results",
+   "Karting",
+   "World Endurance Championship"
+  ],
+  "title": "Jean Eric Vergne",
+  "found": true
+ },
+ "jenson-button": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "50",
+  "points": "1235",
+  "teams": "[[Williams Racing|Williams]], [[Benetton Formula|Benetton]], [[Renault in Formula One|Renault]], [[British American Racing|BAR]], [[Honda in Formula One|Honda]], [[Brawn GP|Brawn]], [[McLaren]]",
+  "off_f1_sections": [
+   "Complete British GT Championship results",
+   "Complete Spa 24 Hours results",
+   "Complete Super GT results",
+   "Super GT career"
+  ],
+  "title": "Jenson Alexander Lyons Button",
+  "found": true
+ },
+ "jerome-dambrosio": {
+  "nationality": "{{flagicon|BEL}} [[Formula One drivers from Belgium|Belgian]]",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Virgin Racing|Virgin]], [[Lotus F1|Lotus]]",
+  "off_f1_sections": [
+   "Blancpain Endurance Series",
+   "Complete 24 Hours of Spa results"
+  ],
+  "title": "Jérôme d'Ambrosio",
+  "found": true
+ },
+ "jj-lehto": {
+  "nationality": "{{flagicon|FIN}} [[Formula One drivers from Finland|Finnish]]",
+  "podiums": "1",
+  "points": "10",
+  "teams": "[[Onyx (racing team)|Onyx]], [[Scuderia Italia]], [[Sauber]], [[Benetton Formula|Benetton]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete American Le Mans Series results"
+  ],
+  "title": "Jyrki Juhani Järvilehto",
+  "found": true
+ },
+ "johnny-herbert": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "7",
+  "points": "98",
+  "teams": "[[Benetton Formula|Benetton]], [[Tyrrell Racing|Tyrrell]], [[Team Lotus|Lotus]], [[Equipe Ligier|Ligier]], [[Sauber]], [[Stewart Grand Prix|Stewart]], [[Jaguar in Formula One|Jaguar]]",
+  "off_f1_sections": [
+   "Complete American Le Mans Series results",
+   "Complete Le Mans Endurance Series results",
+   "GT Academy"
+  ],
+  "title": "John Paul Herbert",
+  "found": true
+ },
+ "jolyon-palmer": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "0",
+  "points": "9",
+  "teams": "[[Renault in Formula One|Renault]]",
+  "relatives": "[[Will Palmer]] (brother)",
+  "off_f1_sections": [
+   "Other racing activities"
+  ],
+  "title": "Jolyon Palmer",
+  "found": true
+ },
+ "jos-verstappen": {
+  "nationality": "{{flagicon|NED}} [[Formula One drivers from the Netherlands|Dutch]]",
+  "podiums": "2",
+  "points": "17",
+  "teams": "[[Benetton Formula|Benetton]], [[Simtek]], [[Footwork Arrows|Footwork]], [[Tyrrell Racing|Tyrrell]], [[Stewart Grand Prix|Stewart]], [[Arrows Grand Prix International|Arrows]], [[Minardi]]",
+  "off_f1_sections": [
+   "Complete Le Mans Series results",
+   "Racing career summary"
+  ],
+  "title": "Johannes Franciscus Verstappen",
+  "found": true
+ },
+ "juan-pablo-montoya": {
+  "nationality": "{{flagicon|COL}} [[Formula One drivers from Colombia|Colombian]]",
+  "podiums": "30",
+  "points": "307",
+  "teams": "[[Williams Grand Prix Engineering|Williams]], [[McLaren]]",
+  "off_f1_sections": [
+   "Junior racing career",
+   "Racing career"
+  ],
+  "title": "Juan Pablo Montoya Roldán",
+  "found": true
+ },
+ "jules-bianchi": {
+  "nationality": "{{flagicon|FRA|1974}} [[Formula One drivers from France|French]]",
+  "podiums": "0",
+  "points": "2",
+  "teams": "[[Marussia F1|Marussia]]",
+  "relatives": "{{Plainlist|",
+  "off_f1_sections": [
+   "Junior racing career"
+  ],
+  "title": "Jules Lucien André Bianchi",
+  "found": true
+ },
+ "julian-bailey": {
+  "off_f1_sections": [],
+  "title": "Julian Bailey",
+  "found": true
+ },
+ "justin-wilson": {
+  "off_f1_sections": [],
+  "title": "Justin Wilson",
+  "found": true
+ },
+ "kamui-kobayashi": {
+  "nationality": "{{flagicon|JAP}} [[Formula One drivers from Japan|Japanese]]",
+  "podiums": "50 <!--includes LMGTE stats, still part of WEC-->",
+  "points": "125",
+  "teams": "[[Toyota Racing (Formula One team)|Toyota]], [[BMW Sauber]], [[Sauber Motorsport|Sauber]], [[Caterham F1|Caterham]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Super Formula and Super GT (2015–present)",
+   "Super GT"
+  ],
+  "title": "Kamui Kobayashi",
+  "found": true
+ },
+ "karl-wendlinger": {
+  "nationality": "{{flagicon|AUT}} Austrian",
+  "podiums": "0",
+  "points": "14",
+  "teams": "[[Leyton House Racing|Leyton House]], [[March Engineering|March]], [[Sauber]]",
+  "relatives": "| module      =",
+  "off_f1_sections": [
+   "Complete FIA GT Championship results",
+   "Complete GT1 World Championship results"
+  ],
+  "title": "Karl Wendlinger",
+  "found": true
+ },
+ "karun-chandhok": {
+  "nationality": "{{flagicon|IND}} [[Formula One drivers from India|Indian]]",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[HRT Formula 1 Team|HRT]], [[Team Lotus (2010–11)|Team Lotus]]",
+  "off_f1_sections": [
+   "Complete European Le Mans Series results",
+   "Complete FIA GT Series results",
+   "Endurance Racing: 2012",
+   "FIA GT Series: 2013"
+  ],
+  "title": "Karun Chandhok",
+  "found": true
+ },
+ "kazuki-nakajima": {
+  "nationality": "{{flagicon|JPN}} [[Formula One drivers from Japan|Japanese]]",
+  "podiums": "36",
+  "points": "9",
+  "teams": "[[Toyota Gazoo Racing Europe|Toyota]]",
+  "relatives": "[[Daisuke Nakajima]] (brother)",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete Super GT results",
+   "FIA World Endurance Championship",
+   "Racing career",
+   "Super GT"
+  ],
+  "title": "Kazuki Nakajima",
+  "found": true
+ },
+ "kevin-magnussen": {
+  "nationality": "{{flagicon|DNK}} [[Formula One drivers from Denmark|Danish]]",
+  "podiums": "3",
+  "points": "{{F1stat|MAG|careerpoints}}",
+  "teams": "[[McLaren]], [[Renault in Formula One|Renault]], [[Haas F1 Team|Haas]]",
+  "relatives": "[[Dennis Lind]] (cousin)",
+  "off_f1_sections": [
+   "Complete 24 Hours of Spa results"
+  ],
+  "title": "Kevin Magnussen",
+  "found": true
+ },
+ "kimi-antonelli": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "{{F1stat|ANT|podiums}}",
+  "points": "{{F1stat|ANT|careerpoints}}",
+  "off_f1_sections": [],
+  "title": "Andrea Kimi Antonelli",
+  "found": true
+ },
+ "kimi-raikkonen": {
+  "nationality": "{{flagicon|FIN}} [[Formula One drivers from Finland|Finnish]]",
+  "podiums": "103",
+  "points": "1873",
+  "teams": "[[Sauber]], [[McLaren]], [[Scuderia Ferrari|Ferrari]], [[Lotus F1|Lotus]], [[Alfa Romeo in Formula One|Alfa Romeo]]",
+  "off_f1_sections": [
+   "Other racing"
+  ],
+  "title": "Kimi-Matias Räikkönen",
+  "found": true
+ },
+ "lance-stroll": {
+  "nationality": "{{flagicon|CAN}} [[Formula One drivers from Canada|Canadian]]",
+  "podiums": "{{F1stat|STR|podiums}}",
+  "points": "{{F1stat|STR|careerpoints}}",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [
+   "GT World Challenge Europe Endurance Cup",
+   "Junior racing career",
+   "Karting career summary",
+   "Karting record",
+   "Other racing",
+   "Racing career summary"
+  ],
+  "title": "Lance Strulovitch",
+  "found": true
+ },
+ "lando-norris": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "{{F1stat|NOR|podiums}}",
+  "points": "{{F1stat|NOR|careerpoints}}",
+  "off_f1_sections": [],
+  "title": "Lando Norris",
+  "found": true
+ },
+ "lewis-hamilton": {
+  "nationality": "{{#invoke:flag|icon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "{{F1stat|HAM|podiums}}",
+  "points": "{{F1stat|HAM|careerpoints}}",
+  "relatives": "[[Nicolas Hamilton]] (half-brother)",
+  "off_f1_sections": [
+   "Junior racing career",
+   "Karting",
+   "Karting career summary",
+   "Karting record"
+  ],
+  "title": "Lewis Carl Davidson Hamilton",
+  "found": true
+ },
+ "liam-lawson": {
+  "nationality": "{{flagicon|NZL}} [[Formula One drivers from New Zealand|New Zealander]]",
+  "podiums": "{{F1stat|LAW|podiums}}",
+  "points": "{{F1stat|LAW|careerpoints}}",
+  "off_f1_sections": [],
+  "title": "Liam Jared Lawson",
+  "found": true
+ },
+ "logan-sargeant": {
+  "nationality": "{{flagicon|USA}} [[Formula One drivers from the United States|American]]",
+  "podiums": "0",
+  "points": "{{F1stat|SAR|careerpoints}}",
+  "teams": "[[Williams Racing|Williams]]",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete European Le Mans Series results",
+   "Racing career summary"
+  ],
+  "title": "Logan Sargeant",
+  "found": true
+ },
+ "luca-badoer": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Scuderia Italia]], [[Minardi]], [[Forti]], [[Scuderia Ferrari|Ferrari]]",
+  "off_f1_sections": [
+   "Complete FIA GT Championship results",
+   "FIA GT Championship"
+  ],
+  "title": "Luca Badoer",
+  "found": true
+ },
+ "lucas-di-grassi": {
+  "nationality": "{{flagicon|BRA}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "42",
+  "points": "0",
+  "teams": "[[Audi in motorsport|Audi]]",
+  "off_f1_sections": [],
+  "title": "Lucas di Grassi",
+  "found": true
+ },
+ "luciano-burti": {
+  "nationality": "{{flagicon|BRA}} Brazilian",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Jaguar in Formula One|Jaguar]], [[Prost Grand Prix|Prost]]",
+  "off_f1_sections": [
+   "Karting record",
+   "Racing career summary"
+  ],
+  "title": "Luciano Pucci Burti",
+  "found": true
+ },
+ "marc-gene": {
+  "nationality": "{{flagicon|ESP}} Spanish",
+  "podiums": "0",
+  "points": "5",
+  "teams": "[[Minardi]], [[Williams Grand Prix Engineering|Williams]]",
+  "relatives": "[[Jordi Gené]] (brother)<br>[[Eric Gené]] (nephew)",
+  "off_f1_sections": [
+   "Complete Le Mans Series results"
+  ],
+  "title": "Marc Gené i Guerrero",
+  "found": true
+ },
+ "marcus-ericsson": {
+  "nationality": "{{flagicon|SWE}} [[Formula One drivers from Sweden|Swedish]]",
+  "podiums": "0",
+  "points": "18",
+  "teams": "[[Caterham F1|Caterham]], [[Sauber Motorsport|Sauber]]",
+  "relatives": "[[Hampus Ericsson]] (brother)",
+  "off_f1_sections": [
+   "Karting"
+  ],
+  "title": "Marcus Ericsson",
+  "found": true
+ },
+ "mark-blundell": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "3",
+  "points": "32",
+  "teams": "[[Brabham]], [[Équipe Ligier|Ligier]], [[Tyrrell Racing|Tyrrell]], [[McLaren]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete American Le Mans Series results"
+  ],
+  "title": "Mark Blundell",
+  "found": true
+ },
+ "mark-webber": {
+  "off_f1_sections": [],
+  "title": "Mark Webber",
+  "found": true
+ },
+ "martin-brundle": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "9",
+  "points": "98",
+  "teams": "[[Tyrrell Racing|Tyrrell]], [[Zakspeed]], [[Williams Racing|Williams]], [[Brabham]], [[Benetton Formula|Benetton]], [[Équipe Ligier|Ligier]], [[McLaren]], [[Jordan Grand Prix|Jordan]]",
+  "relatives": "[[Robin Brundle]] (brother)",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Early racing career",
+   "Motorsport activities"
+  ],
+  "title": "Martin John Brundle",
+  "found": true
+ },
+ "mauricio-gugelmin": {
+  "nationality": "{{flagicon|BRA}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "1",
+  "points": "10",
+  "teams": "[[March Engineering|March]], [[Leyton House Racing|Leyton House]], [[Jordan Grand Prix|Jordan]]",
+  "off_f1_sections": [],
+  "title": "Maurício Gugelmin",
+  "found": true
+ },
+ "max-chilton": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Marussia F1|Marussia]]",
+  "relatives": "[[Tom Chilton]] (brother)",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Karting",
+   "World Endurance Championship"
+  ],
+  "title": "Max Chilton",
+  "found": true
+ },
+ "max-verstappen": {
+  "nationality": "{{flagicon|NED}} [[Formula One drivers from the Netherlands|Dutch]]<!--Per [[WP:F1]] convention, only includes the nationality driver races under-->",
+  "podiums": "{{F1stat|VER|podiums}}",
+  "points": "{{F1stat|VER|careerpoints}}",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [
+   "Junior racing career",
+   "Karting (2005–2013)",
+   "Karting career summary",
+   "Karting record",
+   "Le Mans Virtual (2020–2023)",
+   "Other racing",
+   "Racing career summary"
+  ],
+  "title": "Max Emilian Verstappen",
+  "found": true
+ },
+ "michael-andretti": {
+  "nationality": "{{flagicon|USA}} American",
+  "podiums": "1",
+  "points": "7",
+  "teams": "[[McLaren (racing)|McLaren]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Daytona results",
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Michael Mario Andretti",
+  "found": true
+ },
+ "michael-schumacher": {
+  "nationality": "{{flagicon|GER}} [[Formula One drivers from Germany|German]]",
+  "podiums": "155",
+  "points": "1566",
+  "teams": "[[Jordan Grand Prix|Jordan]], [[Benetton Formula|Benetton]], [[Scuderia Ferrari|Ferrari]], [[Mercedes-Benz in Formula One|Mercedes]]",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [
+   "Karting",
+   "Karting career summary",
+   "Karting record"
+  ],
+  "title": "Michael Schumacher",
+  "found": true
+ },
+ "michele-alboreto": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "23",
+  "points": "186.5",
+  "teams": "[[Tyrrell Racing|Tyrrell]], [[Scuderia Ferrari|Ferrari]], [[Larrousse]], [[Arrows Grand Prix International|Arrows]], [[Footwork Arrows|Footwork]], [[Scuderia Italia]], [[Minardi]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete American Le Mans Series results",
+   "Racing career results"
+  ],
+  "title": "Michele Alboreto",
+  "found": true
+ },
+ "mick-schumacher": {
+  "title": "Mick Schumacher",
+  "found": false
  }
 }
