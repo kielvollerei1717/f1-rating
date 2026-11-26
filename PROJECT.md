@@ -23,7 +23,7 @@ Data-driven driver & constructor ratings for F1 1990–2026. Built from race res
 ## Data
 
 - **Source:** [f1db](https://github.com/f1db/f1db) SQLite, latest release `v2026.20.0` (9 Nov 2026). 74MB, 31 tables.
-- **Window:** every classified race finish 1990–2026. **685 races** (688 in the DB; 3 have no RACE_RESULT rows). **216 distinct drivers**, **424 car-seasons**.
+- **Window:** every classified race finish 1990–2026. **686 races** (689 in the DB; 3 have no RACE_RESULT rows). **216 distinct drivers**, **424 car-seasons**.
 - **Cross-checked** 2026 race count and driver list against the Jolpica/Ergast API: race counts match exactly (688=688); driver coverage is a superset (f1db includes test-driver entries that Jolpica excludes).
 - **No telemetry.** f1db has no speed/throttle/brake/gear/sector columns anywhere in the schema. Fastest-lap time is the finest public granularity available; treated as a race outcome, not as a performance input.
 
@@ -35,7 +35,7 @@ Pairwise Bradley–Terry (Elo family). Every race finish is a duel against every
 logit P(i beats j) = (driver_i − driver_j) + (car_i − car_j)
 ```
 
-Car effect cancels inside a team, so teammate duels isolate driver skill; cross-team results isolate car strength. Two parameters per driver (skill) plus one per `(constructor, year)` (car). Fit with Adam over **83,472 duels**; calibrated priors `N(0, 0.65²)` on skill and `N(0, 0.50²)` on car; converged logloss **0.393**.
+Car effect cancels inside a team, so teammate duels isolate driver skill; cross-team results isolate car strength. Two parameters per driver (skill) plus one per `(constructor, year)` (car). Fit with Adam over **83,643 duels**; calibrated priors `N(0, 0.65²)` on skill and `N(0, 0.50²)` on car; converged logloss **0.392** (written to `ratings.json`, printed on the Method tab).
 
 Era-fairness: every driver's skill is also measured as a **z-score against the field of their own seasons**, so a 1992 Williams driver and a 2026 Mercedes driver are judged against their own peers, not against each other.
 
@@ -111,7 +111,7 @@ start index.html       # or python -m http.server
 
 - **No telemetry** for 1990–2018 (data does not exist publicly in structured form). FastF1 / OpenF1 can add 2018+ lap telemetry as a separate layer.
 - **Sprint races** are in the DB but not yet a leaderboard.
-- **Bio coverage** is partial (61/216 after the first CI run) and tops up ~41 drivers per weekly run; drivers without a cached bio simply omit the section.
+- **Bio coverage** is partial (104/216 after two CI runs) and tops up ~40 drivers per weekly run; drivers without a cached bio simply omit the section.
 - **JSON API** could be exposed via GitHub Pages + a static JSON endpoint (already there as `ratings.json`) or a serverless function.
 - **f1db release lag** — ratings track f1db, not live F1. Between releases the site is static.
 
@@ -120,11 +120,12 @@ start index.html       # or python -m http.server
 | File | Role |
 |---|---|
 | `index.html` | static site (all UI) |
-| `data.js` | trimmed driver + car data (694KB) |
+| `data.js` | trimmed driver + car data (620KB) |
 | `ratings.json` | full model output (1.1MB) |
 | `model.py` | fit pipeline |
 | `prep.py` | trim model output → `data.js` |
 | `update.py` | f1db fetch + rebuild |
 | `bio.py` | Wikipedia bio scraper (karting, WEC, GT, MotoGP, Dakar) |
+| `check.py` | self-check: page/payload contract + run invariants (CI gate) |
 | `bios.json` | cached driver bios (committed, regenerated weekly) |
 | `.github/workflows/update.yml` | weekly auto-update |

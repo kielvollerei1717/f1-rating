@@ -16,7 +16,7 @@ Teammates drive the same car, so `car_i - car_j = 0` inside a team — teammate 
 
 - **216 drivers** (every driver with ≥1 race start in 1990–2026; `<10` starts or debuted in last 2 seasons flagged `PROV`)
 - **424 car-seasons** (including unclassified/zero-point teams marked `NC`)
-- **83,472 race duels** across 685 races
+- **83,643 race duels** across 686 races
 - Career length / race count is deliberately excluded from the rating formula
 
 ## Auto-update

@@ -37,6 +37,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      # f1db -> ratings.json
       - run: python bio.py        # wikipedia -> bios.json
       - run: python prep.py       # ratings + bios -> data.js
+      - run: python check.py      # guards the page/payload contract; fails the run
       - id: commit
         run: |
           git config user.name "github-actions[bot]"
@@ -58,7 +59,11 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # check out the branch head, not the pre-run SHA: the update job above
+      # committed and pushed the fresh data.js, so github.sha here is stale
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - run: mkdir -p _site && cp index.html data.js _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

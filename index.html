@@ -237,7 +237,7 @@ kbd{font:600 10px var(--mono);background:var(--surface);border:1px solid var(--l
 .cmp .cmprow:hover{background:var(--surface-2)}
 .vs-note{color:var(--muted);font-size:12.5px;max-width:60ch}
 .vsbtn{margin-left:8px;font:700 10px var(--mono);letter-spacing:.06em;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:3px 8px;cursor:pointer;opacity:0;transition:opacity .15s,color .15s,border-color .15s}
-.card:hover .vsbtn,.card.open .vsbtn{opacity:1}
+.card:hover .vsbtn,.card.open .vsbtn,.row:focus-visible .vsbtn,.vsbtn:focus-visible{opacity:1}
 .vsbtn:hover{color:var(--accent);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
 .prose h2{font-size:19px;margin:26px 0 8px}
 .prose h2:first-child{margin-top:0}
@@ -260,6 +260,8 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
   /* the meta line is too long to ellipsis on a phone — let it take a second line instead of hiding the points */
   .meta{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.4}
   .bars{display:none}
+  /* no hover on a touch screen: the VS button has to be visible without it */
+  .vsbtn{opacity:1}
   .ovr{font-size:19px;min-width:44px}
   .bio-row{grid-template-columns:76px 1fr;gap:8px}
   .bio-k{font-size:9.5px}
@@ -451,7 +453,7 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
       <p>A rating built from a handful of races is a guess with wide error bars, and the model says so rather than hiding it.
       Any driver with a small sample carries a <span class="prov">PROV</span> badge: their OVR is provisional and their
       interval is wide. Two flags drive it — <strong>early career</strong> (debuted in the last two seasons) and
-      <strong>small sample</strong> (under 20 starts). The badge is a caution, never a penalty: a rookie is not ranked down
+      <strong>small sample</strong> (under 10 starts). The badge is a caution, never a penalty: a rookie is not ranked down
       for being new, only marked as unfinished.</p>
       <h2>Driving style, from behaviour</h2>
       <p>Style tags are read off measurable behaviour, not reputation: a driver who beats teammates on Saturday more than
@@ -477,7 +479,7 @@ footer{color:var(--muted);font-size:12.5px;padding:26px 0 0;border-top:1px solid
         <div><dt>Driver duels</dt><dd id="m-pairs">—</dd></div>
         <div><dt>Drivers rated</dt><dd id="m-drivers">—</dd></div>
         <div><dt>Car-seasons</dt><dd id="m-cars">—</dd></div>
-        <div><dt>Fit error</dt><dd id="m-ll">0.393</dd></div>
+        <div><dt>Fit error</dt><dd id="m-ll">—</dd></div>
       </div>
       <p style="margin-top:14px"><strong>Source:</strong> f1db (community F1 database), release v2026.21.0 · results through the 2026 season.</p>
     </div>
@@ -532,6 +534,7 @@ document.getElementById('m-races').textContent = (D.n_races||688).toLocaleString
 document.getElementById('m-pairs').textContent = D.n_pairs.toLocaleString('en-US');
 document.getElementById('m-drivers').textContent = D.n_drivers;
 document.getElementById('m-cars').textContent = D.n_cars;
+if(D.logloss!=null) document.getElementById('m-ll').textContent = Number(D.logloss).toFixed(3);
 document.getElementById('hdr-n').textContent = D.n_drivers;
 (function(){var b=document.getElementById('built');
   if(b&&D.built) b.textContent='Data: '+D.built;})();
@@ -660,8 +663,10 @@ function ish(v){return v==null?0.5:v}
 function cardHtml(d,i){
   var pal=palette(), ec=ERA[eraOf(d.first_season)].c, col=cssv(ec);
   var open=state.open===d.id;
+  /* the row is a div, not a button: the VS button sits inside it, and nested
+     buttons are invalid HTML — the parser ejects them out of the row */
   var h='<article class="card'+(open?' open':'')+'" style="--era:'+col+'" data-id="'+esc(d.id)+'">'+
-   '<button class="row" aria-expanded="'+open+'" data-id="'+esc(d.id)+'">'+
+   '<div class="row" role="button" tabindex="0" aria-expanded="'+open+'" data-id="'+esc(d.id)+'">'+
      '<span class="rk">'+(i+1)+'</span>'+
      '<span class="who"><span class="nm"><span class="flag" style="color:'+col+'">'+flag(d.nat)+'</span>'+esc(disp(d.id))+
         (d.provisional?'<span class="prov" title="Small sample / early career — rating is provisional">PROV</span>':'')+'</span>'+
@@ -670,7 +675,7 @@ function cardHtml(d,i){
      '<span class="right"><span class="bars">'+bar('career',d.ovr,100)+bar('peak',d.peak_ovr,100,col)+'</span>'+
        '<span class="ovr">'+nf(d.ovr,1)+'<small>OVR</small></span>'+
        '<button class="vsbtn" data-vs="'+esc(d.id)+'" title="Compare with another driver" aria-label="Compare with another driver">VS</button></span>'+
-   '</button>';
+   '</div>';
   if(open){
     h+='<div class="detail">'+detailHtml(d,pal,col)+'</div>';
   }
@@ -842,11 +847,17 @@ function render(){
 }
 
 $board.addEventListener('click',function(e){
-  var b=e.target.closest('button.row'); if(!b) return;
+  if(e.target.closest('.vsbtn')) return;
+  var b=e.target.closest('.row'); if(!b) return;
   var id=b.getAttribute('data-id');
   state.open = state.open===id?null:id;
   render();
   if(state.open){var el=$board.querySelector('.card.open'); if(el) el.scrollIntoView({block:'nearest'});}
+});
+$board.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'&&e.key!==' ') return;
+  var b=e.target.closest('.row'); if(!b||e.target.closest('.vsbtn')) return;
+  e.preventDefault(); b.click();
 });
 $board.addEventListener('click',function(e){
   var t=e.target.closest('.toggle button'); if(!t) return;
@@ -1069,7 +1080,7 @@ $board.addEventListener('click',function(e){
     }).join('');
   }
   $board.addEventListener('click',function(e){
-    var b=e.target.closest('button.row'); if(!b) return;
+    var b=e.target.closest('.row'); if(!b) return;
     state.open=b.getAttribute('data-id');
     document.getElementById('tab-drivers').click();
     render();

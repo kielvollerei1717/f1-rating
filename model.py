@@ -85,6 +85,10 @@ for it in range(1, 15001):
         print(f'  it{it} logloss={ll:.4f} sd_d={theta[:ND].std():.3f} sd_c={theta[ND:].std():.3f}')
 
 d = theta[:ND] - theta[:ND].mean()
+# final in-sample fit error, reported on the page instead of a stale constant
+z = theta[pi] - theta[pj] + theta[ND + pci] - theta[ND + pcj]
+p = 1.0 / (1.0 + np.exp(-z))
+logloss = float(-np.mean(py * np.log(p + 1e-12) + (1 - py) * np.log(1 - p + 1e-12)))
 c = theta[ND:] - theta[ND:].mean()
 K = 400.0 / math.log(10)
 elo_of = lambda x: 1500 + K * x
@@ -521,6 +525,7 @@ for x, r in zip(csr, cr):
     x['rating'] = round(float(r), 1)
 
 json.dump(dict(years=[Y0, Y1], n_pairs=int(n), min_starts=1, n_races=len({r[0] for r in rows}),
+               logloss=round(logloss, 3),
                n_drivers=len(raw), n_cars=len(csr), drivers=raw, cars=csr,
                era_mean=era_mean, era_n=era_n), open(OUT, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
 print(f'wrote {OUT}: {len(raw)} drivers, {len(csr)} car-seasons')
