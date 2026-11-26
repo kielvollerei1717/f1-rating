@@ -1222,5 +1222,389 @@
  "mick-schumacher": {
   "title": "Mick Schumacher",
   "found": false
+ },
+ "mika-hakkinen": {
+  "nationality": "{{flagicon|FIN}} [[Formula One drivers from Finland|Finnish]]",
+  "podiums": "51",
+  "points": "420",
+  "teams": "[[Team Lotus|Lotus]], [[McLaren]]",
+  "off_f1_sections": [
+   "Karting record"
+  ],
+  "title": "Mika Pauli Häkkinen",
+  "found": true
+ },
+ "mika-salo": {
+  "nationality": "{{flagicon|FIN}} [[Formula One drivers from Finland|Finnish]]",
+  "podiums": "2",
+  "points": "33",
+  "teams": "[[Team Lotus|Lotus]], [[Tyrrell Racing|Tyrrell]], [[Arrows Grand Prix International|Arrows]], [[British American Racing|BAR]], [[Scuderia Ferrari|Ferrari]], [[Sauber]], [[Toyota F1|Toyota]]",
+  "relatives": "[[Jesse Krohn]] (godson)",
+  "off_f1_sections": [
+   "Complete American Le Mans Series results",
+   "Complete European Le Mans Series results",
+   "Complete GT1 World Championship results"
+  ],
+  "title": "Mika Salo",
+  "found": true
+ },
+ "narain-karthikeyan": {
+  "nationality": "{{flagicon|IND}} [[Formula One drivers from India|Indian]]",
+  "podiums": "0",
+  "points": "5",
+  "teams": "[[Jordan Grand Prix|Jordan]], [[HRT F1|HRT]]",
+  "off_f1_sections": [
+   "Complete Asian Le Mans Series results",
+   "Complete Le Mans Series results",
+   "Complete Super GT results",
+   "Super GT"
+  ],
+  "title": "Narain Karthikeyan",
+  "found": true
+ },
+ "nelson-piquet": {
+  "nationality": "{{flagicon|BRA|1968}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "60",
+  "points": "481.5 (485.5){{efn|name=\"droppedpoints\"}}",
+  "teams": "[[Ensign (racing team)|Ensign]], [[BS Fabrications]] (privateer), [[Brabham]], [[Williams Racing|Williams]], [[Team Lotus|Lotus]], [[Benetton Formula|Benetton]]",
+  "off_f1_sections": [
+   "Other racing ventures"
+  ],
+  "title": "Nelson Piquet Souto Maior",
+  "found": true
+ },
+ "nelson-piquet-jr": {
+  "title": "Nelson Ângelo Tamsma Piquet Souto Maior",
+  "found": false
+ },
+ "nicholas-latifi": {
+  "nationality": "{{flagicon|CAN}} [[Formula One drivers from Canada|Canadian]]",
+  "podiums": "0",
+  "points": "9",
+  "teams": "[[Williams Racing|Williams]]",
+  "off_f1_sections": [],
+  "title": "Nicholas Daniel Latifi",
+  "found": true
+ },
+ "nick-heidfeld": {
+  "nationality": "{{flagicon|DEU}} [[Formula One drivers from Germany|German]]",
+  "podiums": "13",
+  "points": "259",
+  "teams": "[[Prost Grand Prix|Prost]], [[Sauber Motorsport|Sauber]], [[Jordan Grand Prix|Jordan]], [[Williams Grand Prix Engineering|Williams]], [[BMW in Formula One|BMW Sauber]], [[Renault in Formula One|Renault]]",
+  "relatives": "[[Sven Heidfeld]] (brother)",
+  "off_f1_sections": [
+   "American Le Mans Series results",
+   "Endurance racing",
+   "FIA World Endurance Championship results",
+   "Le Mans 24 Hours results"
+  ],
+  "title": "Nick Heidfeld",
+  "found": true
+ },
+ "nico-hulkenberg": {
+  "nationality": "{{flagicon|GER}} [[Formula One drivers from Germany|German]]",
+  "podiums": "{{f1stat|HUL|podiums}}",
+  "points": "{{F1stat|HUL|careerpoints}}",
+  "teams": "[[Porsche in motorsport|Porsche]]",
+  "off_f1_sections": [
+   "Junior racing career",
+   "Karting",
+   "Other racing",
+   "Racing career summary"
+  ],
+  "title": "Nicolas Hülkenberg",
+  "found": true
+ },
+ "nico-rosberg": {
+  "nationality": "{{flagicon|DEU}} [[Formula One drivers from Germany|German]] <!-- Please read the discussion page before changing this&nbsp;– this infobox details Rosberg's participation in Formula One and therefore, unlike the article in other languages, shows the nationality under which he raced in Formula One, which was German -->",
+  "podiums": "57",
+  "points": "1594.5",
+  "teams": "[[Williams Racing|Williams]], [[Mercedes-Benz in Formula One|Mercedes]]",
+  "off_f1_sections": [
+   "Karting (1991–2001)"
+  ],
+  "title": "Nico Erik Rosberg",
+  "found": true
+ },
+ "nicola-larini": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "1",
+  "points": "7",
+  "teams": "[[Enzo Coloni Racing Car Systems|Coloni]], [[Osella]], [[Équipe Ligier|Ligier]], [[Modena (racing team)|Modena]], [[Scuderia Ferrari|Ferrari]], [[Sauber]]",
+  "off_f1_sections": [],
+  "title": "Nicola Larini",
+  "found": true
+ },
+ "nicolas-kiesa": {
+  "nationality": "{{flagicon|DNK}} Danish",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Minardi]], [[Jordan Grand Prix|Jordan]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Nicolas Kiesa",
+  "found": true
+ },
+ "nigel-mansell": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "59",
+  "points": "480 (482){{efn|name=\"droppedpoints\"}}",
+  "teams": "[[Team Lotus|Lotus]], [[Williams Racing|Williams]], [[Scuderia Ferrari|Ferrari]], [[McLaren]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Nigel Ernest James Mansell",
+  "found": true
+ },
+ "nikita-mazepin": {
+  "nationality": "{{flagg|cnxa|Russian Automobile Federation|image=Russian Automobile Federation flag.svg}} [[Russian Automobile Federation]]{{efn|name=russian|Mazepin is Russian, but in {{F1|2021}} and {{F1|2022}} he was entered as a neutral athlete using the designation \"RAF\" ([[Russian Automobile Federation]]), as the [[Court of Arbitration for Sport]] upheld a ban on Russia competing at World Championships. The ban was implemented by the [[World Anti-Doping Agency]] in response to a [[Doping in Russia|state-sponsored doping program]] of Russian athletes.<ref>{{cite news|url=https://www.motorsport.com/f1/news/russia-mazepin-neutral-flag-f1/5345260/|title=Mazepin set to race under neutral flag after CAS ruling extends to F1|author=Luke Smith|work=motorsport.com|date=5 February 2021|access-date=5 February 2021|archive-date=5 February 2021|archive-url=https://web.archive.org/web/20210205211019/https://www.motorsport.com/f1/news/russia-mazepin-neutral-flag-f1/5345260/|url-status=live}}</ref>}}",
+  "podiums": "5",
+  "points": "0",
+  "teams": "[[Haas F1 Team|Haas]]",
+  "off_f1_sections": [
+   "Karting career summary",
+   "Karting record",
+   "Other racing",
+   "Racing career summary"
+  ],
+  "title": "Nikita Mazepin",
+  "found": true
+ },
+ "nyck-de-vries": {
+  "nationality": "{{flagicon|NLD}} [[Formula One drivers from the Netherlands|Dutch]]",
+  "podiums": "16",
+  "points": "2",
+  "teams": "[[Williams Racing|Williams]], [[Scuderia AlphaTauri|AlphaTauri]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete European Le Mans Series results",
+   "Racing career summary"
+  ],
+  "title": "Hendrik Johannes Nicasius de Vries",
+  "found": true
+ },
+ "oliver-bearman": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "{{F1stat|BEA|podiums}}",
+  "points": "{{F1stat|BEA|careerpoints}}",
+  "relatives": "[[Thomas Bearman]] (brother)",
+  "off_f1_sections": [],
+  "title": "Oliver Bearman",
+  "found": true
+ },
+ "olivier-grouillard": {
+  "nationality": "{{flagicon|FRA|1974}} [[Formula One drivers from France|French]]",
+  "podiums": "0",
+  "points": "1",
+  "teams": "[[Équipe Ligier|Ligier]], [[Osella]], [[Fondmetal]], [[Automobiles Gonfaronnaises Sportives|AGS]], [[Tyrrell Racing|Tyrrell]]",
+  "off_f1_sections": [
+   "Complete JGTC results"
+  ],
+  "title": "Olivier Grouillard",
+  "found": true
+ },
+ "olivier-panis": {
+  "nationality": "{{flagicon|FRA|1974}} [[Formula One drivers from France|French]]",
+  "podiums": "5",
+  "points": "76",
+  "teams": "[[Équipe Ligier|Ligier]], [[Prost Grand Prix|Prost]], [[British American Racing|BAR]], [[Toyota in Formula One|Toyota]]",
+  "off_f1_sections": [
+   "Complete GT1 World Championship results"
+  ],
+  "title": "Olivier Panis",
+  "found": true
+ },
+ "oscar-piastri": {
+  "nationality": "{{flagicon|AUS}} [[Formula One drivers from Australia|Australian]]",
+  "podiums": "{{F1stat|PIA|podiums}}",
+  "points": "{{F1stat|PIA|careerpoints}}",
+  "off_f1_sections": [],
+  "title": "Oscar Jack Piastri",
+  "found": true
+ },
+ "pascal-wehrlein": {
+  "nationality": "{{flagicon|DEU}} [[Formula One drivers from Germany|German]]",
+  "podiums": "24",
+  "points": "6",
+  "teams": "[[Manor Racing|Manor]], [[Sauber Motorsport|Sauber]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Pascal Wehrlein",
+  "found": true
+ },
+ "pastor-maldonado": {
+  "nationality": "{{flagicon|VEN}} [[Formula One drivers from Venezuela|Venezuelan]]",
+  "podiums": "1",
+  "points": "76",
+  "teams": "[[Williams Racing|Williams]], [[Lotus F1|Lotus]]",
+  "off_f1_sections": [
+   "Karting"
+  ],
+  "title": "Pastor Maldonado",
+  "found": true
+ },
+ "patrick-friesacher": {
+  "nationality": "{{flagicon|AUT}} Austrian",
+  "podiums": "0",
+  "points": "3",
+  "teams": "[[Minardi]]",
+  "off_f1_sections": [],
+  "title": "Patrick Friesacher",
+  "found": true
+ },
+ "paul-di-resta": {
+  "nationality": "{{flagicon|GBR}} [[Formula One drivers from the United Kingdom|British]]",
+  "podiums": "9",
+  "points": "121",
+  "teams": "[[Force India]], [[Williams Grand Prix Engineering|Williams]]",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete Asian Le Mans Series results",
+   "Complete European Le Mans Series results",
+   "Endurance racing (2019–present)",
+   "Karting",
+   "Racing career summary"
+  ],
+  "title": "Paul di Resta",
+  "found": true
+ },
+ "pedro-de-la-rosa": {
+  "nationality": "{{flagicon|ESP}} [[Formula One drivers from Spain|Spanish]]",
+  "podiums": "1",
+  "points": "35",
+  "teams": "[[Arrows Grand Prix International|Arrows]], [[Jaguar in Formula One|Jaguar]], [[McLaren]], [[Sauber Motorsport|Sauber]], [[HRT Formula 1 Team|HRT]]",
+  "relatives": "[[Bruno del Pino]] (nephew)",
+  "off_f1_sections": [
+   "Complete JGTC results"
+  ],
+  "title": "Pedro Martínez de la Rosa",
+  "found": true
+ },
+ "pedro-diniz": {
+  "nationality": "{{flagicon|BRA}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "0",
+  "points": "10",
+  "teams": "[[Forti]], [[Équipe Ligier|Ligier]], [[Arrows Grand Prix International|Arrows]], [[Sauber]]",
+  "off_f1_sections": [],
+  "title": "Pedro Diniz",
+  "found": true
+ },
+ "pedro-lamy": {
+  "nationality": "{{flagicon|PRT}} Portuguese",
+  "podiums": "| poles = 0",
+  "points": "1",
+  "teams": "[[Team Lotus|Lotus]], [[Minardi]]",
+  "off_f1_sections": [
+   "Complete FIA GT Championship results",
+   "Complete GT1 World Championship results",
+   "Complete Le Mans Series results",
+   "Racing career"
+  ],
+  "title": "Pedro Lamy",
+  "found": true
+ },
+ "philippe-alliot": {
+  "nationality": "{{flagicon|FRA|1974}} [[Formula One drivers from France|French]]",
+  "podiums": "0",
+  "points": "7",
+  "teams": "[[RAM Racing|RAM]], [[Équipe Ligier|Ligier]], [[Larrousse]], [[McLaren]]",
+  "off_f1_sections": [],
+  "title": "Philippe Alliot",
+  "found": true
+ },
+ "pierluigi-martini": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "0",
+  "points": "18",
+  "teams": "[[Toleman]], [[Minardi]], [[Scuderia Italia]]",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Pierluigi Martini",
+  "found": true
+ },
+ "pierre-gasly": {
+  "nationality": "{{flagicon|FRA}} [[Formula One drivers from France|French]]",
+  "podiums": "{{F1stat|GAS|podiums}}",
+  "points": "{{F1stat|GAS|careerpoints}}",
+  "off_f1_sections": [
+   "Karting",
+   "Other racing"
+  ],
+  "title": "Pierre Gasly",
+  "found": true
+ },
+ "pietro-fittipaldi": {
+  "nationality": "{{flagicon|BRA}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "0",
+  "points": "0",
+  "teams": "[[Haas F1 Team|Haas]]",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [
+   "Complete European Le Mans Series results",
+   "Junior racing career"
+  ],
+  "title": "Pietro Fittipaldi",
+  "found": true
+ },
+ "rafael-camara": {
+  "nationality": "{{flagicon|BRA}} [[Formula One drivers from Brazil|Brazilian]]",
+  "podiums": "{{F1stat|CAM|podiums}}",
+  "points": "{{F1stat|CAM|careerpoints}}",
+  "off_f1_sections": [],
+  "title": "Rafael Chaves Câmara",
+  "found": true
+ },
+ "ralf-schumacher": {
+  "nationality": "{{flagicon|DEU}} [[Formula One drivers from Germany|German]]",
+  "podiums": "27",
+  "points": "329",
+  "teams": "[[Jordan Grand Prix|Jordan]], [[Williams Racing|Williams]], [[Toyota Racing (Formula One team)|Toyota]]",
+  "relatives": "{{plainlist|",
+  "off_f1_sections": [],
+  "title": "Ralf Schumacher",
+  "found": true
+ },
+ "ralph-firman": {
+  "nationality": "{{flagicon|IRL}} Irish",
+  "podiums": "0",
+  "points": "1",
+  "teams": "[[Jordan Grand Prix|Jordan]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results",
+   "Complete JGTC/Super GT results",
+   "Racing career"
+  ],
+  "title": "Ralph Firman",
+  "found": true
+ },
+ "ricardo-zonta": {
+  "nationality": "{{flagicon|BRA}} Brazilian",
+  "podiums": "0",
+  "points": "3",
+  "teams": "[[British American Racing|BAR]], [[Jordan Grand Prix|Jordan]],  [[Toyota F1|Toyota]]",
+  "off_f1_sections": [
+   "Complete FIA GT Championship results",
+   "Complete FIA GT Series results",
+   "Complete GT1 World Championship results",
+   "Racing career"
+  ],
+  "title": "Ricardo Zonta",
+  "found": true
+ },
+ "riccardo-patrese": {
+  "nationality": "{{flagicon|ITA}} [[Formula One drivers from Italy|Italian]]",
+  "podiums": "37",
+  "points": "281",
+  "teams": "[[Shadow Racing Cars|Shadow]], [[Arrows (F1)|Arrows]], [[Brabham]], [[Alfa Romeo in Formula One|Alfa Romeo]], [[Williams Grand Prix Engineering|Williams]], [[Benetton Formula|Benetton]]",
+  "off_f1_sections": [
+   "Complete 24 Hours of Le Mans results"
+  ],
+  "title": "Riccardo Patrese",
+  "found": true
  }
 }
